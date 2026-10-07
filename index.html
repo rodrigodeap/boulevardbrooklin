@@ -75,48 +75,29 @@
     padding: 120px 24px 100px;
   }
 
-  /* ---------- FAIXA DE LOGOS (parceiros) ---------- */
+  /* ---------- LOGO ÚNICO NO TOPO DO HEADER ---------- */
   .hero-parceiros {
     position: absolute;
     top: 34px;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 3;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-    padding: 0 40px;
-    flex-wrap: wrap;
+    padding: 0 24px;
+    max-width: 100%;
   }
   .hero-parceiros img {
-    height: 34px;
+    height: 62px;
     width: auto;
-    opacity: 0.85;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+    max-width: 100%;
+    object-fit: contain;
+    opacity: 1;
+    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.7));
     transition: opacity .3s ease;
   }
-  .hero-parceiros img:hover { opacity: 1; }
-
-  /* Logo central Boulevard (maior, com moldura) */
-  .hero-parceiros .logo-boulevard {
-    height: 62px;
-    opacity: 1;
-    position: relative;
-    padding: 0 32px;
-  }
-  .hero-parceiros .logo-boulevard::before,
-  .hero-parceiros .logo-boulevard::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(180deg, transparent, rgba(201,168,106,0.6), transparent);
-    transform: translateY(-50%);
-  }
-  .hero-parceiros .logo-boulevard::before { left: 0; }
-  .hero-parceiros .logo-boulevard::after { right: 0; }
+  .hero-parceiros img:hover { opacity: 0.9; }
 
   /* ---------- BLOCO CENTRAL ---------- */
   .hero-center {
@@ -215,7 +196,6 @@
   .btn-cta:hover { color: #0a0a0a; }
   .btn-cta:hover::before { transform: translateY(0); }
 
-  /* WhatsApp — principal */
   .btn-cta.whats {
     background: rgba(37, 211, 102, 0.1);
     border-color: var(--verde-whats);
@@ -232,7 +212,6 @@
   .btn-cta.whats:hover { color: #0a0a0a; border-color: var(--verde-whats); }
   .btn-cta.whats:hover .btn-whats-icon { transform: scale(1.12); }
 
-  /* Secundário — fantasma discreto */
   .btn-cta.secundario {
     background: rgba(255,255,255,0.04);
     border-color: rgba(255,255,255,0.35);
@@ -242,7 +221,6 @@
   .btn-cta.secundario::before { background: var(--branco-gelo); }
   .btn-cta.secundario:hover { color: #0a0a0a; border-color: var(--branco-gelo); }
 
-  /* Indicador de scroll */
   .scroll-hint {
     position: absolute;
     bottom: 28px;
@@ -288,7 +266,6 @@
   }
   .section-video:nth-child(even) { background: var(--preto-suave); }
 
-  /* LOGO ASSIS GROUP nas seções de decorados */
   .section-logo {
     height: 42px;
     width: auto;
@@ -703,11 +680,8 @@
   /* ========== RESPONSIVO ========== */
   @media (max-width: 860px) {
     .hero-overlay { padding: 100px 20px 80px; }
-    .hero-parceiros { gap: 20px; padding: 0 20px; top: 22px; }
-    .hero-parceiros img { height: 24px; }
-    .hero-parceiros .logo-boulevard { height: 42px; padding: 0 18px; }
-    .hero-parceiros .logo-boulevard::before,
-    .hero-parceiros .logo-boulevard::after { height: 34px; }
+    .hero-parceiros { top: 24px; padding: 0 20px; }
+    .hero-parceiros img { height: 46px; }
 
     .institucional-container { grid-template-columns: 1fr; gap: 44px; }
     .foto-rodrigo { max-width: 340px; margin: 0 auto; }
@@ -722,15 +696,8 @@
   }
 
   @media (max-width: 500px) {
-    .hero-parceiros {
-      gap: 14px;
-      top: 18px;
-      padding: 0 16px;
-    }
-    .hero-parceiros img { height: 18px; }
-    .hero-parceiros .logo-boulevard { height: 32px; padding: 0 12px; }
-    .hero-parceiros .logo-boulevard::before,
-    .hero-parceiros .logo-boulevard::after { height: 26px; }
+    .hero-parceiros { top: 18px; padding: 0 16px; }
+    .hero-parceiros img { height: 34px; }
 
     .hero-overlay { padding: 90px 18px 70px; }
     .hero-badge { font-size: 0.6rem; letter-spacing: 4px; margin-bottom: 18px; }
@@ -761,11 +728,9 @@
     <source src="videos/header-loop.mp4" type="video/mp4" />
   </video>
 
-  <!-- FAIXA DE LOGOS DOS PARCEIROS -->
+  <!-- LOGO ÚNICO NO TOPO DO HEADER -->
   <div class="hero-parceiros">
-    <img src="assets/img/logo-assis-group.png" alt="Assis Group" />
-    <img src="assets/img/logo-boulevard.png" alt="Boulevard Brooklin" class="logo-boulevard" />
-    <img src="assets/img/logo-constrac.png" alt="Constrac" />
+    <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
   </div>
 
   <div class="hero-overlay">
@@ -803,9 +768,7 @@
 
 <!-- ============ DECORADO — STUDIO 20,85m² ============ -->
 <section class="section-video" id="studio">
-  <!-- LOGO ASSIS GROUP — 1ª dobra de decorado -->
   <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
-
   <div class="numero">01</div>
   <h2>Studio <em>20,85m²</em></h2>
   <div class="divisor"></div>
@@ -820,9 +783,7 @@
 
 <!-- ============ DECORADO — 1 DORM 26m² ============ -->
 <section class="section-video" id="um-dorm">
-  <!-- LOGO ASSIS GROUP — 2ª dobra de decorado -->
   <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
-
   <div class="numero">02</div>
   <h2>1 Dormitório <em>26m²</em></h2>
   <div class="divisor"></div>
@@ -837,9 +798,7 @@
 
 <!-- ============ DECORADO — 2 SUÍTES 49,97m² ============ -->
 <section class="section-video" id="duas-suites">
-  <!-- LOGO ASSIS GROUP — 3ª dobra de decorado -->
   <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
-
   <div class="numero">03</div>
   <h2>2 Suítes <em>49,97m²</em></h2>
   <div class="divisor"></div>

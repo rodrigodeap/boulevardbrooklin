@@ -72,26 +72,26 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 120px 24px 100px;
+    padding: 140px 24px 100px;
   }
 
-  /* ---------- LOGO ÚNICO NO TOPO DO HEADER ---------- */
+  /* ---------- LOGO ÚNICO NO TOPO DO HEADER — 520px de largura ---------- */
   .hero-parceiros {
     position: absolute;
-    top: 34px;
+    top: 40px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 24px;
-    max-width: 100%;
+    width: 520px;
+    max-width: calc(100% - 48px);
   }
   .hero-parceiros img {
-    height: 62px;
-    width: auto;
+    width: 520px;
     max-width: 100%;
+    height: auto;
     object-fit: contain;
     opacity: 1;
     filter: drop-shadow(0 4px 20px rgba(0,0,0,0.7));
@@ -679,9 +679,9 @@
 
   /* ========== RESPONSIVO ========== */
   @media (max-width: 860px) {
-    .hero-overlay { padding: 100px 20px 80px; }
-    .hero-parceiros { top: 24px; padding: 0 20px; }
-    .hero-parceiros img { height: 46px; }
+    .hero-overlay { padding: 120px 20px 80px; }
+    .hero-parceiros { top: 28px; width: 380px; }
+    .hero-parceiros img { width: 380px; }
 
     .institucional-container { grid-template-columns: 1fr; gap: 44px; }
     .foto-rodrigo { max-width: 340px; margin: 0 auto; }
@@ -696,10 +696,10 @@
   }
 
   @media (max-width: 500px) {
-    .hero-parceiros { top: 18px; padding: 0 16px; }
-    .hero-parceiros img { height: 34px; }
+    .hero-parceiros { top: 22px; width: 260px; }
+    .hero-parceiros img { width: 260px; }
 
-    .hero-overlay { padding: 90px 18px 70px; }
+    .hero-overlay { padding: 100px 18px 70px; }
     .hero-badge { font-size: 0.6rem; letter-spacing: 4px; margin-bottom: 18px; }
     .hero h1 { font-size: 1.75rem; margin-bottom: 18px; }
     .hero p { font-size: 0.85rem; margin-bottom: 32px; }
@@ -728,7 +728,7 @@
     <source src="videos/header-loop.mp4" type="video/mp4" />
   </video>
 
-  <!-- LOGO ÚNICO NO TOPO DO HEADER -->
+  <!-- LOGO ÚNICO NO TOPO DO HEADER — 520px -->
   <div class="hero-parceiros">
     <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
   </div>

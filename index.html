@@ -108,6 +108,37 @@
     margin: 0 auto;
   }
 
+  /* ---------- TÍTULO COM ENTRELINHAS REDUZIDA ---------- */
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 500;
+    line-height: 0.95;              /* ← entrelinhas reduzida */
+    letter-spacing: 0.4px;
+    color: #fff;
+    margin-bottom: 26px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--ouro-claro);
+    font-weight: 400;
+    display: block;
+    margin-top: 2px;                /* ← reduzido para aproximar as linhas */
+  }
+
+  /* ---------- SUBTÍTULO ---------- */
+  .hero p {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    color: #d5d5cf;
+    max-width: 560px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    margin-bottom: 26px;
+    line-height: 1.6;
+  }
+
+  /* ---------- BADGE (agora abaixo do subtítulo) ---------- */
   .hero-badge {
     display: inline-block;
     font-size: 0.7rem;
@@ -115,7 +146,7 @@
     text-transform: uppercase;
     color: var(--ouro);
     font-weight: 500;
-    margin-bottom: 22px;
+    margin-bottom: 42px;
     padding: 0 0 14px;
     position: relative;
   }
@@ -126,34 +157,6 @@
     transform: translateX(-50%);
     width: 36px; height: 1px;
     background: var(--ouro);
-  }
-
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 5vw, 3.8rem);
-    font-weight: 500;
-    line-height: 1.12;
-    letter-spacing: 0.4px;
-    color: #fff;
-    margin-bottom: 22px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--ouro-claro);
-    font-weight: 400;
-    display: block;
-    margin-top: 4px;
-  }
-
-  .hero p {
-    font-size: clamp(0.9rem, 1.3vw, 1rem);
-    color: #d5d5cf;
-    max-width: 560px;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-    margin-bottom: 44px;
-    line-height: 1.6;
   }
 
   /* ---------- BOTÕES ---------- */
@@ -700,9 +703,9 @@
     .hero-parceiros img { width: 260px; }
 
     .hero-overlay { padding: 100px 18px 70px; }
-    .hero-badge { font-size: 0.6rem; letter-spacing: 4px; margin-bottom: 18px; }
-    .hero h1 { font-size: 1.75rem; margin-bottom: 18px; }
-    .hero p { font-size: 0.85rem; margin-bottom: 32px; }
+    .hero h1 { font-size: 1.75rem; line-height: 0.95; margin-bottom: 20px; }
+    .hero p { font-size: 0.85rem; margin-bottom: 22px; }
+    .hero-badge { font-size: 0.6rem; letter-spacing: 4px; margin-bottom: 32px; }
 
     .btn-cta { padding: 15px 26px; font-size: 0.68rem; letter-spacing: 2.5px; }
     .hero-botoes { flex-direction: column; width: 100%; max-width: 300px; }
@@ -735,14 +738,16 @@
 
   <div class="hero-overlay">
     <div class="hero-center">
-      <span class="hero-badge">Brooklin · São Paulo</span>
 
+      <!-- NOVA ORDEM: título → subtítulo → badge -->
       <h1>
         As últimas unidades de um
         <em>endereço exclusivo</em>
       </h1>
 
       <p>Studios, 1 dormitório e 2 suítes com decoração assinada — descubra os decorados abaixo.</p>
+
+      <span class="hero-badge">Brooklin · São Paulo</span>
 
       <div class="hero-botoes">
         <a href="https://wa.me/5521990650767?text=Ol%C3%A1%20Rodrigo%2C%20vi%20o%20empreendimento%20no%20Brooklin%20e%20quero%20saber%20mais."
@@ -815,7 +820,10 @@
 <section class="institucional" id="sobre">
   <div class="institucional-container">
     <div class="foto-rodrigo">
-      <img src="assets/img/img-rodrigo.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
+      <!-- ✅ FOTO DO RODRIGO — caminho correto -->
+      <img src="assets/img/img-rodrigo.png"
+           alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais"
+           loading="lazy" />
 
       <div class="logo-badge">
         <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" />

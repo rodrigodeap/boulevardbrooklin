@@ -6,7 +6,6 @@
 <title>Últimas Unidades no Brooklin | Rodrigo de Assis — CRECI 049368-J</title>
 <meta name="description" content="Empreendimento exclusivo no Brooklin, coração de São Paulo. Studios, 1 dorm e 2 suítes. Atendimento pessoal com Rodrigo de Assis." />
 
-<!-- Fontes -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,14 +26,12 @@
   a { text-decoration: none; color: inherit; }
   ul { list-style: none; }
 
-  /* ========== VARIÁVEIS ========== */
   :root {
     --ouro: #c9a86a;
     --ouro-claro: #e0c68f;
     --ouro-escuro: #9a7e44;
     --preto: #0a0a0a;
     --preto-suave: #111111;
-    --grafite: #1a1a1a;
     --branco-gelo: #f5f5f0;
     --cinza-texto: #a8a8a0;
     --linha: rgba(201,168,106,0.25);
@@ -46,7 +43,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    min-height: 620px;
+    min-height: 680px;
     overflow: hidden;
     background: #000;
   }
@@ -57,53 +54,88 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.55) contrast(1.05);
+    filter: brightness(0.5) contrast(1.05);
   }
   .hero-overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.85) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.55) 25%,
+      rgba(0,0,0,0.45) 55%,
+      rgba(0,0,0,0.9) 100%
+    );
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 24px;
+    padding: 120px 24px 100px;
   }
 
-  /* ---------- LOGO NO HEADER — LARGURA 520px ---------- */
-  .hero-logo {
+  /* ---------- FAIXA DE LOGOS (parceiros) ---------- */
+  .hero-parceiros {
     position: absolute;
-    top: 32px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 34px;
+    left: 0;
+    right: 0;
     z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 0 40px;
+    flex-wrap: wrap;
+  }
+  .hero-parceiros img {
+    height: 34px;
+    width: auto;
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+    transition: opacity .3s ease;
+  }
+  .hero-parceiros img:hover { opacity: 1; }
+
+  /* Logo central Boulevard (maior, com moldura) */
+  .hero-parceiros .logo-boulevard {
+    height: 62px;
+    opacity: 1;
+    position: relative;
+    padding: 0 32px;
+  }
+  .hero-parceiros .logo-boulevard::before,
+  .hero-parceiros .logo-boulevard::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(180deg, transparent, rgba(201,168,106,0.6), transparent);
+    transform: translateY(-50%);
+  }
+  .hero-parceiros .logo-boulevard::before { left: 0; }
+  .hero-parceiros .logo-boulevard::after { right: 0; }
+
+  /* ---------- BLOCO CENTRAL ---------- */
+  .hero-center {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    width: 520px;
-    max-width: calc(100% - 48px);
-  }
-  .hero-logo img {
-    width: 520px;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 12px rgba(0,0,0,0.6));
+    max-width: 960px;
+    margin: 0 auto;
   }
 
   .hero-badge {
     display: inline-block;
     font-size: 0.7rem;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     text-transform: uppercase;
     color: var(--ouro);
     font-weight: 500;
-    margin-bottom: 28px;
-    padding-bottom: 14px;
+    margin-bottom: 22px;
+    padding: 0 0 14px;
     position: relative;
   }
   .hero-badge::after {
@@ -111,37 +143,42 @@
     position: absolute;
     bottom: 0; left: 50%;
     transform: translateX(-50%);
-    width: 40px; height: 1px;
+    width: 36px; height: 1px;
     background: var(--ouro);
   }
+
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 5.5vw, 4.2rem);
+    font-size: clamp(2rem, 5vw, 3.8rem);
     font-weight: 500;
-    line-height: 1.1;
-    max-width: 900px;
-    letter-spacing: 0.5px;
+    line-height: 1.12;
+    letter-spacing: 0.4px;
     color: #fff;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
   }
   .hero h1 em {
     font-style: italic;
     color: var(--ouro-claro);
     font-weight: 400;
-  }
-  .hero p {
-    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
-    color: #d5d5cf;
-    max-width: 520px;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-    margin-bottom: 40px;
+    display: block;
+    margin-top: 4px;
   }
 
-  /* ---------- BOTÕES DO HERO ---------- */
+  .hero p {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    color: #d5d5cf;
+    max-width: 560px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    margin-bottom: 44px;
+    line-height: 1.6;
+  }
+
+  /* ---------- BOTÕES ---------- */
   .hero-botoes {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -150,18 +187,18 @@
   .btn-cta {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: transparent;
     color: var(--ouro);
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    font-size: 0.78rem;
-    letter-spacing: 4px;
+    font-size: 0.75rem;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
-    padding: 18px 44px;
+    padding: 17px 38px;
     border: 1px solid var(--ouro);
     cursor: pointer;
-    transition: all .4s ease;
+    transition: all .35s ease;
     position: relative;
     overflow: hidden;
     z-index: 0;
@@ -172,27 +209,21 @@
     inset: 0;
     background: var(--ouro);
     transform: translateY(101%);
-    transition: transform .4s ease;
+    transition: transform .35s ease;
     z-index: -1;
   }
   .btn-cta:hover { color: #0a0a0a; }
   .btn-cta:hover::before { transform: translateY(0); }
-  .btn-cta.solido {
-    background: var(--ouro);
-    color: #0a0a0a;
-  }
-  .btn-cta.solido::before { background: var(--ouro-claro); }
-  .btn-cta.solido:hover { color: #0a0a0a; }
 
-  /* Botão WhatsApp */
+  /* WhatsApp — principal */
   .btn-cta.whats {
-    background: rgba(37, 211, 102, 0.08);
+    background: rgba(37, 211, 102, 0.1);
     border-color: var(--verde-whats);
     color: var(--verde-whats);
   }
   .btn-cta.whats .btn-whats-icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     fill: currentColor;
     transition: transform .3s ease;
     flex-shrink: 0;
@@ -201,34 +232,36 @@
   .btn-cta.whats:hover { color: #0a0a0a; border-color: var(--verde-whats); }
   .btn-cta.whats:hover .btn-whats-icon { transform: scale(1.12); }
 
-  /* Botão secundário */
+  /* Secundário — fantasma discreto */
   .btn-cta.secundario {
-    background: transparent;
-    border-color: rgba(201,168,106,0.5);
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.35);
     color: var(--branco-gelo);
+    backdrop-filter: blur(4px);
   }
-  .btn-cta.secundario::before { background: var(--ouro); }
-  .btn-cta.secundario:hover { color: #0a0a0a; border-color: var(--ouro); }
+  .btn-cta.secundario::before { background: var(--branco-gelo); }
+  .btn-cta.secundario:hover { color: #0a0a0a; border-color: var(--branco-gelo); }
 
   /* Indicador de scroll */
   .scroll-hint {
     position: absolute;
-    bottom: 32px;
+    bottom: 28px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     color: var(--ouro);
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 3px;
     text-transform: uppercase;
+    opacity: 0.75;
   }
   .scroll-hint .linha {
     width: 1px;
-    height: 40px;
+    height: 34px;
     background: linear-gradient(180deg, var(--ouro) 0%, transparent 100%);
     animation: pulsar 2s infinite;
   }
@@ -237,7 +270,7 @@
     50% { opacity: 1; transform: scaleY(1); }
   }
 
-  /* ========== DIVISOR DOURADO ========== */
+  /* ========== DIVISOR ========== */
   .divisor {
     width: 60px;
     height: 1px;
@@ -255,15 +288,16 @@
   }
   .section-video:nth-child(even) { background: var(--preto-suave); }
 
+  /* LOGO ASSIS GROUP nas seções de decorados */
   .section-logo {
-    height: 30px;
+    height: 42px;
     width: auto;
-    margin: 0 auto 28px;
-    opacity: 0.55;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    margin: 0 auto 32px;
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
     transition: opacity .3s ease;
   }
-  .section-logo:hover { opacity: 0.9; }
+  .section-logo:hover { opacity: 1; }
 
   .section-video .numero {
     font-family: 'Cormorant Garamond', serif;
@@ -292,7 +326,6 @@
     max-width: 560px;
     margin: 0 auto 44px;
     font-weight: 300;
-    letter-spacing: 0.2px;
   }
   .video-wrapper {
     max-width: 1020px;
@@ -300,9 +333,7 @@
     aspect-ratio: 16/9;
     background: #000;
     border: 1px solid var(--linha);
-    box-shadow:
-      0 0 0 1px rgba(201,168,106,0.08),
-      0 30px 80px rgba(0,0,0,0.9);
+    box-shadow: 0 0 0 1px rgba(201,168,106,0.08), 0 30px 80px rgba(0,0,0,0.9);
     position: relative;
     overflow: hidden;
   }
@@ -320,9 +351,8 @@
   .video-wrapper::after { bottom: 12px; right: 12px; border-left: none; border-top: none; }
 
   .video-wrapper iframe,
-  .video-wrapper video {
-    width: 100%; height: 100%; border: none; display: block;
-  }
+  .video-wrapper video { width: 100%; height: 100%; border: none; display: block; }
+
   .video-placeholder {
     width: 100%; height: 100%;
     display: flex;
@@ -387,9 +417,9 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
-    background: rgba(10,10,10,0.75);
-    backdrop-filter: blur(6px);
-    padding: 10px 22px;
+    background: rgba(10,10,10,0.8);
+    backdrop-filter: blur(8px);
+    padding: 12px 26px;
     border: 1px solid rgba(201,168,106,0.4);
   }
   .foto-rodrigo .logo-badge img {
@@ -430,10 +460,7 @@
     font-weight: 300;
     line-height: 1.75;
   }
-  .institucional-texto strong {
-    color: var(--branco-gelo);
-    font-weight: 500;
-  }
+  .institucional-texto strong { color: var(--branco-gelo); font-weight: 500; }
   .institucional-texto .destaque {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.25rem;
@@ -482,10 +509,10 @@
   .form-container::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
 
   .form-logo {
-    height: 34px;
+    height: 42px;
     width: auto;
-    margin: 0 auto 26px;
-    opacity: 0.8;
+    margin: 0 auto 30px;
+    opacity: 0.9;
     display: block;
   }
 
@@ -540,10 +567,8 @@
     border-color: var(--ouro);
     background: rgba(201,168,106,0.04);
   }
-  .form-group select option {
-    background: #141414;
-    color: #fff;
-  }
+  .form-group select option { background: #141414; color: #fff; }
+
   .form-container .btn-cta {
     width: 100%;
     margin-top: 12px;
@@ -621,10 +646,10 @@
   .footer-col a:hover { color: var(--ouro); }
 
   .footer-logo {
-    height: 42px;
+    height: 46px;
     width: auto;
     margin-bottom: 20px;
-    opacity: 0.9;
+    opacity: 0.95;
     display: block;
   }
 
@@ -650,11 +675,7 @@
     min-width: 130px;
     letter-spacing: 1px;
   }
-  .selo .icone {
-    font-size: 1.5rem;
-    color: var(--ouro);
-    margin-bottom: 4px;
-  }
+  .selo .icone { font-size: 1.5rem; color: var(--ouro); margin-bottom: 4px; }
   .selo strong {
     color: var(--branco-gelo);
     font-size: 0.78rem;
@@ -681,26 +702,43 @@
 
   /* ========== RESPONSIVO ========== */
   @media (max-width: 860px) {
-    .institucional-container {
-      grid-template-columns: 1fr;
-      gap: 44px;
-    }
+    .hero-overlay { padding: 100px 20px 80px; }
+    .hero-parceiros { gap: 20px; padding: 0 20px; top: 22px; }
+    .hero-parceiros img { height: 24px; }
+    .hero-parceiros .logo-boulevard { height: 42px; padding: 0 18px; }
+    .hero-parceiros .logo-boulevard::before,
+    .hero-parceiros .logo-boulevard::after { height: 34px; }
+
+    .institucional-container { grid-template-columns: 1fr; gap: 44px; }
     .foto-rodrigo { max-width: 340px; margin: 0 auto; }
     .form-container { padding: 44px 26px; }
     .section-video { padding: 80px 20px; }
     .institucional { padding: 80px 20px; }
     .form-section { padding: 80px 20px; }
     footer { padding: 60px 20px 26px; }
-    .hero-logo { width: 380px; }
-    .hero-logo img { width: 380px; }
-    .section-logo { height: 26px; }
-    .form-logo { height: 30px; }
+    .section-logo { height: 36px; }
+    .form-logo { height: 36px; }
+    .footer-logo { height: 40px; }
   }
+
   @media (max-width: 500px) {
-    .hero-logo { width: 260px; top: 24px; }
-    .hero-logo img { width: 260px; }
-    .btn-cta { padding: 16px 32px; font-size: 0.7rem; letter-spacing: 3px; }
-    .hero-botoes { flex-direction: column; width: 100%; max-width: 320px; }
+    .hero-parceiros {
+      gap: 14px;
+      top: 18px;
+      padding: 0 16px;
+    }
+    .hero-parceiros img { height: 18px; }
+    .hero-parceiros .logo-boulevard { height: 32px; padding: 0 12px; }
+    .hero-parceiros .logo-boulevard::before,
+    .hero-parceiros .logo-boulevard::after { height: 26px; }
+
+    .hero-overlay { padding: 90px 18px 70px; }
+    .hero-badge { font-size: 0.6rem; letter-spacing: 4px; margin-bottom: 18px; }
+    .hero h1 { font-size: 1.75rem; margin-bottom: 18px; }
+    .hero p { font-size: 0.85rem; margin-bottom: 32px; }
+
+    .btn-cta { padding: 15px 26px; font-size: 0.68rem; letter-spacing: 2.5px; }
+    .hero-botoes { flex-direction: column; width: 100%; max-width: 300px; }
     .hero-botoes .btn-cta { width: 100%; justify-content: center; }
     .whats-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
     .section-video .numero { font-size: 3rem; }
@@ -723,28 +761,37 @@
     <source src="videos/header-loop.mp4" type="video/mp4" />
   </video>
 
-  <!-- LOGO 1/5 — Header (largura 520px) -->
-  <div class="hero-logo">
-    <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
+  <!-- FAIXA DE LOGOS DOS PARCEIROS -->
+  <div class="hero-parceiros">
+    <img src="assets/img/logo-assis-group.png" alt="Assis Group" />
+    <img src="assets/img/logo-boulevard.png" alt="Boulevard Brooklin" class="logo-boulevard" />
+    <img src="assets/img/logo-constrac.png" alt="Constrac" />
   </div>
 
   <div class="hero-overlay">
-    <span class="hero-badge">Brooklin · São Paulo</span>
-    <h1>As últimas unidades de um<br><em>endereço exclusivo</em></h1>
-    <p>Studios, 1 dormitório e 2 suítes. Conheça as plantas e decorados abaixo.</p>
+    <div class="hero-center">
+      <span class="hero-badge">Brooklin · São Paulo</span>
 
-    <div class="hero-botoes">
-      <a href="https://wa.me/5521990650767?text=Ol%C3%A1%20Rodrigo%2C%20vi%20o%20empreendimento%20no%20Brooklin%20e%20quero%20saber%20mais."
-         target="_blank" rel="noopener" class="btn-cta whats">
-        <svg viewBox="0 0 24 24" class="btn-whats-icon" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        Falar no WhatsApp
-      </a>
+      <h1>
+        As últimas unidades de um
+        <em>endereço exclusivo</em>
+      </h1>
 
-      <a href="#studio" class="btn-cta secundario">
-        Explorar decorados
-      </a>
+      <p>Studios, 1 dormitório e 2 suítes com decoração assinada — descubra os decorados abaixo.</p>
+
+      <div class="hero-botoes">
+        <a href="https://wa.me/5521990650767?text=Ol%C3%A1%20Rodrigo%2C%20vi%20o%20empreendimento%20no%20Brooklin%20e%20quero%20saber%20mais."
+           target="_blank" rel="noopener" class="btn-cta whats">
+          <svg viewBox="0 0 24 24" class="btn-whats-icon" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Falar no WhatsApp
+        </a>
+
+        <a href="#studio" class="btn-cta secundario">
+          Explorar decorados
+        </a>
+      </div>
     </div>
   </div>
 
@@ -756,7 +803,9 @@
 
 <!-- ============ DECORADO — STUDIO 20,85m² ============ -->
 <section class="section-video" id="studio">
-  <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="section-logo" />
+  <!-- LOGO ASSIS GROUP — 1ª dobra de decorado -->
+  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+
   <div class="numero">01</div>
   <h2>Studio <em>20,85m²</em></h2>
   <div class="divisor"></div>
@@ -771,7 +820,9 @@
 
 <!-- ============ DECORADO — 1 DORM 26m² ============ -->
 <section class="section-video" id="um-dorm">
-  <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="section-logo" />
+  <!-- LOGO ASSIS GROUP — 2ª dobra de decorado -->
+  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+
   <div class="numero">02</div>
   <h2>1 Dormitório <em>26m²</em></h2>
   <div class="divisor"></div>
@@ -786,7 +837,9 @@
 
 <!-- ============ DECORADO — 2 SUÍTES 49,97m² ============ -->
 <section class="section-video" id="duas-suites">
-  <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="section-logo" />
+  <!-- LOGO ASSIS GROUP — 3ª dobra de decorado -->
+  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+
   <div class="numero">03</div>
   <h2>2 Suítes <em>49,97m²</em></h2>
   <div class="divisor"></div>
@@ -803,12 +856,13 @@
 <section class="institucional" id="sobre">
   <div class="institucional-container">
     <div class="foto-rodrigo">
-      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
+      <img src="assets/img/img-rodrigo.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
 
       <div class="logo-badge">
-        <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" />
+        <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" />
       </div>
     </div>
+
     <div class="institucional-texto">
       <span class="tag">Quem irá te atender</span>
       <h2>Rodrigo de Assis</h2>
@@ -816,9 +870,9 @@
 
       <p>
         Atuante no mercado imobiliário desde <strong>2017</strong>, com sólida experiência no Rio de Janeiro e em São Paulo.
-        Sócio da <strong>AP Negócios Imobiliários</strong> em Barueri / Alphaville, atuo nas regiões mais valorizadas
-        da Zona Oeste e Zona Sul — o coração de São Paulo: <strong>Brooklin, Moema, Faria Lima, Morumbi,
-        Itaim Bibi, Jardins e Pinheiros</strong>, entre outras.
+        Sócio da <strong>Assis Group</strong>, atuo nas regiões mais valorizadas da Zona Oeste e Zona Sul —
+        o coração de São Paulo: <strong>Brooklin, Moema, Faria Lima, Morumbi, Itaim Bibi, Jardins e Pinheiros</strong>,
+        entre outras.
       </p>
       <p>
         Trabalho com imóveis residenciais, comerciais e na incorporação e construção de empreendimentos
@@ -840,7 +894,7 @@
 <!-- ============ FORMULÁRIO ============ -->
 <section class="form-section" id="formulario">
   <div class="form-container">
-    <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="form-logo" />
+    <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="form-logo" />
 
     <h2>Fale com um especialista</h2>
     <p class="form-sub">Preencha os dados e receba o atendimento pessoal do Rodrigo no WhatsApp.</p>
@@ -905,10 +959,10 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-      <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="footer-logo" />
+      <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="footer-logo" />
       <p>Gestor de Ativos Patrimoniais desde 2017.</p>
-      <p>Sócio da AP Negócios Imobiliários — Barueri / Alphaville.</p>
-      <p><strong>CRECI 049368-J</strong></p>
+      <p><strong>Especialista em SP Zona Sul / Barueri e Alphaville</strong></p>
+      <p>CRECI 049368-J</p>
     </div>
     <div class="footer-col">
       <h4>Regiões de Atuação</h4>
@@ -933,7 +987,7 @@
     <div class="footer-col">
       <h4>Contato</h4>
       <p>(21) 99065-0767</p>
-      <p>contato@apnegocios.com.br</p>
+      <p>contato@assisgroup.com.br</p>
       <p>Barueri / Alphaville — SP</p>
       <p><a href="https://wa.me/5521990650767" target="_blank">→ Falar no WhatsApp</a></p>
     </div>
@@ -947,8 +1001,8 @@
     </div>
     <div class="selo">
       <span class="icone">✦</span>
-      <strong>AP Negócios</strong>
-      <span>Barueri / Alphaville</span>
+      <strong>Assis Group</strong>
+      <span>SP · RJ</span>
     </div>
     <div class="selo">
       <span class="icone">✦</span>
@@ -968,7 +1022,7 @@
   </div>
 
   <div class="footer-bottom">
-    <p>© 2025 Rodrigo de Assis — Todos os direitos reservados. <span class="creci">CRECI 049368-J</span></p>
+    <p>© 2025 Rodrigo de Assis — Assis Group. Todos os direitos reservados. <span class="creci">CRECI 049368-J</span></p>
     <p>Este site é de caráter informativo e não constitui oferta comercial. Imagens e medidas são ilustrativas e podem sofrer alterações sem aviso prévio, conforme memorial descritivo do empreendimento.</p>
   </div>
 </footer>

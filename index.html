@@ -108,7 +108,6 @@
     margin: 0 auto;
   }
 
-  /* ---------- TÍTULO COM ENTRELINHAS REDUZIDA ---------- */
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 5vw, 3.8rem);
@@ -127,7 +126,6 @@
     margin-top: 2px;
   }
 
-  /* ---------- SUBTÍTULO ---------- */
   .hero p {
     font-size: clamp(0.9rem, 1.3vw, 1rem);
     color: #d5d5cf;
@@ -138,7 +136,6 @@
     line-height: 1.6;
   }
 
-  /* ---------- BADGE (abaixo do subtítulo) ---------- */
   .hero-badge {
     display: inline-block;
     font-size: 0.7rem;
@@ -159,7 +156,6 @@
     background: var(--ouro);
   }
 
-  /* ---------- BOTÕES ---------- */
   .hero-botoes {
     display: flex;
     gap: 14px;
@@ -374,21 +370,27 @@
     max-width: 1120px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 420px 1fr;   /* ← coluna fixa para a foto */
     gap: 70px;
     align-items: center;
   }
+
+  /* ---------- FOTO DO RODRIGO — PROPORÇÃO 1024×1536 (2:3) ---------- */
   .foto-rodrigo {
     width: 100%;
-    aspect-ratio: 1/1;
+    max-width: 420px;
+    aspect-ratio: 2 / 3;                 /* ← 1024 × 1536 = 2:3 */
     overflow: hidden;
     position: relative;
     border: 1px solid var(--ouro);
     padding: 10px;
+    margin: 0 auto;
   }
   .foto-rodrigo img {
-    width: 100%; height: 100%;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                    /* preenche sem distorcer */
+    object-position: center top;          /* prioriza o topo (rosto) */
     filter: grayscale(15%) contrast(1.05);
   }
   .foto-rodrigo .logo-badge {
@@ -681,13 +683,25 @@
   }
 
   /* ========== RESPONSIVO ========== */
+  @media (max-width: 1000px) {
+    .institucional-container {
+      grid-template-columns: 360px 1fr;
+      gap: 50px;
+    }
+    .foto-rodrigo { max-width: 360px; }
+  }
+
   @media (max-width: 860px) {
     .hero-overlay { padding: 120px 20px 80px; }
     .hero-parceiros { top: 28px; width: 300px; }
     .hero-parceiros img { width: 300px; }
 
-    .institucional-container { grid-template-columns: 1fr; gap: 44px; }
-    .foto-rodrigo { max-width: 340px; margin: 0 auto; }
+    .institucional-container {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+    .foto-rodrigo { max-width: 380px; }
+
     .form-container { padding: 44px 26px; }
     .section-video { padding: 80px 20px; }
     .institucional { padding: 80px 20px; }
@@ -712,6 +726,7 @@
     .hero-botoes .btn-cta { width: 100%; justify-content: center; }
     .whats-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
     .section-video .numero { font-size: 3rem; }
+    .foto-rodrigo { max-width: 300px; }
     .foto-rodrigo .logo-badge { padding: 8px 16px; }
     .foto-rodrigo .logo-badge img { height: 20px; }
   }
@@ -731,14 +746,12 @@
     <source src="videos/header-loop.mp4" type="video/mp4" />
   </video>
 
-  <!-- LOGO ÚNICA NO TOPO DO HEADER — 380px -->
   <div class="hero-parceiros">
     <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
   </div>
 
   <div class="hero-overlay">
     <div class="hero-center">
-
       <h1>
         As últimas unidades de um
         <em>endereço exclusivo</em>
@@ -818,6 +831,8 @@
 <!-- ============ INSTITUCIONAL ============ -->
 <section class="institucional" id="sobre">
   <div class="institucional-container">
+
+    <!-- FOTO DO RODRIGO — proporção 1024×1536 (2:3) -->
     <div class="foto-rodrigo">
       <img src="assets/img/img-rodrigo.png"
            alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais"

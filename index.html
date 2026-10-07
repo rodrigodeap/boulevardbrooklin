@@ -73,7 +73,7 @@
     padding: 0 24px;
   }
 
-  /* ---------- LOGO NO HEADER ---------- */
+  /* ---------- LOGO NO HEADER — LARGURA 520px ---------- */
   .hero-logo {
     position: absolute;
     top: 32px;
@@ -84,10 +84,13 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    width: 520px;
+    max-width: calc(100% - 48px);
   }
   .hero-logo img {
-    height: 52px;
-    width: auto;
+    width: 520px;
+    max-width: 100%;
+    height: auto;
     object-fit: contain;
     filter: drop-shadow(0 2px 12px rgba(0,0,0,0.6));
   }
@@ -252,7 +255,6 @@
   }
   .section-video:nth-child(even) { background: var(--preto-suave); }
 
-  /* Logo pequeno nas seções */
   .section-logo {
     height: 30px;
     width: auto;
@@ -379,7 +381,6 @@
     object-fit: cover;
     filter: grayscale(15%) contrast(1.05);
   }
-  /* Logo sobreposto na foto */
   .foto-rodrigo .logo-badge {
     position: absolute;
     bottom: 22px;
@@ -480,7 +481,6 @@
   .form-container::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
   .form-container::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
 
-  /* Logo no topo do formulário */
   .form-logo {
     height: 34px;
     width: auto;
@@ -620,7 +620,6 @@
   .footer-col a { transition: color .2s; }
   .footer-col a:hover { color: var(--ouro); }
 
-  /* Logo no rodapé */
   .footer-logo {
     height: 42px;
     width: auto;
@@ -692,12 +691,14 @@
     .institucional { padding: 80px 20px; }
     .form-section { padding: 80px 20px; }
     footer { padding: 60px 20px 26px; }
-    .hero-logo img { height: 42px; }
+    .hero-logo { width: 380px; }
+    .hero-logo img { width: 380px; }
     .section-logo { height: 26px; }
     .form-logo { height: 30px; }
   }
   @media (max-width: 500px) {
-    .hero-logo img { height: 36px; }
+    .hero-logo { width: 260px; top: 24px; }
+    .hero-logo img { width: 260px; }
     .btn-cta { padding: 16px 32px; font-size: 0.7rem; letter-spacing: 3px; }
     .hero-botoes { flex-direction: column; width: 100%; max-width: 320px; }
     .hero-botoes .btn-cta { width: 100%; justify-content: center; }
@@ -712,10 +713,6 @@
 
 <!-- ============ HEADER — VÍDEO FULLSCREEN ============ -->
 <section class="hero" id="topo">
-  <!--
-    🎬 Substitua o src pelo seu vídeo em loop.
-    Dica: MP4 (H.264), 1920x1080, sem áudio, 8–15MB.
-  -->
   <video
     autoplay
     muted
@@ -726,7 +723,7 @@
     <source src="videos/header-loop.mp4" type="video/mp4" />
   </video>
 
-  <!-- LOGO 1/5 — Header -->
+  <!-- LOGO 1/5 — Header (largura 520px) -->
   <div class="hero-logo">
     <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
   </div>
@@ -759,7 +756,6 @@
 
 <!-- ============ DECORADO — STUDIO 20,85m² ============ -->
 <section class="section-video" id="studio">
-  <!-- LOGO 2/5 — Seção Studio -->
   <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="section-logo" />
   <div class="numero">01</div>
   <h2>Studio <em>20,85m²</em></h2>
@@ -775,7 +771,6 @@
 
 <!-- ============ DECORADO — 1 DORM 26m² ============ -->
 <section class="section-video" id="um-dorm">
-  <!-- LOGO 2/5 (repetido) — Seção 1 Dorm -->
   <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="section-logo" />
   <div class="numero">02</div>
   <h2>1 Dormitório <em>26m²</em></h2>
@@ -791,7 +786,6 @@
 
 <!-- ============ DECORADO — 2 SUÍTES 49,97m² ============ -->
 <section class="section-video" id="duas-suites">
-  <!-- LOGO 2/5 (repetido) — Seção 2 Suítes -->
   <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="section-logo" />
   <div class="numero">03</div>
   <h2>2 Suítes <em>49,97m²</em></h2>
@@ -811,7 +805,6 @@
     <div class="foto-rodrigo">
       <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
 
-      <!-- LOGO 3/5 — Badge sobre a foto -->
       <div class="logo-badge">
         <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" />
       </div>
@@ -847,7 +840,6 @@
 <!-- ============ FORMULÁRIO ============ -->
 <section class="form-section" id="formulario">
   <div class="form-container">
-    <!-- LOGO 4/5 — Topo do formulário -->
     <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="form-logo" />
 
     <h2>Fale com um especialista</h2>
@@ -913,7 +905,6 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-      <!-- LOGO 5/5 — Rodapé -->
       <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis" class="footer-logo" />
       <p>Gestor de Ativos Patrimoniais desde 2017.</p>
       <p>Sócio da AP Negócios Imobiliários — Barueri / Alphaville.</p>
@@ -984,7 +975,6 @@
 
 <!-- ============ SCRIPT ============ -->
 <script>
-  // Máscara de WhatsApp
   const whats = document.getElementById('whatsapp');
   whats.addEventListener('input', (e) => {
     let v = e.target.value.replace(/\D/g, '').slice(0, 11);
@@ -994,7 +984,6 @@
     e.target.value = v;
   });
 
-  // Envio → redireciona para WhatsApp
   document.getElementById('leadForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const nome = document.getElementById('nome').value.trim();
@@ -1019,7 +1008,6 @@
     this.reset();
   });
 
-  // Fallback para autoplay bloqueado (iOS Low Power Mode)
   const heroVideo = document.querySelector('.hero video');
   if (heroVideo) {
     heroVideo.addEventListener('loadeddata', () => {

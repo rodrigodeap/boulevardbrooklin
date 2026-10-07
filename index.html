@@ -75,7 +75,7 @@
     padding: 140px 24px 100px;
   }
 
-  /* ---------- LOGO ÚNICO NO TOPO DO HEADER — 520px de largura ---------- */
+  /* ---------- LOGO ÚNICA NO TOPO DO HEADER — 380px ---------- */
   .hero-parceiros {
     position: absolute;
     top: 40px;
@@ -85,11 +85,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 520px;
+    width: 380px;
     max-width: calc(100% - 48px);
   }
   .hero-parceiros img {
-    width: 520px;
+    width: 380px;
     max-width: 100%;
     height: auto;
     object-fit: contain;
@@ -113,7 +113,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 5vw, 3.8rem);
     font-weight: 500;
-    line-height: 0.95;              /* ← entrelinhas reduzida */
+    line-height: 0.95;
     letter-spacing: 0.4px;
     color: #fff;
     margin-bottom: 26px;
@@ -124,7 +124,7 @@
     color: var(--ouro-claro);
     font-weight: 400;
     display: block;
-    margin-top: 2px;                /* ← reduzido para aproximar as linhas */
+    margin-top: 2px;
   }
 
   /* ---------- SUBTÍTULO ---------- */
@@ -138,7 +138,7 @@
     line-height: 1.6;
   }
 
-  /* ---------- BADGE (agora abaixo do subtítulo) ---------- */
+  /* ---------- BADGE (abaixo do subtítulo) ---------- */
   .hero-badge {
     display: inline-block;
     font-size: 0.7rem;
@@ -683,8 +683,8 @@
   /* ========== RESPONSIVO ========== */
   @media (max-width: 860px) {
     .hero-overlay { padding: 120px 20px 80px; }
-    .hero-parceiros { top: 28px; width: 380px; }
-    .hero-parceiros img { width: 380px; }
+    .hero-parceiros { top: 28px; width: 300px; }
+    .hero-parceiros img { width: 300px; }
 
     .institucional-container { grid-template-columns: 1fr; gap: 44px; }
     .foto-rodrigo { max-width: 340px; margin: 0 auto; }
@@ -699,8 +699,8 @@
   }
 
   @media (max-width: 500px) {
-    .hero-parceiros { top: 22px; width: 260px; }
-    .hero-parceiros img { width: 260px; }
+    .hero-parceiros { top: 22px; width: 220px; }
+    .hero-parceiros img { width: 220px; }
 
     .hero-overlay { padding: 100px 18px 70px; }
     .hero h1 { font-size: 1.75rem; line-height: 0.95; margin-bottom: 20px; }
@@ -731,7 +731,7 @@
     <source src="videos/header-loop.mp4" type="video/mp4" />
   </video>
 
-  <!-- LOGO ÚNICO NO TOPO DO HEADER — 520px -->
+  <!-- LOGO ÚNICA NO TOPO DO HEADER — 380px -->
   <div class="hero-parceiros">
     <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
   </div>
@@ -739,7 +739,6 @@
   <div class="hero-overlay">
     <div class="hero-center">
 
-      <!-- NOVA ORDEM: título → subtítulo → badge -->
       <h1>
         As últimas unidades de um
         <em>endereço exclusivo</em>
@@ -820,7 +819,6 @@
 <section class="institucional" id="sobre">
   <div class="institucional-container">
     <div class="foto-rodrigo">
-      <!-- ✅ FOTO DO RODRIGO — caminho correto -->
       <img src="assets/img/img-rodrigo.png"
            alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais"
            loading="lazy" />

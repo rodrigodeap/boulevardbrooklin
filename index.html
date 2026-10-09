@@ -1,655 +1,1433 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Assis Group · Segurança Patrimonial e Imóveis</title>
-  
-  <!-- Tailwind via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts (Inter) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome para ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <style>
-    * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-    body { background-color: #0b0e12; color: #e5e9f0; }
-    
-    /* === NAVEGAÇÃO === */
-    .glass-nav {
-      background: rgba(11, 14, 18, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(52, 152, 219, 0.08);
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Últimas Unidades no Brooklin | Rodrigo de Assis — CRECI 049368-J</title>
+<meta name="description" content="Empreendimento exclusivo no Brooklin, coração de São Paulo. Studios, 1 dorm e 2 suítes. Atendimento pessoal com Rodrigo de Assis." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ========== RESET ========== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #f5f5f0;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  img, video { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  :root {
+    --ouro: #c9a86a;
+    --ouro-claro: #e0c68f;
+    --ouro-escuro: #9a7e44;
+    --preto: #0a0a0a;
+    --preto-suave: #111111;
+    --branco-gelo: #f5f5f0;
+    --cinza-texto: #c5c5bd;
+    --linha: rgba(201,168,106,0.25);
+    --verde-whats: #25D366;
+  }
+
+  /* ========== HEADER — VÍDEO FULLSCREEN ========== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 680px;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.5) contrast(1.05);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.55) 25%,
+      rgba(0,0,0,0.45) 55%,
+      rgba(0,0,0,0.9) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 140px 24px 100px;
+  }
+
+  .hero-parceiros {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 380px;
+    max-width: calc(100% - 48px);
+  }
+  .hero-parceiros img {
+    width: 380px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 1;
+    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.7));
+    transition: opacity .3s ease;
+  }
+  .hero-parceiros img:hover { opacity: 0.9; }
+
+  .hero-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+    margin-bottom: 26px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.75);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--ouro-claro);
+    font-weight: 500;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .hero p {
+    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+    color: #e8e8e2;
+    max-width: 580px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    margin-bottom: 26px;
+    line-height: 1.65;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--ouro);
+    font-weight: 600;
+    margin-bottom: 42px;
+    padding: 0 0 14px;
+    position: relative;
+  }
+  .hero-badge::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 36px; height: 1px;
+    background: var(--ouro);
+  }
+
+  .hero-botoes {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--ouro);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    padding: 17px 38px;
+    border: 1px solid var(--ouro);
+    cursor: pointer;
+    transition: all .35s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .btn-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ouro);
+    transform: translateY(101%);
+    transition: transform .35s ease;
+    z-index: -1;
+  }
+  .btn-cta:hover { color: #0a0a0a; }
+  .btn-cta:hover::before { transform: translateY(0); }
+
+  .btn-cta.whats {
+    background: rgba(37, 211, 102, 0.1);
+    border-color: var(--verde-whats);
+    color: var(--verde-whats);
+  }
+  .btn-cta.whats .btn-whats-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    transition: transform .3s ease;
+    flex-shrink: 0;
+  }
+  .btn-cta.whats::before { background: var(--verde-whats); }
+  .btn-cta.whats:hover { color: #0a0a0a; border-color: var(--verde-whats); }
+  .btn-cta.whats:hover .btn-whats-icon { transform: scale(1.12); }
+
+  .btn-cta.secundario {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.45);
+    color: var(--branco-gelo);
+    backdrop-filter: blur(4px);
+  }
+  .btn-cta.secundario::before { background: var(--branco-gelo); }
+  .btn-cta.secundario:hover { color: #0a0a0a; border-color: var(--branco-gelo); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--ouro);
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    font-weight: 500;
+  }
+  .scroll-hint .linha {
+    width: 1px;
+    height: 34px;
+    background: linear-gradient(180deg, var(--ouro) 0%, transparent 100%);
+    animation: pulsar 2s infinite;
+  }
+  @keyframes pulsar {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* ========== DIVISOR ========== */
+  .divisor {
+    width: 60px;
+    height: 1px;
+    background: var(--ouro);
+    margin: 0 auto 24px;
+  }
+
+  /* ========== SEÇÕES DE DECORADOS ========== */
+  .section-video {
+    padding: 110px 24px;
+    background: var(--preto);
+    text-align: center;
+    position: relative;
+    border-top: 1px solid var(--linha);
+  }
+  .section-video:nth-child(even) { background: var(--preto-suave); }
+
+  .section-logo {
+    height: 42px;
+    width: auto;
+    margin: 0 auto 32px;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+    transition: opacity .3s ease;
+  }
+  .section-logo:hover { opacity: 1; }
+
+  .section-video .numero {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: var(--ouro);
+    opacity: 0.3;
+    line-height: 1;
+    font-weight: 500;
+    margin-bottom: -10px;
+  }
+  .section-video h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+  .section-video h2 em {
+    font-style: italic;
+    color: var(--ouro-claro);
+    font-weight: 500;
+  }
+  .section-video .subtitulo {
+    color: var(--cinza-texto);
+    font-size: 1rem;
+    max-width: 580px;
+    margin: 0 auto 44px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  .video-wrapper {
+    max-width: 1020px;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    background: #000;
+    border: 1px solid var(--linha);
+    box-shadow: 0 0 0 1px rgba(201,168,106,0.08), 0 30px 80px rgba(0,0,0,0.9);
+    position: relative;
+    overflow: hidden;
+  }
+  .video-wrapper::before,
+  .video-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--ouro);
+    z-index: 4;
+    pointer-events: none;
+  }
+  .video-wrapper::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+  .video-wrapper::after { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+  .video-wrapper iframe,
+  .video-wrapper video { width: 100%; height: 100%; border: none; display: block; }
+
+  /* Vídeo real do Studio (S3) */
+  .video-wrapper video.studio-video {
+    object-fit: cover;
+    background: #000;
+  }
+
+  .video-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: var(--cinza-texto);
+    gap: 16px;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .video-placeholder .play-icon {
+    width: 72px; height: 72px;
+    border: 1px solid var(--ouro);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ouro);
+    font-size: 1.4rem;
+    padding-left: 4px;
+    transition: all .3s;
+  }
+  .video-placeholder:hover .play-icon {
+    background: var(--ouro);
+    color: #0a0a0a;
+    transform: scale(1.08);
+  }
+
+  /* ========== LOCALIZAÇÃO (GOOGLE MAPS) — DESTAQUE ========== */
+  .localizacao {
+    padding: 0;
+    background: #000;
+    border-top: 1px solid var(--linha);
+    position: relative;
+    overflow: hidden;
+  }
+  .localizacao-header {
+    text-align: center;
+    padding: 110px 24px 70px;
+    background: linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
+    position: relative;
+  }
+  .localizacao-header .tag {
+    display: inline-block;
+    color: var(--ouro);
+    font-size: 0.72rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    position: relative;
+  }
+  .localizacao-header .tag::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 40px; height: 1px;
+    background: var(--ouro);
+  }
+  .localizacao-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+  }
+  .localizacao-header h2 em {
+    font-style: italic;
+    color: var(--ouro-claro);
+    font-weight: 500;
+  }
+  .localizacao-header p {
+    color: #d8d8d0;
+    font-size: 1.05rem;
+    max-width: 620px;
+    margin: 0 auto;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .localizacao-endereco {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 14px 26px;
+    border: 1px solid rgba(201,168,106,0.4);
+    background: rgba(201,168,106,0.05);
+    color: #f5f5f0;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .localizacao-endereco .pin {
+    color: var(--ouro);
+    font-size: 1rem;
+  }
+
+  .localizacao-mapa-full {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 520px;
+    background: #0a0a0a;
+    border-top: 1px solid var(--linha);
+    border-bottom: 1px solid var(--linha);
+  }
+  .localizacao-mapa-full iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    filter: grayscale(25%) contrast(1.05) brightness(0.95);
+    transition: filter .5s ease;
+  }
+  .localizacao-mapa-full:hover iframe {
+    filter: grayscale(0%) contrast(1) brightness(1);
+  }
+  .localizacao-mapa-full::before,
+  .localizacao-mapa-full::after {
+    content: '';
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--ouro);
+    z-index: 4;
+    pointer-events: none;
+  }
+  .localizacao-mapa-full::before { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+  .localizacao-mapa-full::after { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+  .mapa-cta {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--ouro);
+    color: var(--ouro);
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 14px 28px;
+    transition: all .3s ease;
+    white-space: nowrap;
+  }
+  .mapa-cta:hover {
+    background: var(--ouro);
+    color: #0a0a0a;
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 14px 40px rgba(201,168,106,0.4);
+  }
+  .mapa-cta svg {
+    width: 15px; height: 15px;
+    fill: currentColor;
+  }
+
+  .localizacao-proximidades {
+    padding: 100px 24px;
+    background: var(--preto-suave);
+    border-top: 1px solid var(--linha);
+  }
+  .proximidades-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .proximidades-titulo {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .proximidades-titulo h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+  .proximidades-titulo h3 em {
+    font-style: italic;
+    color: var(--ouro-claro);
+    font-weight: 500;
+  }
+  .proximidades-titulo p {
+    color: #d8d8d0;
+    font-size: 0.98rem;
+    font-weight: 400;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .proximidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+  }
+  .proximidades-categoria {
+    background: linear-gradient(180deg, #141414 0%, #0e0e0e 100%);
+    border: 1px solid rgba(201,168,106,0.18);
+    padding: 28px 26px;
+    transition: all .3s ease;
+    position: relative;
+  }
+  .proximidades-categoria::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px; height: 2px;
+    background: var(--ouro);
+  }
+  .proximidades-categoria:hover {
+    border-color: rgba(201,168,106,0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .proximidades-categoria h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ouro);
+    font-weight: 700;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .proximidades-categoria h4 .icone {
+    font-size: 1.15rem;
+  }
+  .proximidades-categoria ul li {
+    font-size: 0.92rem;
+    color: #d8d8d0;
+    font-weight: 400;
+    padding: 9px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    border-bottom: 1px dashed rgba(255,255,255,0.08);
+    line-height: 1.5;
+  }
+  .proximidades-categoria ul li:last-child { border-bottom: none; }
+  .proximidades-categoria ul li span.distancia {
+    color: var(--ouro-claro);
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* ========== INSTITUCIONAL ========== */
+  .institucional {
+    padding: 120px 24px;
+    background: var(--preto-suave);
+    border-top: 1px solid var(--linha);
+  }
+  .institucional-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .foto-rodrigo {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--ouro);
+    padding: 10px;
+    margin: 0 auto;
+  }
+  .foto-rodrigo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(15%) contrast(1.05);
+  }
+  .foto-rodrigo .logo-badge {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(8px);
+    padding: 12px 26px;
+    border: 1px solid rgba(201,168,106,0.4);
+  }
+  .foto-rodrigo .logo-badge img {
+    height: 26px;
+    width: auto;
+    filter: none;
+  }
+
+  .institucional-texto .tag {
+    display: inline-block;
+    color: var(--ouro);
+    font-size: 0.72rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .institucional-texto h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .institucional-texto h3 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ouro);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .institucional-texto p {
+    color: #d8d8d0;
+    font-size: 1rem;
+    margin-bottom: 18px;
+    font-weight: 400;
+    line-height: 1.8;
+  }
+  .institucional-texto strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .institucional-texto .destaque {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--ouro-claro);
+    border-left: 2px solid var(--ouro);
+    padding-left: 22px;
+    margin: 32px 0;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+
+  /* ========== FORMULÁRIO ========== */
+  .form-section {
+    padding: 120px 24px;
+    background: var(--preto);
+    position: relative;
+    border-top: 1px solid var(--linha);
+  }
+  .form-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(180deg, var(--ouro) 0%, transparent 100%);
+  }
+  .form-container {
+    max-width: 620px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #141414 0%, #0e0e0e 100%);
+    border: 1px solid var(--linha);
+    padding: 60px 48px;
+    position: relative;
+  }
+  .form-container::before,
+  .form-container::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--ouro);
+  }
+  .form-container::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .form-container::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .form-logo {
+    height: 42px;
+    width: auto;
+    margin: 0 auto 30px;
+    opacity: 0.95;
+    display: block;
+  }
+
+  .form-container h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  .form-container .form-sub {
+    text-align: center;
+    color: #c5c5bd;
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .form-group { margin-bottom: 22px; }
+  .form-group label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--ouro);
+    margin-bottom: 10px;
+  }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 15px 18px;
+    font-size: 0.98rem;
+    font-family: inherit;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.04);
+    color: #ffffff;
+    transition: all .25s;
+    border-radius: 0;
+    appearance: none;
+    font-weight: 400;
+  }
+  .form-group select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23c9a86a' stroke-width='1.5' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 44px;
+  }
+  .form-group input::placeholder { color: #777; }
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--ouro);
+    background: rgba(201,168,106,0.06);
+  }
+  .form-group select option { background: #141414; color: #fff; }
+
+  .form-container .btn-cta {
+    width: 100%;
+    margin-top: 12px;
+    background: var(--ouro);
+    color: #0a0a0a;
+    border-color: var(--ouro);
+    justify-content: center;
+  }
+  .form-container .btn-cta::before { background: var(--ouro-claro); }
+  .form-container .btn-cta:hover { color: #0a0a0a; }
+
+  .form-privacidade {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 22px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* ========== WHATSAPP FLUTUANTE ========== */
+  .whats-float {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    background: var(--verde-whats);
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.45);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .whats-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(37,211,102,0.7);
+  }
+  .whats-float svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* ========== RODAPÉ ========== */
+  footer {
+    background: #050505;
+    color: #b5b5b5;
+    padding: 80px 24px 32px;
+    border-top: 1px solid var(--linha);
+  }
+  .footer-grid {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 44px;
+    margin-bottom: 56px;
+  }
+  .footer-col h4 {
+    color: var(--ouro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .footer-col p,
+  .footer-col li {
+    font-size: 0.9rem;
+    color: #b5b5b5;
+    margin-bottom: 10px;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .footer-col strong {
+    color: #f5f5f0;
+    font-weight: 600;
+  }
+  .footer-col a { transition: color .2s; }
+  .footer-col a:hover { color: var(--ouro); }
+
+  .footer-logo {
+    height: 46px;
+    width: auto;
+    margin-bottom: 20px;
+    opacity: 0.95;
+    display: block;
+  }
+
+  .selos {
+    max-width: 1120px;
+    margin: 0 auto 44px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 36px 0;
+    border-top: 1px solid rgba(201,168,106,0.15);
+    border-bottom: 1px solid rgba(201,168,106,0.15);
+  }
+  .selo {
+    text-align: center;
+    color: #999;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 130px;
+    letter-spacing: 1px;
+  }
+  .selo .icone { font-size: 1.5rem; color: var(--ouro); margin-bottom: 4px; }
+  .selo strong {
+    color: #f5f5f0;
+    font-size: 0.82rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .footer-bottom {
+    max-width: 1120px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 0.78rem;
+    color: #777;
+    line-height: 1.8;
+    padding-top: 22px;
+    font-weight: 400;
+  }
+  .footer-bottom .creci {
+    color: var(--ouro);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* ========== RESPONSIVO ========== */
+  @media (max-width: 1000px) {
+    .institucional-container {
+      grid-template-columns: 360px 1fr;
+      gap: 50px;
     }
-    
-    /* === LOGO === */
-    .logo-img {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
-      transition: transform 0.3s ease;
+    .foto-rodrigo { max-width: 360px; }
+
+    .localizacao-mapa-full { height: 60vh; min-height: 460px; }
+  }
+
+  @media (max-width: 860px) {
+    .hero-overlay { padding: 120px 20px 80px; }
+    .hero-parceiros { top: 28px; width: 300px; }
+    .hero-parceiros img { width: 300px; }
+
+    .institucional-container {
+      grid-template-columns: 1fr;
+      gap: 50px;
     }
-    .logo-img:hover {
-      transform: scale(1.05);
-    }
-    
-    .btn-primary {
-      background: linear-gradient(145deg, #1a2a3a, #0f1e2e);
-      border: 1px solid rgba(74, 168, 212, 0.3);
-      color: #d4eaf7;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px rgba(0, 150, 220, 0.05);
-    }
-    .btn-primary:hover {
-      background: linear-gradient(145deg, #2a6b8f, #1a4a6b);
-      border-color: #4aa8d4;
-      box-shadow: 0 0 30px rgba(0, 180, 240, 0.15);
-      transform: scale(1.02);
-      color: #fff;
-    }
-    
-    .btn-gold {
-      background: linear-gradient(145deg, #b8860b, #d4a017);
-      border: 1px solid #d4a017;
-      color: #0b0e12;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(212, 160, 23, 0.15);
-    }
-    .btn-gold:hover {
-      background: linear-gradient(145deg, #d4a017, #e8b830);
-      border-color: #e8b830;
-      box-shadow: 0 0 40px rgba(212, 160, 23, 0.25);
-      transform: scale(1.02);
-      color: #0b0e12;
-    }
-    
-    /* === CARDS === */
-    .service-card {
-      background: rgba(18, 24, 28, 0.8);
-      border: 1px solid rgba(52, 152, 219, 0.06);
-      border-radius: 24px;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(74, 168, 212, 0.2);
-      box-shadow: 0 20px 40px -12px rgba(0, 150, 220, 0.1);
-    }
-    
-    .service-card .icon-wrapper {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: rgba(59, 130, 246, 0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    .service-card .icon-wrapper i {
-      font-size: 1.5rem;
-      color: #4aa8d4;
-    }
-    
-    /* === HERO SECTION COM BACKGROUND === */
-    .hero-section {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-    
-    /* Background Mobile */
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('assets/images/hero-building.jpg') center/cover no-repeat;
-      opacity: 0.3;
-      z-index: 0;
-    }
-    
-    /* Background Desktop - substitui o mobile */
-    @media (min-width: 1024px) {
-      .hero-section::before {
-        background: url('assets/images/hero-building-vertical.jpg') center/cover no-repeat;
-        opacity: 0.25;
-      }
-    }
-    
-    /* Overlay suave para melhor contraste */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, 
-        rgba(10, 14, 20, 0.3) 0%, 
-        rgba(11, 14, 18, 0.5) 50%, 
-        rgba(12, 16, 21, 0.6) 100%);
-      z-index: 1;
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    .hero-badge {
-      background: rgba(74, 168, 212, 0.08);
-      border: 1px solid rgba(74, 168, 212, 0.12);
-      border-radius: 50px;
-      padding: 4px 16px;
+    .foto-rodrigo { max-width: 380px; }
+
+    .form-container { padding: 44px 26px; }
+    .section-video { padding: 80px 20px; }
+    .institucional { padding: 80px 20px; }
+    .form-section { padding: 80px 20px; }
+    .localizacao-header { padding: 80px 20px 50px; }
+    .localizacao-proximidades { padding: 70px 20px; }
+    footer { padding: 60px 20px 26px; }
+    .section-logo { height: 36px; }
+    .form-logo { height: 36px; }
+    .footer-logo { height: 40px; }
+
+    .localizacao-mapa-full { height: 55vh; min-height: 400px; }
+    .proximidades-grid { gap: 24px; }
+  }
+
+  @media (max-width: 500px) {
+    .hero-parceiros { top: 22px; width: 220px; }
+    .hero-parceiros img { width: 220px; }
+
+    .hero-overlay { padding: 100px 18px 70px; }
+    .hero h1 { font-size: 1.75rem; line-height: 0.95; margin-bottom: 20px; }
+    .hero p { font-size: 0.9rem; margin-bottom: 22px; }
+    .hero-badge { font-size: 0.62rem; letter-spacing: 4px; margin-bottom: 32px; }
+
+    .btn-cta { padding: 15px 26px; font-size: 0.7rem; letter-spacing: 2.5px; }
+    .hero-botoes { flex-direction: column; width: 100%; max-width: 300px; }
+    .hero-botoes .btn-cta { width: 100%; justify-content: center; }
+    .whats-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
+    .section-video .numero { font-size: 3rem; }
+    .foto-rodrigo { max-width: 300px; }
+    .foto-rodrigo .logo-badge { padding: 8px 16px; }
+    .foto-rodrigo .logo-badge img { height: 20px; }
+
+    .localizacao-mapa-full { height: 50vh; min-height: 340px; }
+    .localizacao-mapa-full::before { top: 12px; left: 12px; width: 28px; height: 28px; }
+    .localizacao-mapa-full::after { bottom: 12px; right: 12px; width: 28px; height: 28px; }
+    .mapa-cta {
+      bottom: 18px;
+      padding: 12px 20px;
       font-size: 0.65rem;
-      color: #4aa8d4;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      letter-spacing: 2px;
     }
-    
-    /* === SEÇÃO STUDIO (VÍDEO) === */
-    .studio-section {
-      background: linear-gradient(180deg, #0c1015 0%, #0b0e12 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .studio-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.03), transparent 70%);
-      pointer-events: none;
-    }
-    
-    .video-container {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(74, 168, 212, 0.12);
-      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8),
-                  0 0 40px rgba(59, 130, 246, 0.05);
-      transition: all 0.5s ease;
-      background: #000;
-    }
-    
-    .video-container:hover {
-      border-color: rgba(74, 168, 212, 0.25);
-      box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.9),
-                  0 0 60px rgba(59, 130, 246, 0.08);
-      transform: scale(1.01);
-    }
-    
-    .video-container video {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 24px;
-    }
-    
-    .video-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(74, 168, 212, 0.06);
-      border: 1px solid rgba(74, 168, 212, 0.1);
-      border-radius: 50px;
-      padding: 6px 18px;
-      font-size: 0.7rem;
-      color: #4aa8d4;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-    
-    .video-badge .pulse {
-      width: 8px;
-      height: 8px;
-      background: #22c55e;
-      border-radius: 50%;
-      animation: pulse-green 1.5s ease-in-out infinite;
-      box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
-    }
-    
-    @keyframes pulse-green {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-    
-    /* === SEÇÃO DOR & RISCO === */
-    .light-section {
-      background: #f5f6f8;
-      color: #0b0e12;
-    }
-    .light-section .text-gray-dark { color: #1a1a1a; }
-    .light-section .text-gray-medium { color: #4a4a4a; }
-    
-    .check-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-    }
-    .check-item:last-child { border-bottom: none; }
-    .check-item i {
-      color: #b8860b;
-      font-size: 1rem;
-      width: 20px;
-      text-align: center;
-    }
-    
-    /* === IMAGEM DA SEÇÃO RISCO === */
-    .risk-image-container {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
-      transition: all 0.5s ease;
-    }
-    .risk-image-container:hover {
-      transform: scale(1.01);
-      box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.12);
-    }
-    .risk-image-container img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      max-height: 500px;
-    }
-    
-    /* === AUTORIDADE === */
-    .authority-section {
-      background: #0c1015;
-    }
-    .authority-image {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 24px;
-      border: 2px solid rgba(74, 168, 212, 0.08);
-      box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.6);
-      transition: all 0.5s ease;
-    }
-    
-    /* === CONVERSÃO FINAL === */
-    .cta-section {
-      background: linear-gradient(145deg, #0a0e14, #0c1015);
-      border-top: 1px solid rgba(52, 152, 219, 0.06);
-    }
-    
-    /* === RODAPÉ === */
-    .footer-image {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
-      opacity: 0.6;
-      transition: all 0.3s ease;
-    }
-    .footer-image:hover {
-      opacity: 1;
-    }
-    
-    /* === SCROLL === */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0b0e12; }
-    ::-webkit-scrollbar-thumb { background: #2a6b8f; border-radius: 8px; }
-    
-    /* === RESPONSIVIDADE === */
-    @media (max-width: 640px) {
-      .logo-img { height: 32px; }
-      .authority-image { max-width: 280px; }
-      .risk-image-container { border-radius: 12px; }
-      .risk-image-container img { max-height: 300px; }
-      .hero-content h1 { font-size: 2rem; }
-      .hero-content p { font-size: 0.95rem; }
-      .video-container { border-radius: 16px; }
-    }
-    
-    /* === DIVIDER === */
-    .section-divider {
-      background: linear-gradient(90deg, transparent, rgba(74, 168, 212, 0.15), rgba(74, 168, 212, 0.15), transparent);
-      height: 1px;
-      width: 80%;
-      margin: 0 auto;
-    }
-    
-    /* === ANIMAÇÕES === */
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .fade-in-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .fade-in-up-delay-1 { transition-delay: 0.1s; }
-    .fade-in-up-delay-2 { transition-delay: 0.2s; }
-    .fade-in-up-delay-3 { transition-delay: 0.3s; }
-    .fade-in-up-delay-4 { transition-delay: 0.4s; }
-    .fade-in-up-delay-5 { transition-delay: 0.5s; }
-  </style>
+    .proximidades-categoria { padding: 22px 20px; }
+    .proximidades-categoria ul li { font-size: 0.88rem; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- ===== MENU FIXO COM LOGO ===== -->
-  <nav class="glass-nav fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <img 
-        src="assets/images/logo-assisgroup.png" 
-        alt="Assis Group - Segurança Patrimonial e Imóveis" 
-        class="logo-img"
-        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%2240%22 viewBox=%220 0 150 40%22%3E%3Ctext x=%225%22 y=%2228%22 font-family=%22Inter, sans-serif%22 font-weight=%22800%22 font-size=%2220%22 fill=%22%234aa8d4%22%3EAssis%3C/text%3E%3Ctext x=%2280%22 y=%2228%22 font-family=%22Inter, sans-serif%22 font-weight=%22300%22 font-size=%2216%22 fill=%22%238a9aa8%22%3EGroup%3C/text%3E%3C/svg%3E'"
-      >
-      <span class="text-xs text-gray-500 hidden sm:inline">| Segurança Patrimonial</span>
-    </div>
-    <div>
-      <a href="#contato" class="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold shadow-xl">Falar com Especialista</a>
-    </div>
-  </nav>
+<!-- ============ HEADER — VÍDEO FULLSCREEN ============ -->
+<section class="hero" id="topo">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920">
+    <source src="videos/header-loop.mp4" type="video/mp4" />
+  </video>
 
-  <!-- ===== 1. HERO SECTION COM BACKGROUND ===== -->
-  <section id="hero" class="hero-section">
-    <div class="hero-overlay"></div>
-    
-    <div class="hero-content text-center">
-      <div class="flex items-center gap-3 flex-wrap justify-center mb-4 fade-in-up visible">
-        <span class="hero-badge">+ R$ 1.2B em ativos protegidos</span>
-        <span class="hero-badge">Gestão de Alto Padrão</span>
-      </div>
-      
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.12] tracking-tight fade-in-up visible text-white">
-        Proteção absoluta e rentabilidade máxima<br>
-        <span class="text-blue-400">para o seu patrimônio imobiliário.</span>
+  <div class="hero-parceiros">
+    <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
+  </div>
+
+  <div class="hero-overlay">
+    <div class="hero-center">
+      <h1>
+        As últimas unidades de um
+        <em>endereço exclusivo</em>
       </h1>
-      
-      <p class="text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed mt-4 fade-in-up visible">
-        Gestão de ativos, perícia mercadológica e segurança jurídica para investidores e proprietários que não têm margem para riscos.
+
+      <p>Studios, 1 dormitório e 2 suítes com decoração assinada — descubra os decorados abaixo.</p>
+
+      <span class="hero-badge">Brooklin · São Paulo</span>
+
+      <div class="hero-botoes">
+        <a href="https://wa.me/5521990650767?text=Ol%C3%A1%20Rodrigo%2C%20vi%20o%20empreendimento%20no%20Brooklin%20e%20quero%20saber%20mais."
+           target="_blank" rel="noopener" class="btn-cta whats">
+          <svg viewBox="0 0 24 24" class="btn-whats-icon" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Falar no WhatsApp
+        </a>
+
+        <a href="#studio" class="btn-cta secundario">
+          Explorar decorados
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <a href="#studio" class="scroll-hint" aria-label="Rolar">
+    <span>Explorar</span>
+    <span class="linha"></span>
+  </a>
+</section>
+
+<!-- ============ DECORADO — STUDIO 20,85m² (VÍDEO REAL) ============ -->
+<section class="section-video" id="studio">
+  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+  <div class="numero">01</div>
+  <h2>Studio <em>20,85m²</em></h2>
+  <div class="divisor"></div>
+  <p class="subtitulo">Cada metro pensado com precisão. Um décor sofisticado que transforma o pequeno em extraordinário.</p>
+  <div class="video-wrapper">
+    <video
+      class="studio-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4">
+      <source src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4" type="video/mp4" />
+      Seu navegador não suporta reprodução de vídeo.
+    </video>
+  </div>
+</section>
+
+<!-- ============ DECORADO — 1 DORM 26m² ============ -->
+<section class="section-video" id="um-dorm">
+  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+  <div class="numero">02</div>
+  <h2>1 Dormitório <em>26m²</em></h2>
+  <div class="divisor"></div>
+  <p class="subtitulo">Conforto, funcionalidade e acabamento premium para o seu dia a dia no coração de São Paulo.</p>
+  <div class="video-wrapper">
+    <div class="video-placeholder">
+      <span class="play-icon">▶</span>
+      <span>Vídeo 1 Dormitório 26m²</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DECORADO — 2 SUÍTES 49,97m² ============ -->
+<section class="section-video" id="duas-suites">
+  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+  <div class="numero">03</div>
+  <h2>2 Suítes <em>49,97m²</em></h2>
+  <div class="divisor"></div>
+  <p class="subtitulo">Amplitude, privacidade e vista privilegiada. O decorado que redefine o conceito de morar bem.</p>
+  <div class="video-wrapper">
+    <div class="video-placeholder">
+      <span class="play-icon">▶</span>
+      <span>Vídeo 2 Suítes 49,97m²</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCALIZAÇÃO — GOOGLE MAPS EM DESTAQUE ============ -->
+<section class="localizacao" id="localizacao">
+
+  <div class="localizacao-header">
+    <span class="tag">Localização Privilegiada</span>
+    <h2>No coração do <em>Brooklin</em></h2>
+    <p>Tudo o que importa está a poucos minutos. Explore o mapa e descubra as proximidades do empreendimento.</p>
+
+    <div class="localizacao-endereco">
+      <span class="pin">📍</span>
+      Av. Portugal, 1587 — Brooklin, São Paulo/SP
+    </div>
+  </div>
+
+  <div class="localizacao-mapa-full">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.531764962264!2d-46.68946372516335!3d-23.621119978758824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce50bef84fbeab%3A0x1aa7eb284cc25369!2sAv.%20Portugal%2C%201587%20-%20Brooklin%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004559-003!5e0!3m2!1spt-BR!2sbr!4v1791496160624!5m2!1spt-BR!2sbr"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      title="Localização do empreendimento — Av. Portugal, 1587, Brooklin, São Paulo">
+    </iframe>
+
+    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Portugal%2C+1587+-+Brooklin%2C+S%C3%A3o+Paulo+-+SP"
+       target="_blank" rel="noopener"
+       class="mapa-cta">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Traçar rota no Google Maps
+    </a>
+  </div>
+
+  <div class="localizacao-proximidades">
+    <div class="proximidades-container">
+
+      <div class="proximidades-titulo">
+        <h3>Tudo ao seu <em>alcance</em></h3>
+        <p>Principais pontos de referência nas proximidades do empreendimento.</p>
+      </div>
+
+      <div class="proximidades-grid">
+
+        <div class="proximidades-categoria">
+          <h4><span class="icone">🚇</span> Mobilidade</h4>
+          <ul>
+            <li>Estação Brooklin (Linha 5 – Lilás) <span class="distancia">1,2 km</span></li>
+            <li>Estação Campo Belo (Linha 5) <span class="distancia">1,8 km</span></li>
+            <li>Av. Santo Amaro <span class="distancia">600 m</span></li>
+            <li>Av. Faria Lima <span class="distancia">3,5 km</span></li>
+          </ul>
+        </div>
+
+        <div class="proximidades-categoria">
+          <h4><span class="icone">🛍️</span> Lazer e Compras</h4>
+          <ul>
+            <li>Shopping Iguatemi SP <span class="distancia">3,2 km</span></li>
+            <li>Shopping Morumbi <span class="distancia">4,1 km</span></li>
+            <li>Parque Ibirapuera <span class="distancia">5,4 km</span></li>
+            <li>Parque do Povo <span class="distancia">4,8 km</span></li>
+          </ul>
+        </div>
+
+        <div class="proximidades-categoria">
+          <h4><span class="icone">🎓</span> Educação</h4>
+          <ul>
+            <li>FGV – Fundação Getúlio Vargas <span class="distancia">2,9 km</span></li>
+            <li>Colégio Santa Cruz <span class="distancia">4,6 km</span></li>
+            <li>Colégio Rio Branco <span class="distancia">3,8 km</span></li>
+            <li>Universidade de São Paulo (USP) <span class="distancia">8,5 km</span></li>
+          </ul>
+        </div>
+
+        <div class="proximidades-categoria">
+          <h4><span class="icone">🏥</span> Saúde</h4>
+          <ul>
+            <li>Hospital São Luiz – Brooklin <span class="distancia">900 m</span></li>
+            <li>Hospital Israelita Albert Einstein <span class="distancia">5,6 km</span></li>
+            <li>Hospital São Camilo – Ipiranga <span class="distancia">7,2 km</span></li>
+          </ul>
+        </div>
+
+        <div class="proximidades-categoria">
+          <h4><span class="icone">🍽️</span> Gastronomia</h4>
+          <ul>
+            <li>Restaurantes do Brooklin <span class="distancia">300 m</span></li>
+            <li>Vila Olímpia – polo gastronômico <span class="distancia">2,4 km</span></li>
+            <li>Itaim Bibi – bares e restaurantes <span class="distancia">3,8 km</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ INSTITUCIONAL ============ -->
+<section class="institucional" id="sobre">
+  <div class="institucional-container">
+
+    <div class="foto-rodrigo">
+      <img src="assets/img/img-rodrigo.png"
+           alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais"
+           loading="lazy" />
+
+      <div class="logo-badge">
+        <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" />
+      </div>
+    </div>
+
+    <div class="institucional-texto">
+      <span class="tag">Quem irá te atender</span>
+      <h2>Rodrigo de Assis</h2>
+      <h3>Gestor de Ativos Patrimoniais · CRECI 049368-J</h3>
+
+      <p>
+        Atuante no mercado imobiliário desde <strong>2017</strong>, com sólida experiência no Rio de Janeiro e em São Paulo.
+        Sócio da <strong>Assis Group</strong>, atuo nas regiões mais valorizadas da Zona Oeste e Zona Sul —
+        o coração de São Paulo: <strong>Brooklin, Moema, Faria Lima, Morumbi, Itaim Bibi, Jardins e Pinheiros</strong>,
+        entre outras.
       </p>
-      
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-6 fade-in-up visible">
-        <a href="#contato" class="btn-gold px-8 py-4 rounded-full text-lg font-semibold shadow-2xl inline-flex items-center gap-2">
-          <span>Fale com o Especialista</span>
-          <i class="fas fa-arrow-right text-sm"></i>
-        </a>
-        <span class="text-gray-400 text-sm hidden sm:inline">● Análise confidencial</span>
-      </div>
-      
-      <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400 pt-4 fade-in-up visible">
-        <span><i class="fas fa-check-circle text-gold-400 mr-1.5" style="color: #d4a017;"></i> Diagnóstico gratuito</span>
-        <span><i class="fas fa-check-circle text-gold-400 mr-1.5" style="color: #d4a017;"></i> Estratégia sob medida</span>
-        <span><i class="fas fa-check-circle text-gold-400 mr-1.5" style="color: #d4a017;"></i> Resultados mensuráveis</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ===== 2. SEÇÃO STUDIO (VÍDEO) ===== -->
-  <section id="studio" class="studio-section py-24 px-6 md:px-12">
-    <div class="max-w-6xl mx-auto relative z-10">
-      
-      <!-- Cabeçalho da seção -->
-      <div class="text-center mb-12 fade-in-up visible">
-        <span class="video-badge">
-          <span class="pulse"></span>
-          Tour Virtual
-        </span>
-        <h2 class="text-3xl md:text-5xl font-bold mt-4 text-white">
-          Conheça o <span class="text-blue-400">Studio Boulevard Brooklin</span>
-        </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto mt-3 text-sm md:text-base leading-relaxed">
-          Uma experiência imobiliária de alto padrão. Veja em detalhes o projeto, acabamentos e localização privilegiada.
-        </p>
-      </div>
-      
-      <!-- Container do Vídeo -->
-      <div class="video-container fade-in-up visible">
-        <video 
-          controls 
-          preload="metadata"
-          playsinline
-          poster="assets/images/studio-poster.jpg"
-        >
-          <source 
-            src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4" 
-            type="video/mp4"
-          >
-          Seu navegador não suporta a reprodução de vídeos HTML5.
-          <a href="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4" target="_blank" class="text-blue-400">
-            Clique aqui para baixar o vídeo.
-          </a>
-        </video>
-      </div>
-      
-      <!-- Informações complementares -->
-      <div class="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs text-gray-500 fade-in-up visible">
-        <span><i class="fas fa-map-marker-alt text-blue-400 mr-1.5"></i> Boulevard Brooklin · São Paulo</span>
-        <span><i class="fas fa-building text-blue-400 mr-1.5"></i> Studio de Alto Padrão</span>
-        <span><i class="fas fa-shield-alt text-blue-400 mr-1.5"></i> Documentação Verificada</span>
-      </div>
-      
-      <!-- CTA secundário -->
-      <div class="text-center mt-10 fade-in-up visible">
-        <a href="#contato" class="btn-gold px-8 py-4 rounded-full text-base font-semibold shadow-2xl inline-flex items-center gap-2">
-          <i class="fas fa-calendar-check text-sm"></i>
-          <span>Agendar Visita Presencial</span>
-        </a>
-      </div>
-      
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ===== 3. SEÇÃO DE DOR & RISCO COM IMAGEM ===== -->
-  <section id="dor" class="py-24 px-6 md:px-12 light-section">
-    <div class="max-w-5xl mx-auto text-center">
-      <span class="text-blue-600 text-sm font-semibold tracking-widest uppercase border border-blue-200/50 px-4 py-1 rounded-full inline-block">O risco silencioso</span>
-      <h2 class="text-3xl md:text-5xl font-bold mt-4 text-gray-dark">O risco silencioso da gestão imobiliária amadora.</h2>
-      <p class="text-lg md:text-xl text-gray-medium max-w-3xl mx-auto mt-4 leading-relaxed">
-        Contratos frágeis, vacância prolongada e avaliações desatualizadas corroem a rentabilidade e expõem seus bens a litígios. A verdadeira segurança exige inteligência de mercado e rigor jurídico.
+      <p>
+        Trabalho com imóveis residenciais, comerciais e na incorporação e construção de empreendimentos
+        no modelo <strong>SCP</strong> (Sociedade em Conta de Participação).
       </p>
-      
-      <!-- IMAGEM DA SEÇÃO RISCO -->
-      <div class="risk-image-container mt-8">
-        <img 
-          src="assets/images/risk-silencioso.jpg" 
-          alt="Risco silencioso na gestão imobiliária - Assis Group" 
-          class="w-full h-auto"
-          onerror="this.style.display='none'"
-        >
-      </div>
-      
-      <div class="max-w-2xl mx-auto mt-10 text-left">
-        <div class="bg-white/50 rounded-2xl p-6 md:p-8 border border-gray-200/30 shadow-sm">
-          <div class="check-item">
-            <i class="fas fa-check-circle"></i>
-            <span class="text-gray-dark text-sm font-medium">Prevenção contra inadimplência estrutural e desgastes com inquilinos</span>
-          </div>
-          <div class="check-item">
-            <i class="fas fa-check-circle"></i>
-            <span class="text-gray-dark text-sm font-medium">Fim da desvalorização oculta do seu metro quadrado</span>
-          </div>
-          <div class="check-item">
-            <i class="fas fa-check-circle"></i>
-            <span class="text-gray-dark text-sm font-medium">Blindagem contratual para proteção do legado familiar</span>
-          </div>
-        </div>
-      </div>
+
+      <p class="destaque">
+        “Atualmente sua necessidade é por investimento ou moradia? E qual o seu aporte disponível de capital?
+        Atendo a sua necessidade na casa de milhares aos bilhões.”
+      </p>
+
+      <p>
+        Para produzir nossa conversa, preencha o formulário abaixo — eu mesmo irei te atender no WhatsApp.
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="section-divider"></div>
+<!-- ============ FORMULÁRIO ============ -->
+<section class="form-section" id="formulario">
+  <div class="form-container">
+    <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="form-logo" />
 
-  <!-- ===== 4. NOSSAS SOLUÇÕES (4 CARDS) ===== -->
-  <section id="solucoes" class="py-24 px-6 md:px-12 bg-[#0b0e12]">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="text-blue-400 text-sm font-semibold tracking-widest uppercase border border-blue-800/30 px-4 py-1 rounded-full">Nossas soluções</span>
-        <h2 class="text-3xl md:text-5xl font-bold mt-4 text-white">Gestão patrimonial de alto nível</h2>
-        <p class="text-gray-400 max-w-2xl mx-auto mt-3 text-sm">Metodologias exclusivas para proteger e valorizar seu portfólio imobiliário</p>
+    <h2>Fale com um especialista</h2>
+    <p class="form-sub">Preencha os dados e receba o atendimento pessoal do Rodrigo no WhatsApp.</p>
+
+    <form id="leadForm" novalidate>
+      <div class="form-group">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
       </div>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-        
-        <div class="service-card p-6 flex flex-col h-full">
-          <div class="icon-wrapper mb-4">
-            <i class="fas fa-building"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Administração Estratégica de Imóveis</h3>
-          <p class="text-gray-400 text-sm leading-relaxed flex-grow">Gestão de ponta a ponta, garantindo o fluxo de caixa, manutenção preventiva e relacionamento blindado com locatários.</p>
-        </div>
-        
-        <div class="service-card p-6 flex flex-col h-full">
-          <div class="icon-wrapper mb-4">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Laudos e Perícias Mercadológicas</h3>
-          <p class="text-gray-400 text-sm leading-relaxed flex-grow">Avaliação técnica precisa e fundamentada para assegurar a exatidão financeira na ponta vendedora, locadora ou em disputas judiciais.</p>
-        </div>
-        
-        <div class="service-card p-6 flex flex-col h-full">
-          <div class="icon-wrapper mb-4">
-            <i class="fas fa-handshake"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Locação e Venda de Ativos</h3>
-          <p class="text-gray-400 text-sm leading-relaxed flex-grow">Posicionamento mercadológico do seu imóvel para atrair investidores, compradores e inquilinos altamente qualificados.</p>
-        </div>
-        
-        <div class="service-card p-6 flex flex-col h-full">
-          <div class="icon-wrapper mb-4">
-            <i class="fas fa-gavel"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Direito Imobiliário e Sucessão</h3>
-          <p class="text-gray-400 text-sm leading-relaxed flex-grow">Estruturação de contratos robustos, regularização de áreas e planejamento sucessório para garantir a perpetuidade do patrimônio.</p>
-        </div>
-        
+
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="seu@email.com" required />
       </div>
+
+      <div class="form-group">
+        <label for="whatsapp">WhatsApp</label>
+        <input type="tel" id="whatsapp" name="whatsapp" placeholder="(21) 99065-0767" required />
+      </div>
+
+      <div class="form-group">
+        <label for="objetivo">Sua necessidade atual é</label>
+        <select id="objetivo" name="objetivo" required>
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="Quero morar">Quero morar</option>
+          <option value="Quero investir">Quero investir</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="aporte">Aporte de capital disponível</label>
+        <select id="aporte" name="aporte" required>
+          <option value="" disabled selected>Selecione uma faixa</option>
+          <option value="Será moradia">Será moradia</option>
+          <option value="R$ 5.000,00 até R$ 20.000,00">R$ 5.000,00 até R$ 20.000,00</option>
+          <option value="R$ 21.000,00 até R$ 50.000,00">R$ 21.000,00 até R$ 50.000,00</option>
+          <option value="R$ 51.000,00 até R$ 100.000,00">R$ 51.000,00 até R$ 100.000,00</option>
+          <option value="R$ 101.000,00 até R$ 500.000,00">R$ 101.000,00 até R$ 500.000,00</option>
+          <option value="R$ 501.000,00 até R$ 1.000.000,00">R$ 501.000,00 até R$ 1.000.000,00</option>
+          <option value="R$ 1.001.000,00 até R$ 5.000.000,00">R$ 1.001.000,00 até R$ 5.000.000,00</option>
+          <option value="R$ 5.001.000,00 até R$ 10.000.000,00">R$ 5.001.000,00 até R$ 10.000.000,00</option>
+          <option value="Acima de R$ 10.001.000,00">Acima de R$ 10.001.000,00</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-cta">Quero falar no WhatsApp</button>
+
+      <p class="form-privacidade">
+        Seus dados estão seguros e serão utilizados exclusivamente para o atendimento imobiliário.
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ BOTÃO FLUTUANTE WHATSAPP ============ -->
+<a href="https://wa.me/5521990650767?text=Ol%C3%A1%20Rodrigo%2C%20vi%20o%20empreendimento%20no%20Brooklin%20e%20quero%20saber%20mais."
+   class="whats-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ============ RODAPÉ ============ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="footer-logo" />
+      <p>Gestor de Ativos Patrimoniais desde 2017.</p>
+      <p><strong>Especialista em SP Zona Sul / Barueri e Alphaville</strong></p>
+      <p>CRECI 049368-J</p>
     </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ===== 5. AUTORIDADE E METODOLOGIA ===== -->
-  <section id="autoridade" class="py-24 px-6 md:px-12 authority-section">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        
-        <div class="flex justify-center lg:justify-start">
-          <img 
-            src="assets/images/authority-profile.jpg" 
-            alt="Assis Group - Equipe" 
-            class="authority-image"
-            onerror="this.style.display='none'"
-          >
-        </div>
-        
-        <div class="space-y-6">
-          <span class="text-blue-400 text-sm font-semibold tracking-widest uppercase border border-blue-800/30 px-4 py-1 rounded-full inline-block">Nossa metodologia</span>
-          <h2 class="text-3xl md:text-5xl font-bold text-white leading-[1.15]">
-            Rigor corporativo aplicado <br><span class="text-blue-400">ao mercado imobiliário.</span>
-          </h2>
-          <p class="text-gray-400 text-base leading-relaxed">
-            Não operamos no formato de uma corretora tradicional. Atuamos como uma assessoria de engenharia de ativos. Aplicamos o mesmo nível de compliance, visão analítica e gestão de risco do mercado financeiro para proteger o seu portfólio imobiliário.
-          </p>
-          <div class="flex flex-wrap gap-4 text-xs text-gray-500 pt-2">
-            <span><i class="fas fa-check-circle text-blue-400 mr-1.5"></i> Compliance rigoroso</span>
-            <span><i class="fas fa-check-circle text-blue-400 mr-1.5"></i> Visão analítica</span>
-            <span><i class="fas fa-check-circle text-blue-400 mr-1.5"></i> Gestão de risco</span>
-          </div>
-        </div>
-        
-      </div>
+    <div class="footer-col">
+      <h4>Regiões de Atuação</h4>
+      <ul>
+        <li>Brooklin · Moema</li>
+        <li>Faria Lima · Itaim Bibi</li>
+        <li>Morumbi · Jardins</li>
+        <li>Pinheiros · Zona Oeste</li>
+        <li>Zona Sul de São Paulo</li>
+      </ul>
     </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ===== 6. RODAPÉ & CONVERSÃO FINAL ===== -->
-  <section id="contato" class="py-24 px-6 md:px-12 cta-section">
-    <div class="max-w-3xl mx-auto text-center">
-      <span class="text-blue-400 text-sm font-semibold tracking-widest uppercase border border-blue-800/30 px-4 py-1 rounded-full">Última etapa</span>
-      <h2 class="text-3xl md:text-5xl font-bold mt-4 text-white">Garanta a segurança jurídica e financeira do seu patrimônio.</h2>
-      <p class="text-gray-400 mt-4 text-base max-w-2xl mx-auto">Agende uma análise do seu portfólio imobiliário com nossa equipe técnica.</p>
-      
-      <div class="mt-10 flex flex-col items-center gap-4">
-        <a href="https://wa.me/5521990650767?text=Olá! Gostaria de saber mais sobre Segurança Patrimonial e Imóveis." 
-           target="_blank" 
-           class="btn-gold px-10 py-5 rounded-xl text-white font-bold text-lg inline-flex items-center gap-3 shadow-2xl shadow-blue-900/20 transition-all duration-300 hover:scale-105">
-          <i class="fab fa-whatsapp text-2xl"></i>
-          <span>Quero uma análise gratuita</span>
-        </a>
-        <span class="text-xs text-gray-500"><i class="fas fa-lock text-blue-400/40 mr-1"></i> Análise confidencial · Resposta em até 4 horas</span>
-      </div>
-      
-      <div class="mt-8 pt-8 border-t border-blue-900/10 text-xs text-gray-500">
-        <img 
-          src="assets/images/footer-selo.png" 
-          alt="Selo de confiança" 
-          class="footer-image mx-auto mb-2"
-          onerror="this.style.display='none'"
-        >
-        <p>Assis Group · Segurança Patrimonial e Imóveis</p>
-        <p class="mt-1">CNPJ: 63.189.436/0001-90</p>
-      </div>
+    <div class="footer-col">
+      <h4>Especialidades</h4>
+      <ul>
+        <li>Imóveis Residenciais</li>
+        <li>Imóveis Comerciais</li>
+        <li>Incorporação e Construção</li>
+        <li>Modelo SCP</li>
+        <li>Investimento Patrimonial</li>
+      </ul>
     </div>
-  </section>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p>(21) 99065-0767</p>
+      <p>contato@assisgroup.com.br</p>
+      <p>Barueri / Alphaville — SP</p>
+      <p><a href="https://wa.me/5521990650767" target="_blank">→ Falar no WhatsApp</a></p>
+    </div>
+  </div>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="bg-[#080b0e] border-t border-blue-900/20 py-6 text-center text-gray-500 text-xs">
-    <p>© 2026 Assis Group · Todos os direitos reservados</p>
-  </footer>
+  <div class="selos">
+    <div class="selo">
+      <span class="icone">✦</span>
+      <strong>CRECI Ativo</strong>
+      <span>049368-J</span>
+    </div>
+    <div class="selo">
+      <span class="icone">✦</span>
+      <strong>Assis Group</strong>
+      <span>SP · RJ</span>
+    </div>
+    <div class="selo">
+      <span class="icone">✦</span>
+      <strong>Desde 2017</strong>
+      <span>RJ e SP</span>
+    </div>
+    <div class="selo">
+      <span class="icone">✦</span>
+      <strong>Modelo SCP</strong>
+      <span>Incorporação</span>
+    </div>
+    <div class="selo">
+      <span class="icone">✦</span>
+      <strong>Dados Seguros</strong>
+      <span>LGPD</span>
+    </div>
+  </div>
 
-  <!-- ===== JS ===== -->
-  <script>
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
-        }
-      });
+  <div class="footer-bottom">
+    <p>© 2025 Rodrigo de Assis — Assis Group. Todos os direitos reservados. <span class="creci">CRECI 049368-J</span></p>
+    <p>Este site é de caráter informativo e não constitui oferta comercial. Imagens e medidas são ilustrativas e podem sofrer alterações sem aviso prévio, conforme memorial descritivo do empreendimento.</p>
+  </div>
+</footer>
+
+<!-- ============ SCRIPT ============ -->
+<script>
+  const whats = document.getElementById('whatsapp');
+  whats.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+    else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+    else if (v.length > 0) v = `(${v}`;
+    e.target.value = v;
+  });
+
+  document.getElementById('leadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const whats = document.getElementById('whatsapp').value.trim();
+    const objetivo = document.getElementById('objetivo').value;
+    const aporte = document.getElementById('aporte').value;
+
+    if (!nome || !email || !whats || !objetivo || !aporte) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    const msg = `Olá Rodrigo! Vi o empreendimento no Brooklin e quero saber mais.%0A%0A` +
+                `*Nome:* ${nome}%0A` +
+                `*E-mail:* ${email}%0A` +
+                `*WhatsApp:* ${whats}%0A` +
+                `*Necessidade:* ${objetivo}%0A` +
+                `*Aporte:* ${aporte}`;
+
+    window.open(`https://wa.me/5521990650767?text=${msg}`, '_blank');
+    this.reset();
+  });
+
+  // Autoplay do vídeo do header (com fallback para iOS)
+  const heroVideo = document.querySelector('.hero video');
+  if (heroVideo) {
+    heroVideo.addEventListener('loadeddata', () => {
+      const playPromise = heroVideo.play();
+      if (playPromise !== undefined) playPromise.catch(() => {});
     });
+    document.addEventListener('touchstart', () => heroVideo.play(), { once: true });
+  }
 
-    // FADE-IN-UP
-    document.addEventListener('DOMContentLoaded', function() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.fade-in-up').forEach(el => {
-        observer.observe(el);
-      });
+  // Autoplay do vídeo do Studio (S3)
+  const studioVideo = document.querySelector('.studio-video');
+  if (studioVideo) {
+    studioVideo.addEventListener('loadeddata', () => {
+      const playPromise = studioVideo.play();
+      if (playPromise !== undefined) playPromise.catch(() => {});
     });
-
-    // Log
-    console.log('✅ Assis Group · Landing Page carregada com sucesso.');
-    console.log('🎬 Vídeo Studio: https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4');
-  </script>
+  }
+</script>
 
 </body>
 </html>

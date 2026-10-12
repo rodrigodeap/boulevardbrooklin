@@ -167,7 +167,6 @@
     z-index: 1;
     filter: brightness(0.7) contrast(1.05);
   }
-  /* Overlay apenas no topo — SEM fade na base */
   .hero-overlay {
     position: absolute;
     inset: 0;
@@ -214,7 +213,6 @@
     gap: 10px;
   }
 
-  /* Botão de SOM — apenas ícone */
   .btn-som-icon {
     display: inline-flex;
     align-items: center;
@@ -274,7 +272,6 @@
     color: #0a0a0a;
   }
 
-  /* Botão "Assista em tela cheia" */
   .btn-fullscreen-texto {
     display: inline-flex;
     align-items: center;
@@ -1183,7 +1180,9 @@
     letter-spacing: 1px;
   }
 
-  /* ========== RESPONSIVO ========== */
+  /* ============================================================
+     RESPONSIVO — MOBILE
+     ============================================================ */
   @media (max-width: 1000px) {
     .institucional-container { grid-template-columns: 360px 1fr; gap: 50px; }
     .foto-rodrigo { max-width: 360px; }
@@ -1201,20 +1200,6 @@
     .barra-bloco { min-width: 42px; }
     .barra-cta { padding: 8px 14px; font-size: 0.6rem; letter-spacing: 2px; }
     .barra-cta svg { width: 12px; height: 12px; }
-
-    .hero-parceiros { top: 22px; width: 280px; }
-    .hero-parceiros img { width: 280px; }
-
-    .hero-controles { top: 22px; right: 20px; gap: 8px; }
-    .btn-som-icon { width: 42px; height: 42px; }
-    .btn-som-icon svg { width: 20px; height: 20px; }
-    .btn-fullscreen-texto { padding: 10px 16px; font-size: 0.62rem; letter-spacing: 2px; height: 42px; gap: 7px; }
-    .btn-fullscreen-texto svg { width: 14px; height: 14px; }
-
-    .liberar-conteudo { padding: 60px 20px 30px; }
-    .liberar-conteudo .cadeado { width: 54px; height: 54px; }
-    .liberar-conteudo .cadeado svg { width: 24px; height: 24px; }
-    .liberar-conteudo .btn-voltar-topo { padding: 17px 32px; font-size: 0.72rem; letter-spacing: 3px; }
 
     .institucional-container { grid-template-columns: 1fr; gap: 50px; }
     .foto-rodrigo { max-width: 380px; }
@@ -1234,6 +1219,11 @@
     .btn-play-central svg { width: 26px; height: 26px; }
     .btn-play-sec { width: 68px; height: 68px; }
     .btn-play-sec svg { width: 24px; height: 24px; }
+
+    .liberar-conteudo { padding: 60px 20px 30px; }
+    .liberar-conteudo .cadeado { width: 54px; height: 54px; }
+    .liberar-conteudo .cadeado svg { width: 24px; height: 24px; }
+    .liberar-conteudo .btn-voltar-topo { padding: 17px 32px; font-size: 0.72rem; letter-spacing: 3px; }
   }
 
   @media (max-width: 600px) {
@@ -1251,15 +1241,6 @@
     .barra-texto { font-size: 0.5rem; letter-spacing: 1px; }
     .barra-bloco { min-width: 32px; gap: 3px; }
     .barra-sep { font-size: 1rem; }
-
-    .hero-parceiros { top: 18px; width: 180px; }
-    .hero-parceiros img { width: 180px; }
-
-    .hero-controles { top: 16px; right: 12px; gap: 6px; }
-    .btn-som-icon { width: 38px; height: 38px; }
-    .btn-som-icon svg { width: 18px; height: 18px; }
-    .btn-fullscreen-texto { padding: 8px 12px; font-size: 0.55rem; letter-spacing: 1.5px; height: 38px; gap: 6px; }
-    .btn-fullscreen-texto svg { width: 12px; height: 12px; }
 
     .liberar-conteudo { padding: 50px 16px 24px; }
     .liberar-conteudo-inner { gap: 18px; }
@@ -1292,6 +1273,103 @@
     .btn-play-central svg { width: 22px; height: 22px; }
     .btn-play-sec { width: 56px; height: 56px; }
     .btn-play-sec svg { width: 20px; height: 20px; }
+  }
+
+  /* ============================================================
+     MOBILE — VÍDEO DO HEADER EM MODO HORIZONTAL (PAISAGEM)
+     Aplica rotação programática em telas de celular em modo retrato
+     ============================================================ */
+  @media (max-width: 860px) and (orientation: portrait) {
+    .hero video {
+      /* Rotaciona 90° e ajusta dimensões para preencher a tela toda */
+      inset: auto;
+      top: 50%;
+      left: 50%;
+      width: 100vh;
+      height: 100vw;
+      transform: translate(-50%, -50%) rotate(90deg);
+      transform-origin: center center;
+    }
+
+    /* Os controles NÃO rotacionam — ficam fixos no topo da tela */
+    .hero-parceiros {
+      top: 20px;
+      width: 200px;
+    }
+    .hero-parceiros img {
+      width: 200px;
+    }
+
+    .hero-controles {
+      top: 20px;
+      right: 14px;
+      gap: 6px;
+    }
+    .btn-som-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .btn-som-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .btn-fullscreen-texto {
+      padding: 9px 14px;
+      font-size: 0.58rem;
+      letter-spacing: 1.5px;
+      height: 40px;
+      gap: 5px;
+    }
+    .btn-fullscreen-texto svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* Botão play/pause central continua centralizado na tela */
+    .btn-play-central {
+      width: 64px;
+      height: 64px;
+    }
+    .btn-play-central svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  /* Ajuste fino para telas muito estreitas em modo retrato */
+  @media (max-width: 500px) and (orientation: portrait) {
+    .hero-parceiros {
+      top: 16px;
+      width: 160px;
+    }
+    .hero-parceiros img {
+      width: 160px;
+    }
+
+    .hero-controles {
+      top: 16px;
+      right: 10px;
+      gap: 5px;
+    }
+    .btn-som-icon {
+      width: 36px;
+      height: 36px;
+    }
+    .btn-som-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+    .btn-fullscreen-texto {
+      padding: 8px 12px;
+      font-size: 0.52rem;
+      letter-spacing: 1.2px;
+      height: 36px;
+      gap: 4px;
+    }
+    .btn-fullscreen-texto svg {
+      width: 12px;
+      height: 12px;
+    }
   }
 </style>
 </head>
@@ -1335,7 +1413,6 @@
 
 <!-- ============ HEADER — VSL LIMPO ============ -->
 <section class="hero" id="topo">
-  <!-- VÍDEO INICIA COM SOM (sem muted) -->
   <video
     id="vsl-video"
     autoplay
@@ -1353,14 +1430,12 @@
 
   <!-- CONTROLES NO TOPO DIREITO -->
   <div class="hero-controles">
-    <!-- Botão de som — apenas ícone, começa com som ativo -->
     <button type="button" class="btn-som-icon som-ativo" id="vsl-btn-som" aria-label="Desativar som do vídeo" title="Desativar som">
       <svg viewBox="0 0 24 24" class="vsl-icone-som">
         <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
       </svg>
     </button>
 
-    <!-- Botão "Assista em tela cheia" -->
     <button type="button" class="btn-fullscreen-texto" id="vsl-btn-fullscreen" aria-label="Assistir em tela cheia">
       <svg viewBox="0 0 24 24" class="vsl-icone-fullscreen">
         <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
@@ -1369,14 +1444,12 @@
     </button>
   </div>
 
-  <!-- BOTÃO PLAY/PAUSE CENTRAL -->
   <button type="button" class="btn-play-central rodando" id="vsl-btn-play" aria-label="Pausar vídeo">
     <svg viewBox="0 0 24 24" class="vsl-icone-play">
       <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
     </svg>
   </button>
 
-  <!-- BARRA DE PROGRESSO -->
   <div class="progresso-vsl">
     <div class="progresso-vsl-preenchido" id="progresso-preenchido"></div>
   </div>
@@ -1883,19 +1956,15 @@
   let liberado = false;
 
   if (vslVideo) {
-    // Tenta tocar COM SOM. Se o navegador bloquear (política de autoplay),
-    // cai automaticamente para mudo e toca.
     vslVideo.muted = false;
     vslVideo.volume = 1;
 
     const tryPlay = vslVideo.play();
     if (tryPlay !== undefined) {
       tryPlay.catch(() => {
-        // Fallback: navegador bloqueou autoplay com som → tenta mudo
         vslVideo.muted = true;
         vslVideo.play().catch(() => {});
 
-        // Atualiza o botão para refletir o estado real
         const btnSom = document.getElementById('vsl-btn-som');
         if (btnSom) {
           btnSom.classList.remove('som-ativo');
@@ -1936,7 +2005,7 @@
   }
 
   /* =====================================================
-     CONTROLES DE VÍDEO (genérico)
+     CONTROLES DE VÍDEO — ícones
      ===================================================== */
   const ICONE_VOLUME_ON = 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z';
   const ICONE_VOLUME_OFF = 'M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z';
@@ -1969,7 +2038,7 @@
   });
 
   /* =====================================================
-     VSL — BOTÃO TELA CHEIA (com texto)
+     VSL — BOTÃO TELA CHEIA
      ===================================================== */
   const vslBtnFullscreen = document.getElementById('vsl-btn-fullscreen');
   const vslIconeFullscreen = document.querySelector('.vsl-icone-fullscreen');
@@ -1995,7 +2064,7 @@
   });
 
   /* =====================================================
-     VSL — BOTÃO PLAY/PAUSE CENTRAL
+     VSL — BOTÃO PLAY/PAUSE
      ===================================================== */
   const vslBtnPlay = document.getElementById('vsl-btn-play');
   const vslIconePlay = document.querySelector('.vsl-icone-play');
@@ -2025,10 +2094,10 @@
   });
 
   /* =====================================================
-     CONTROLES DOS DECORADOS (Studio, 1 Dorm, 2 Suítes)
+     CONTROLES DOS DECORADOS
      ===================================================== */
   function inicializarControlesSec(config) {
-    const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, iconeFullscreen, textoSom, controles } = config;
+    const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, textoSom, controles } = config;
     if (!video) return;
 
     const tryPlay = video.play();
@@ -2103,7 +2172,6 @@
     btnFullscreen: document.getElementById('studio-btn-fullscreen'),
     iconeSom: document.querySelector('.studio-icone-som'),
     iconePlay: document.querySelector('.studio-icone-play'),
-    iconeFullscreen: document.querySelector('.studio-icone-fullscreen'),
     textoSom: document.querySelector('.studio-texto-som'),
     controles: document.getElementById('studio-controles')
   });
@@ -2116,7 +2184,6 @@
     btnFullscreen: document.getElementById('umdorm-btn-fullscreen'),
     iconeSom: document.querySelector('.umdorm-icone-som'),
     iconePlay: document.querySelector('.umdorm-icone-play'),
-    iconeFullscreen: document.querySelector('.umdorm-icone-fullscreen'),
     textoSom: document.querySelector('.umdorm-texto-som'),
     controles: document.getElementById('umdorm-controles')
   });
@@ -2129,7 +2196,6 @@
     btnFullscreen: document.getElementById('suites-btn-fullscreen'),
     iconeSom: document.querySelector('.suites-icone-som'),
     iconePlay: document.querySelector('.suites-icone-play'),
-    iconeFullscreen: document.querySelector('.suites-icone-fullscreen'),
     textoSom: document.querySelector('.suites-texto-som'),
     controles: document.getElementById('suites-controles')
   });

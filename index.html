@@ -195,7 +195,6 @@
     gap: 10px;
   }
 
-  /* Botão de som com ícone + texto */
   .btn-som-texto {
     display: inline-flex;
     align-items: center;
@@ -226,7 +225,6 @@
     fill: currentColor;
     flex-shrink: 0;
   }
-  /* Estado mudo — pulsante dourado para chamar atenção */
   .btn-som-texto.mudo {
     background: linear-gradient(135deg, var(--ouro) 0%, var(--ouro-claro) 100%);
     border-color: var(--ouro-claro);
@@ -468,6 +466,109 @@
     user-select: auto;
     opacity: 1;
     transition: filter .8s ease, opacity .8s ease;
+  }
+
+  /* ========== TOAST — CONTEÚDO LIBERADO ========== */
+  .toast-liberado {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(135deg, rgba(20,20,20,0.98) 0%, rgba(10,10,10,0.98) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--ouro);
+    border-left: 3px solid var(--ouro);
+    padding: 14px 18px 14px 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,106,0.15);
+    max-width: 340px;
+    cursor: pointer;
+    transition: all .4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+  .toast-liberado.visivel {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .toast-liberado.oculto {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+  .toast-liberado:hover {
+    border-color: var(--ouro-claro);
+    box-shadow: 0 14px 44px rgba(201,168,106,0.35), 0 0 0 1px rgba(201,168,106,0.3);
+  }
+
+  .toast-liberado .toast-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(201,168,106,0.12);
+    border-radius: 50%;
+    color: var(--ouro);
+    flex-shrink: 0;
+  }
+  .toast-liberado .toast-icone svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .toast-liberado .toast-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.3;
+    flex: 1;
+  }
+  .toast-liberado .toast-conteudo strong {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+  .toast-liberado .toast-conteudo span {
+    font-size: 0.72rem;
+    color: #b5b5b5;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+
+  .toast-liberado .toast-fechar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: color .2s ease;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .toast-liberado .toast-fechar:hover {
+    color: var(--ouro);
+  }
+  .toast-liberado .toast-fechar svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .toast-liberado.visivel .toast-icone {
+    animation: toast-pulse 2s ease-in-out;
+  }
+  @keyframes toast-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,106,0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(201,168,106,0); }
   }
 
   .divisor {
@@ -1221,6 +1322,19 @@
     .liberar-conteudo h3 { font-size: 1.7rem; }
     .liberar-conteudo p { font-size: 1rem; }
     .liberar-conteudo .btn-voltar-topo { padding: 18px 34px; font-size: 0.75rem; letter-spacing: 3px; }
+
+    /* Toast mobile */
+    .toast-liberado {
+      bottom: 16px;
+      left: 16px;
+      right: 76px;
+      max-width: none;
+      padding: 12px 14px;
+    }
+    .toast-liberado .toast-icone { width: 34px; height: 34px; }
+    .toast-liberado .toast-icone svg { width: 18px; height: 18px; }
+    .toast-liberado .toast-conteudo strong { font-size: 0.78rem; }
+    .toast-liberado .toast-conteudo span { font-size: 0.68rem; }
   }
 
   @media (max-width: 600px) {
@@ -1270,6 +1384,15 @@
     .btn-play-central svg { width: 22px; height: 22px; }
     .btn-play-sec { width: 56px; height: 56px; }
     .btn-play-sec svg { width: 20px; height: 20px; }
+
+    /* Toast mobile pequeno */
+    .toast-liberado {
+      bottom: 78px;
+      left: 12px;
+      right: 12px;
+      padding: 11px 12px;
+      gap: 10px;
+    }
   }
 
   /* ============================================================
@@ -1350,38 +1473,12 @@
       overflow: hidden;
     }
 
-    .liberar-conteudo::after {
-      display: none;
-    }
-
-    .liberar-conteudo-inner {
-      gap: 14px;
-      max-width: 100%;
-    }
-
-    .liberar-conteudo .cadeado {
-      width: 44px;
-      height: 44px;
-      border-width: 1.5px;
-    }
-    .liberar-conteudo .cadeado svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .liberar-conteudo h3 {
-      font-size: 1.15rem;
-      line-height: 1.25;
-      margin: 0;
-    }
-
-    .liberar-conteudo p {
-      font-size: 0.78rem;
-      line-height: 1.5;
-      margin: 0;
-      max-width: 100%;
-    }
-
+    .liberar-conteudo::after { display: none; }
+    .liberar-conteudo-inner { gap: 14px; max-width: 100%; }
+    .liberar-conteudo .cadeado { width: 44px; height: 44px; border-width: 1.5px; }
+    .liberar-conteudo .cadeado svg { width: 20px; height: 20px; }
+    .liberar-conteudo h3 { font-size: 1.15rem; line-height: 1.25; margin: 0; }
+    .liberar-conteudo p { font-size: 0.78rem; line-height: 1.5; margin: 0; max-width: 100%; }
     .liberar-conteudo .btn-voltar-topo {
       padding: 12px 24px;
       font-size: 0.62rem;
@@ -1389,10 +1486,7 @@
       gap: 6px;
       margin-top: 4px;
     }
-    .liberar-conteudo .btn-voltar-topo svg {
-      width: 13px;
-      height: 13px;
-    }
+    .liberar-conteudo .btn-voltar-topo svg { width: 13px; height: 13px; }
   }
 
   @media (max-width: 500px) and (orientation: portrait) {
@@ -1483,7 +1577,7 @@
 
     <div class="hero-overlay"></div>
 
-    <!-- CONTROLES NO TOPO DIREITO: som + tela cheia -->
+    <!-- CONTROLES: som + tela cheia -->
     <div class="hero-controles">
       <button type="button" class="btn-som-texto" id="vsl-btn-som" aria-label="Desativar som do vídeo" title="Desativar som">
         <svg viewBox="0 0 24 24" class="vsl-icone-som">
@@ -1912,6 +2006,26 @@
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<!-- ============ TOAST — CONTEÚDO LIBERADO ============ -->
+<div class="toast-liberado" id="toast-liberado" role="status" aria-live="polite">
+  <div class="toast-icone">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+    </svg>
+  </div>
+
+  <div class="toast-conteudo">
+    <strong>Conteúdo liberado</strong>
+    <span>Explore os decorados abaixo</span>
+  </div>
+
+  <button type="button" class="toast-fechar" id="toast-fechar" aria-label="Fechar notificação">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </svg>
+  </button>
+</div>
+
 <!-- ============ SCRIPT ============ -->
 <script>
   /* ---------- MÁSCARA WHATSAPP ---------- */
@@ -2028,7 +2142,6 @@
     vslVideo.muted = false;
     vslVideo.volume = 1;
 
-    // Estado inicial: som ativo
     vslBtnSom.classList.remove('mudo');
     vslBtnSom.setAttribute('aria-label', 'Desativar som do vídeo');
     vslBtnSom.setAttribute('title', 'Desativar som');
@@ -2038,7 +2151,7 @@
     const tryPlay = vslVideo.play();
     if (tryPlay !== undefined) {
       tryPlay.catch(() => {
-        // Navegador bloqueou autoplay com som → cai para mudo e marca o botão
+        // Navegador bloqueou autoplay com som → cai para mudo
         vslVideo.muted = true;
         vslVideo.play().catch(() => {});
 
@@ -2068,6 +2181,7 @@
     });
   }
 
+  /* ---------- FUNÇÃO DE LIBERAÇÃO + TOAST ---------- */
   function liberarSite() {
     if (liberado) return;
     liberado = true;
@@ -2075,10 +2189,49 @@
     body.classList.remove('bloqueado');
     body.classList.add('liberado');
 
+    // Mostra o toast de "Conteúdo liberado"
+    mostrarToastLiberado();
+
+    // Scroll suave até o Studio
     setTimeout(() => {
       document.getElementById('studio').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 800);
+    }, 900);
   }
+
+  /* ---------- TOAST — CONTEÚDO LIBERADO ---------- */
+  const toastLiberado = document.getElementById('toast-liberado');
+  const toastFechar = document.getElementById('toast-fechar');
+  let toastTimeout;
+
+  function mostrarToastLiberado() {
+    if (!toastLiberado) return;
+
+    setTimeout(() => {
+      toastLiberado.classList.add('visivel');
+    }, 400);
+
+    toastTimeout = setTimeout(() => {
+      fecharToast();
+    }, 6000);
+
+    toastLiberado.addEventListener('click', (e) => {
+      if (e.target.closest('.toast-fechar')) return;
+      document.getElementById('studio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      fecharToast();
+    });
+  }
+
+  function fecharToast() {
+    if (!toastLiberado) return;
+    clearTimeout(toastTimeout);
+    toastLiberado.classList.remove('visivel');
+    toastLiberado.classList.add('oculto');
+  }
+
+  toastFechar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    fecharToast();
+  });
 
   /* ---------- BOTÃO DE SOM DO VSL ---------- */
   vslBtnSom.addEventListener('click', (e) => {

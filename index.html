@@ -39,12 +39,30 @@
     --verde-whats: #25D366;
   }
 
-  /* ========== HEADER ========== */
+  /* ========== BLOQUEIO DE CONTEÚDO ========== */
+  body.bloqueado {
+    overflow: hidden;
+  }
+  body.bloqueado .site-conteudo {
+    filter: blur(14px);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.4;
+    transition: filter .5s ease, opacity .5s ease;
+  }
+  body.liberado .site-conteudo {
+    filter: blur(0);
+    pointer-events: auto;
+    user-select: auto;
+    opacity: 1;
+    transition: filter .8s ease, opacity .8s ease;
+  }
+
+  /* ========== HEADER — VSL ========== */
   .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
-    min-height: 680px;
+    min-height: 100vh;
     overflow: hidden;
     background: #000;
   }
@@ -55,7 +73,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.5) contrast(1.05);
+    filter: brightness(0.45) contrast(1.05);
   }
   .hero-overlay {
     position: absolute;
@@ -64,16 +82,16 @@
     background: linear-gradient(
       180deg,
       rgba(0,0,0,0.85) 0%,
-      rgba(0,0,0,0.55) 25%,
-      rgba(0,0,0,0.45) 55%,
-      rgba(0,0,0,0.9) 100%
+      rgba(0,0,0,0.5) 25%,
+      rgba(0,0,0,0.4) 55%,
+      rgba(0,0,0,0.92) 100%
     );
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 140px 24px 100px;
+    padding: 130px 24px 80px;
   }
 
   .hero-parceiros {
@@ -93,11 +111,8 @@
     max-width: 100%;
     height: auto;
     object-fit: contain;
-    opacity: 1;
     filter: drop-shadow(0 4px 20px rgba(0,0,0,0.7));
-    transition: opacity .3s ease;
   }
-  .hero-parceiros img:hover { opacity: 0.9; }
 
   .hero-center {
     display: flex;
@@ -109,12 +124,12 @@
 
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-size: clamp(1.9rem, 4.5vw, 3.4rem);
     font-weight: 600;
-    line-height: 0.95;
+    line-height: 0.98;
     letter-spacing: 0.4px;
     color: #ffffff;
-    margin-bottom: 26px;
+    margin-bottom: 22px;
     text-shadow: 0 4px 24px rgba(0,0,0,0.75);
   }
   .hero h1 em {
@@ -122,16 +137,16 @@
     color: var(--ouro-claro);
     font-weight: 500;
     display: block;
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
   .hero p {
-    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+    font-size: clamp(0.95rem, 1.3vw, 1.08rem);
     color: #e8e8e2;
-    max-width: 580px;
+    max-width: 620px;
     font-weight: 400;
     letter-spacing: 0.3px;
-    margin-bottom: 26px;
+    margin-bottom: 30px;
     line-height: 1.65;
   }
 
@@ -142,7 +157,7 @@
     text-transform: uppercase;
     color: var(--ouro);
     font-weight: 600;
-    margin-bottom: 42px;
+    margin-bottom: 26px;
     padding: 0 0 14px;
     position: relative;
   }
@@ -155,6 +170,82 @@
     background: var(--ouro);
   }
 
+  /* ---------- CRONÔMETRO 30 DIAS ---------- */
+  .cronometro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+    padding: 18px 28px;
+    border: 1px solid rgba(201,168,106,0.4);
+    background: rgba(201,168,106,0.06);
+    backdrop-filter: blur(6px);
+    max-width: 560px;
+    width: 100%;
+  }
+  .cronometro-label {
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ouro);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cronometro-label .pulso {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff4d4d;
+    box-shadow: 0 0 8px #ff4d4d;
+    animation: pulsar-ponto 1.2s infinite;
+  }
+  @keyframes pulsar-ponto {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.3); }
+  }
+  .cronometro-tempo {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .tempo-bloco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 56px;
+  }
+  .tempo-numero {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  .tempo-texto {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    color: var(--ouro);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 6px;
+  }
+  .tempo-sep {
+    font-size: 1.6rem;
+    color: rgba(201,168,106,0.6);
+    font-weight: 300;
+    line-height: 1;
+    transform: translateY(-4px);
+  }
+
+  /* ---------- BOTÕES DO HERO ---------- */
   .hero-botoes {
     display: flex;
     gap: 14px;
@@ -219,32 +310,168 @@
   .btn-cta.secundario::before { background: var(--branco-gelo); }
   .btn-cta.secundario:hover { color: #0a0a0a; border-color: var(--branco-gelo); }
 
-  .scroll-hint {
+  /* ---------- BARRA DE PROGRESSO DO VSL ---------- */
+  .progresso-vsl {
     position: absolute;
-    bottom: 28px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    z-index: 5;
+    overflow: hidden;
+  }
+  .progresso-vsl-preenchido {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--ouro-escuro) 0%, var(--ouro) 50%, var(--ouro-claro) 100%);
+    transition: width .3s linear;
+    box-shadow: 0 0 12px rgba(201,168,106,0.6);
+  }
+  .progresso-vsl-texto {
+    position: absolute;
+    bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    z-index: 6;
     color: var(--ouro);
-    font-size: 0.6rem;
+    font-size: 0.68rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.85;
+    font-weight: 600;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    padding: 8px 18px;
+    border: 1px solid rgba(201,168,106,0.3);
+    white-space: nowrap;
+  }
+
+  /* ---------- CONTROLES DO VÍDEO VSL ---------- */
+  .video-controles {
+    position: absolute;
+    bottom: 40px;
+    right: 24px;
+    z-index: 6;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    opacity: 1;
+    transition: all .3s ease;
+  }
+  .ctrl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--ouro);
+    color: var(--ouro);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all .3s ease;
+    white-space: nowrap;
+  }
+  .ctrl-btn:hover {
+    background: var(--ouro);
+    color: #0a0a0a;
+    box-shadow: 0 10px 30px rgba(201,168,106,0.4);
+  }
+  .ctrl-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  .ctrl-btn.apenas-icone {
+    padding: 12px;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+  }
+  .ctrl-btn.apenas-icone svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Botão de play/pause central do VSL */
+  .btn-play-vsl {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    z-index: 6;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(10,10,10,0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--ouro);
+    color: var(--ouro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .btn-play-vsl.visivel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .btn-play-vsl:hover {
+    background: var(--ouro);
+    color: #0a0a0a;
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 14px 40px rgba(201,168,106,0.5);
+  }
+  .btn-play-vsl svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+    margin-left: 3px;
+  }
+  .btn-play-vsl.rodando svg { margin-left: 0; }
+
+  /* ---------- AVISO DE BLOQUEIO ---------- */
+  .aviso-bloqueio {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--ouro);
+    color: #fff;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     font-weight: 500;
+    padding: 14px 26px;
+    max-width: 90vw;
+    text-align: center;
+    transition: all .5s ease;
   }
-  .scroll-hint .linha {
-    width: 1px;
-    height: 34px;
-    background: linear-gradient(180deg, var(--ouro) 0%, transparent 100%);
-    animation: pulsar 2s infinite;
+  .aviso-bloqueio.oculto {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(20px);
   }
-  @keyframes pulsar {
-    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-    50% { opacity: 1; transform: scaleY(1); }
+  .aviso-bloqueio svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--ouro);
+    flex-shrink: 0;
   }
 
   /* ========== DIVISOR ========== */
@@ -331,10 +558,6 @@
   .video-wrapper iframe,
   .video-wrapper video { width: 100%; height: 100%; border: none; display: block; }
 
-  /* ---------- VÍDEO COM CONTROLES (Studio + 1 Dorm) ---------- */
-  .video-wrapper.video-s3 {
-    position: relative;
-  }
   .video-wrapper video.video-com-controles {
     width: 100%;
     height: 100%;
@@ -343,8 +566,8 @@
     display: block;
   }
 
-  /* Container de controles */
-  .video-controles {
+  /* Controles nos decorados */
+  .video-controles-sec {
     position: absolute;
     bottom: 24px;
     right: 24px;
@@ -357,55 +580,14 @@
     transition: all .3s ease;
     pointer-events: none;
   }
-  .video-controles.visivel {
+  .video-controles-sec.visivel {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
   }
 
-  .ctrl-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--ouro);
-    color: var(--ouro);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 12px 20px;
-    cursor: pointer;
-    transition: all .3s ease;
-    white-space: nowrap;
-  }
-  .ctrl-btn:hover {
-    background: var(--ouro);
-    color: #0a0a0a;
-    box-shadow: 0 10px 30px rgba(201,168,106,0.4);
-  }
-  .ctrl-btn svg {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-    flex-shrink: 0;
-  }
-
-  .ctrl-btn.apenas-icone {
-    padding: 12px;
-    width: 44px;
-    height: 44px;
-    justify-content: center;
-  }
-  .ctrl-btn.apenas-icone svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Botão de play/pause central */
-  .btn-play {
+  /* Botão play/pause dos decorados */
+  .btn-play-sec {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -426,84 +608,38 @@
     opacity: 0;
     pointer-events: none;
   }
-  .btn-play.visivel {
+  .btn-play-sec.visivel {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -50%) scale(1);
   }
-  .btn-play:hover {
+  .btn-play-sec:hover {
     background: var(--ouro);
     color: #0a0a0a;
     transform: translate(-50%, -50%) scale(1.08);
     box-shadow: 0 14px 40px rgba(201,168,106,0.5);
   }
-  .btn-play svg {
+  .btn-play-sec svg {
     width: 30px;
     height: 30px;
     fill: currentColor;
     margin-left: 3px;
   }
-  .btn-play.rodando svg {
-    margin-left: 0;
-  }
-
-  .video-placeholder {
-    width: 100%; height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-    color: var(--cinza-texto);
-    gap: 16px;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-  .video-placeholder .play-icon {
-    width: 72px; height: 72px;
-    border: 1px solid var(--ouro);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ouro);
-    font-size: 1.4rem;
-    padding-left: 4px;
-    transition: all .3s;
-  }
-  .video-placeholder:hover .play-icon {
-    background: var(--ouro);
-    color: #0a0a0a;
-    transform: scale(1.08);
-  }
+  .btn-play-sec.rodando svg { margin-left: 0; }
 
   /* Estado de tela cheia */
-  .video-wrapper:fullscreen {
+  .video-wrapper:fullscreen,
+  .hero:fullscreen {
     max-width: 100%;
     aspect-ratio: auto;
     border: none;
   }
-  .video-wrapper:fullscreen video {
-    object-fit: contain;
-  }
-  .video-wrapper:-webkit-full-screen {
-    max-width: 100%;
-    aspect-ratio: auto;
-    border: none;
-  }
-  .video-wrapper:-webkit-full-screen video {
-    object-fit: contain;
-  }
-  .video-wrapper:-moz-full-screen {
-    max-width: 100%;
-    aspect-ratio: auto;
-    border: none;
-  }
-  .video-wrapper:-moz-full-screen video {
-    object-fit: contain;
-  }
+  .video-wrapper:fullscreen video,
+  .hero:fullscreen video { object-fit: contain; }
+  .video-wrapper:-webkit-full-screen,
+  .hero:-webkit-full-screen { max-width: 100%; aspect-ratio: auto; border: none; }
+  .video-wrapper:-webkit-full-screen video,
+  .hero:-webkit-full-screen video { object-fit: contain; }
 
   /* ========== LOCALIZAÇÃO ========== */
   .localizacao {
@@ -545,7 +681,6 @@
     color: #fff;
     margin-bottom: 16px;
     line-height: 1.1;
-    letter-spacing: 0.3px;
   }
   .localizacao-header h2 em {
     font-style: italic;
@@ -640,10 +775,7 @@
     transform: translateX(-50%) translateY(-3px);
     box-shadow: 0 14px 40px rgba(201,168,106,0.4);
   }
-  .mapa-cta svg {
-    width: 15px; height: 15px;
-    fill: currentColor;
-  }
+  .mapa-cta svg { width: 15px; height: 15px; fill: currentColor; }
 
   .localizacao-proximidades {
     padding: 100px 24px;
@@ -714,9 +846,7 @@
     align-items: center;
     gap: 10px;
   }
-  .proximidades-categoria h4 .icone {
-    font-size: 1.15rem;
-  }
+  .proximidades-categoria h4 .icone { font-size: 1.15rem; }
   .proximidades-categoria ul li {
     font-size: 0.92rem;
     color: #d8d8d0;
@@ -817,10 +947,7 @@
     font-weight: 400;
     line-height: 1.8;
   }
-  .institucional-texto strong {
-    color: #ffffff;
-    font-weight: 600;
-  }
+  .institucional-texto strong { color: #ffffff; font-weight: 600; }
   .institucional-texto .destaque {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
@@ -1003,10 +1130,7 @@
     line-height: 1.7;
     font-weight: 400;
   }
-  .footer-col strong {
-    color: #f5f5f0;
-    font-weight: 600;
-  }
+  .footer-col strong { color: #f5f5f0; font-weight: 600; }
   .footer-col a { transition: color .2s; }
   .footer-col a:hover { color: var(--ouro); }
 
@@ -1067,23 +1191,17 @@
 
   /* ========== RESPONSIVO ========== */
   @media (max-width: 1000px) {
-    .institucional-container {
-      grid-template-columns: 360px 1fr;
-      gap: 50px;
-    }
+    .institucional-container { grid-template-columns: 360px 1fr; gap: 50px; }
     .foto-rodrigo { max-width: 360px; }
     .localizacao-mapa-full { height: 60vh; min-height: 460px; }
   }
 
   @media (max-width: 860px) {
-    .hero-overlay { padding: 120px 20px 80px; }
-    .hero-parceiros { top: 28px; width: 300px; }
+    .hero-overlay { padding: 110px 20px 80px; }
+    .hero-parceiros { top: 26px; width: 300px; }
     .hero-parceiros img { width: 300px; }
 
-    .institucional-container {
-      grid-template-columns: 1fr;
-      gap: 50px;
-    }
+    .institucional-container { grid-template-columns: 1fr; gap: 50px; }
     .foto-rodrigo { max-width: 380px; }
 
     .form-container { padding: 44px 26px; }
@@ -1100,22 +1218,37 @@
     .localizacao-mapa-full { height: 55vh; min-height: 400px; }
     .proximidades-grid { gap: 24px; }
 
-    .btn-play { width: 68px; height: 68px; }
-    .btn-play svg { width: 24px; height: 24px; }
-    .video-controles { bottom: 16px; right: 16px; gap: 8px; }
+    .btn-play-vsl { width: 72px; height: 72px; }
+    .btn-play-vsl svg { width: 26px; height: 26px; }
+    .btn-play-sec { width: 68px; height: 68px; }
+    .btn-play-sec svg { width: 24px; height: 24px; }
+
+    .video-controles,
+    .video-controles-sec { bottom: 16px; right: 16px; gap: 8px; }
     .ctrl-btn { font-size: 0.66rem; padding: 10px 16px; letter-spacing: 2px; }
     .ctrl-btn.apenas-icone { width: 40px; height: 40px; padding: 10px; }
     .ctrl-btn svg { width: 15px; height: 15px; }
+
+    .cronometro { padding: 14px 20px; }
+    .tempo-bloco { min-width: 48px; }
   }
 
   @media (max-width: 500px) {
-    .hero-parceiros { top: 22px; width: 220px; }
+    .hero-parceiros { top: 20px; width: 220px; }
     .hero-parceiros img { width: 220px; }
 
-    .hero-overlay { padding: 100px 18px 70px; }
-    .hero h1 { font-size: 1.75rem; line-height: 0.95; margin-bottom: 20px; }
+    .hero-overlay { padding: 90px 16px 70px; }
+    .hero h1 { font-size: 1.7rem; line-height: 0.95; margin-bottom: 18px; }
     .hero p { font-size: 0.9rem; margin-bottom: 22px; }
-    .hero-badge { font-size: 0.62rem; letter-spacing: 4px; margin-bottom: 32px; }
+    .hero-badge { font-size: 0.6rem; letter-spacing: 4px; margin-bottom: 20px; }
+
+    .cronometro { padding: 12px 16px; margin-bottom: 26px; }
+    .cronometro-label { font-size: 0.6rem; letter-spacing: 3px; margin-bottom: 10px; }
+    .tempo-bloco { min-width: 40px; }
+    .tempo-numero { font-size: 1.4rem; }
+    .tempo-texto { font-size: 0.55rem; letter-spacing: 1.5px; }
+    .tempo-sep { font-size: 1.2rem; }
+    .cronometro-tempo { gap: 8px; }
 
     .btn-cta { padding: 15px 26px; font-size: 0.7rem; letter-spacing: 2.5px; }
     .hero-botoes { flex-direction: column; width: 100%; max-width: 300px; }
@@ -1129,36 +1262,39 @@
     .localizacao-mapa-full { height: 50vh; min-height: 340px; }
     .localizacao-mapa-full::before { top: 12px; left: 12px; width: 28px; height: 28px; }
     .localizacao-mapa-full::after { bottom: 12px; right: 12px; width: 28px; height: 28px; }
-    .mapa-cta {
-      bottom: 18px;
-      padding: 12px 20px;
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-    }
+    .mapa-cta { bottom: 18px; padding: 12px 20px; font-size: 0.65rem; letter-spacing: 2px; }
     .proximidades-categoria { padding: 22px 20px; }
     .proximidades-categoria ul li { font-size: 0.88rem; }
 
-    .btn-play { width: 56px; height: 56px; }
-    .btn-play svg { width: 20px; height: 20px; }
-    .video-controles { bottom: 12px; right: 12px; gap: 6px; }
+    .btn-play-vsl { width: 60px; height: 60px; }
+    .btn-play-vsl svg { width: 22px; height: 22px; }
+    .btn-play-sec { width: 56px; height: 56px; }
+    .btn-play-sec svg { width: 20px; height: 20px; }
+
+    .video-controles,
+    .video-controles-sec { bottom: 12px; right: 12px; gap: 6px; }
     .ctrl-btn { font-size: 0.6rem; padding: 8px 12px; letter-spacing: 1.5px; }
     .ctrl-btn.apenas-icone { width: 36px; height: 36px; padding: 8px; }
     .ctrl-btn svg { width: 14px; height: 14px; }
+
+    .progresso-vsl-texto { font-size: 0.6rem; padding: 6px 12px; letter-spacing: 2px; }
+    .aviso-bloqueio { font-size: 0.65rem; padding: 12px 18px; letter-spacing: 1.5px; }
   }
 </style>
 </head>
-<body>
+<body class="bloqueado">
 
-<!-- ============ HEADER ============ -->
+<!-- ============ HEADER — VSL COM CRONÔMETRO E CONTROLES ============ -->
 <section class="hero" id="topo">
   <video
+    id="vsl-video"
     autoplay
     muted
-    loop
     playsinline
     preload="auto"
     poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920">
-    <source src="videos/header-loop.mp4" type="video/mp4" />
+    <source src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/VSL_HEADER.mp4" type="video/mp4" />
+    Seu navegador não suporta reprodução de vídeo.
   </video>
 
   <div class="hero-parceiros">
@@ -1167,14 +1303,43 @@
 
   <div class="hero-overlay">
     <div class="hero-center">
+      <span class="hero-badge">Brooklin · São Paulo</span>
+
       <h1>
         As últimas unidades de um
         <em>endereço exclusivo</em>
       </h1>
 
-      <p>Studios, 1 dormitório e 2 suítes com decoração assinada — descubra os decorados abaixo.</p>
+      <p>Studios, 1 dormitório e 2 suítes com decoração assinada. Condições especiais por tempo limitado — assista ao vídeo para liberar as informações.</p>
 
-      <span class="hero-badge">Brooklin · São Paulo</span>
+      <!-- CRONÔMETRO 30 DIAS -->
+      <div class="cronometro" id="cronometro">
+        <div class="cronometro-label">
+          <span class="pulso"></span>
+          Oferta encerra em
+        </div>
+        <div class="cronometro-tempo">
+          <div class="tempo-bloco">
+            <span class="tempo-numero" id="dias">30</span>
+            <span class="tempo-texto">Dias</span>
+          </div>
+          <span class="tempo-sep">:</span>
+          <div class="tempo-bloco">
+            <span class="tempo-numero" id="horas">00</span>
+            <span class="tempo-texto">Horas</span>
+          </div>
+          <span class="tempo-sep">:</span>
+          <div class="tempo-bloco">
+            <span class="tempo-numero" id="minutos">00</span>
+            <span class="tempo-texto">Min</span>
+          </div>
+          <span class="tempo-sep">:</span>
+          <div class="tempo-bloco">
+            <span class="tempo-numero" id="segundos">00</span>
+            <span class="tempo-texto">Seg</span>
+          </div>
+        </div>
+      </div>
 
       <div class="hero-botoes">
         <a href="https://wa.me/5521990650767?text=Ol%C3%A1%20Rodrigo%2C%20vi%20o%20empreendimento%20no%20Brooklin%20e%20quero%20saber%20mais."
@@ -1185,390 +1350,429 @@
           Falar no WhatsApp
         </a>
 
-        <a href="#studio" class="btn-cta secundario">
+        <a href="#studio" class="btn-cta secundario" id="btn-explorar">
           Explorar decorados
         </a>
       </div>
     </div>
   </div>
 
-  <a href="#studio" class="scroll-hint" aria-label="Rolar">
-    <span>Explorar</span>
-    <span class="linha"></span>
-  </a>
-</section>
+  <!-- CONTROLES DO VSL -->
+  <div class="video-controles" id="vsl-controles">
+    <button type="button" class="ctrl-btn" id="vsl-btn-som" aria-label="Ativar som do vídeo">
+      <svg viewBox="0 0 24 24" class="vsl-icone-som">
+        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+      </svg>
+      <span class="vsl-texto-som">Ativar som</span>
+    </button>
 
-<!-- ============ DECORADO — STUDIO 20,85m² ============ -->
-<section class="section-video" id="studio">
-  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
-  <div class="numero">01</div>
-  <h2>Studio <em>20,85m²</em></h2>
-  <div class="divisor"></div>
-  <p class="subtitulo">Cada metro pensado com precisão. Um décor sofisticado que transforma o pequeno em extraordinário.</p>
-
-  <div class="video-wrapper video-s3" id="studio-wrapper">
-    <video
-      id="studio-video"
-      class="video-com-controles"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      poster="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4">
-      <source src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4" type="video/mp4" />
-      Seu navegador não suporta reprodução de vídeo.
-    </video>
-
-    <div class="video-controles visivel" id="studio-controles">
-      <button type="button" class="ctrl-btn" id="studio-btn-som" aria-label="Ativar som do vídeo">
-        <svg viewBox="0 0 24 24" class="studio-icone-som">
-          <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-        </svg>
-        <span class="studio-texto-som">Ativar som</span>
-      </button>
-
-      <button type="button" class="ctrl-btn apenas-icone" id="studio-btn-fullscreen" aria-label="Entrar em tela cheia" title="Tela cheia">
-        <svg viewBox="0 0 24 24" class="studio-icone-fullscreen">
-          <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
-        </svg>
-      </button>
-    </div>
-
-    <button type="button" class="btn-play rodando" id="studio-btn-play" aria-label="Pausar vídeo">
-      <svg viewBox="0 0 24 24" class="studio-icone-play">
-        <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
+    <button type="button" class="ctrl-btn apenas-icone" id="vsl-btn-fullscreen" aria-label="Tela cheia" title="Tela cheia">
+      <svg viewBox="0 0 24 24" class="vsl-icone-fullscreen">
+        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
       </svg>
     </button>
   </div>
+
+  <!-- BOTÃO PLAY/PAUSE CENTRAL -->
+  <button type="button" class="btn-play-vsl rodando" id="vsl-btn-play" aria-label="Pausar vídeo">
+    <svg viewBox="0 0 24 24" class="vsl-icone-play">
+      <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
+    </svg>
+  </button>
+
+  <!-- BARRA DE PROGRESSO -->
+  <div class="progresso-vsl">
+    <div class="progresso-vsl-preenchido" id="progresso-preenchido"></div>
+  </div>
+  <div class="progresso-vsl-texto" id="progresso-texto">Assista 90% para liberar → 0%</div>
 </section>
 
-<!-- ============ DECORADO — 1 DORM 26m² (VÍDEO REAL) ============ -->
-<section class="section-video" id="um-dorm">
-  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
-  <div class="numero">02</div>
-  <h2>1 Dormitório <em>26m²</em></h2>
-  <div class="divisor"></div>
-  <p class="subtitulo">Conforto, funcionalidade e acabamento premium para o seu dia a dia no coração de São Paulo.</p>
+<!-- ============ AVISO DE BLOQUEIO ============ -->
+<div class="aviso-bloqueio" id="aviso-bloqueio">
+  <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+  <span>Assista ao vídeo para liberar todo o conteúdo</span>
+</div>
 
-  <div class="video-wrapper video-s3" id="umdorm-wrapper">
-    <video
-      id="umdorm-video"
-      class="video-com-controles"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      poster="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/1DORM.mp4">
-      <source src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/1DORM.mp4" type="video/mp4" />
-      Seu navegador não suporta reprodução de vídeo.
-    </video>
+<!-- ============ CONTEÚDO DO SITE (BLOQUEADO) ============ -->
+<div class="site-conteudo" id="site-conteudo">
 
-    <div class="video-controles visivel" id="umdorm-controles">
-      <button type="button" class="ctrl-btn" id="umdorm-btn-som" aria-label="Ativar som do vídeo">
-        <svg viewBox="0 0 24 24" class="umdorm-icone-som">
-          <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-        </svg>
-        <span class="umdorm-texto-som">Ativar som</span>
+  <!-- ============ DECORADO — STUDIO 20,85m² ============ -->
+  <section class="section-video" id="studio">
+    <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+    <div class="numero">01</div>
+    <h2>Studio <em>20,85m²</em></h2>
+    <div class="divisor"></div>
+    <p class="subtitulo">Cada metro pensado com precisão. Um décor sofisticado que transforma o pequeno em extraordinário.</p>
+
+    <div class="video-wrapper" id="studio-wrapper">
+      <video
+        id="studio-video"
+        class="video-com-controles"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4">
+        <source src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/STUDIO.mp4" type="video/mp4" />
+      </video>
+
+      <div class="video-controles-sec" id="studio-controles">
+        <button type="button" class="ctrl-btn" id="studio-btn-som">
+          <svg viewBox="0 0 24 24" class="studio-icone-som"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+          <span class="studio-texto-som">Ativar som</span>
+        </button>
+        <button type="button" class="ctrl-btn apenas-icone" id="studio-btn-fullscreen">
+          <svg viewBox="0 0 24 24" class="studio-icone-fullscreen"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+        </button>
+      </div>
+
+      <button type="button" class="btn-play-sec rodando" id="studio-btn-play">
+        <svg viewBox="0 0 24 24" class="studio-icone-play"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
       </button>
+    </div>
+  </section>
 
-      <button type="button" class="ctrl-btn apenas-icone" id="umdorm-btn-fullscreen" aria-label="Entrar em tela cheia" title="Tela cheia">
-        <svg viewBox="0 0 24 24" class="umdorm-icone-fullscreen">
-          <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
-        </svg>
+  <!-- ============ DECORADO — 1 DORM 26m² ============ -->
+  <section class="section-video" id="um-dorm">
+    <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+    <div class="numero">02</div>
+    <h2>1 Dormitório <em>26m²</em></h2>
+    <div class="divisor"></div>
+    <p class="subtitulo">Conforto, funcionalidade e acabamento premium para o seu dia a dia no coração de São Paulo.</p>
+
+    <div class="video-wrapper" id="umdorm-wrapper">
+      <video
+        id="umdorm-video"
+        class="video-com-controles"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/1DORM.mp4">
+        <source src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/1DORM.mp4" type="video/mp4" />
+      </video>
+
+      <div class="video-controles-sec" id="umdorm-controles">
+        <button type="button" class="ctrl-btn" id="umdorm-btn-som">
+          <svg viewBox="0 0 24 24" class="umdorm-icone-som"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+          <span class="umdorm-texto-som">Ativar som</span>
+        </button>
+        <button type="button" class="ctrl-btn apenas-icone" id="umdorm-btn-fullscreen">
+          <svg viewBox="0 0 24 24" class="umdorm-icone-fullscreen"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+        </button>
+      </div>
+
+      <button type="button" class="btn-play-sec rodando" id="umdorm-btn-play">
+        <svg viewBox="0 0 24 24" class="umdorm-icone-play"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
       </button>
     </div>
+  </section>
 
-    <button type="button" class="btn-play rodando" id="umdorm-btn-play" aria-label="Pausar vídeo">
-      <svg viewBox="0 0 24 24" class="umdorm-icone-play">
-        <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
-      </svg>
-    </button>
-  </div>
-</section>
+  <!-- ============ DECORADO — 2 SUÍTES 49,97m² ============ -->
+  <section class="section-video" id="duas-suites">
+    <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
+    <div class="numero">03</div>
+    <h2>2 Suítes <em>49,97m²</em></h2>
+    <div class="divisor"></div>
+    <p class="subtitulo">Amplitude, privacidade e vista privilegiada. O decorado que redefine o conceito de morar bem.</p>
 
-<!-- ============ DECORADO — 2 SUÍTES 49,97m² ============ -->
-<section class="section-video" id="duas-suites">
-  <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="section-logo" />
-  <div class="numero">03</div>
-  <h2>2 Suítes <em>49,97m²</em></h2>
-  <div class="divisor"></div>
-  <p class="subtitulo">Amplitude, privacidade e vista privilegiada. O decorado que redefine o conceito de morar bem.</p>
-  <div class="video-wrapper">
-    <div class="video-placeholder">
-      <span class="play-icon">▶</span>
-      <span>Vídeo 2 Suítes 49,97m²</span>
-    </div>
-  </div>
-</section>
+    <div class="video-wrapper" id="suites-wrapper">
+      <video
+        id="suites-video"
+        class="video-com-controles"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/2SUITES.mp4">
+        <source src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/2SUITES.mp4" type="video/mp4" />
+      </video>
 
-<!-- ============ LOCALIZAÇÃO ============ -->
-<section class="localizacao" id="localizacao">
-  <div class="localizacao-header">
-    <span class="tag">Localização Privilegiada</span>
-    <h2>No coração do <em>Brooklin</em></h2>
-    <p>Tudo o que importa está a poucos minutos. Explore o mapa e descubra as proximidades do empreendimento.</p>
-
-    <div class="localizacao-endereco">
-      <span class="pin">📍</span>
-      Av. Portugal, 1587 — Brooklin, São Paulo/SP
-    </div>
-  </div>
-
-  <div class="localizacao-mapa-full">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.531764962264!2d-46.68946372516335!3d-23.621119978758824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce50bef84fbeab%3A0x1aa7eb284cc25369!2sAv.%20Portugal%2C%201587%20-%20Brooklin%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004559-003!5e0!3m2!1spt-BR!2sbr!4v1791496160624!5m2!1spt-BR!2sbr"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"
-      title="Localização do empreendimento — Av. Portugal, 1587, Brooklin, São Paulo">
-    </iframe>
-
-    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Portugal%2C+1587+-+Brooklin%2C+S%C3%A3o+Paulo+-+SP"
-       target="_blank" rel="noopener"
-       class="mapa-cta">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-      Traçar rota no Google Maps
-    </a>
-  </div>
-
-  <div class="localizacao-proximidades">
-    <div class="proximidades-container">
-      <div class="proximidades-titulo">
-        <h3>Tudo ao seu <em>alcance</em></h3>
-        <p>Principais pontos de referência nas proximidades do empreendimento.</p>
+      <div class="video-controles-sec" id="suites-controles">
+        <button type="button" class="ctrl-btn" id="suites-btn-som">
+          <svg viewBox="0 0 24 24" class="suites-icone-som"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+          <span class="suites-texto-som">Ativar som</span>
+        </button>
+        <button type="button" class="ctrl-btn apenas-icone" id="suites-btn-fullscreen">
+          <svg viewBox="0 0 24 24" class="suites-icone-fullscreen"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+        </button>
       </div>
 
-      <div class="proximidades-grid">
-        <div class="proximidades-categoria">
-          <h4><span class="icone">🚇</span> Mobilidade</h4>
-          <ul>
-            <li>Estação Brooklin (Linha 5 – Lilás) <span class="distancia">1,2 km</span></li>
-            <li>Estação Campo Belo (Linha 5) <span class="distancia">1,8 km</span></li>
-            <li>Av. Santo Amaro <span class="distancia">600 m</span></li>
-            <li>Av. Faria Lima <span class="distancia">3,5 km</span></li>
-          </ul>
-        </div>
-
-        <div class="proximidades-categoria">
-          <h4><span class="icone">🛍️</span> Lazer e Compras</h4>
-          <ul>
-            <li>Shopping Iguatemi SP <span class="distancia">3,2 km</span></li>
-            <li>Shopping Morumbi <span class="distancia">4,1 km</span></li>
-            <li>Parque Ibirapuera <span class="distancia">5,4 km</span></li>
-            <li>Parque do Povo <span class="distancia">4,8 km</span></li>
-          </ul>
-        </div>
-
-        <div class="proximidades-categoria">
-          <h4><span class="icone">🎓</span> Educação</h4>
-          <ul>
-            <li>FGV – Fundação Getúlio Vargas <span class="distancia">2,9 km</span></li>
-            <li>Colégio Santa Cruz <span class="distancia">4,6 km</span></li>
-            <li>Colégio Rio Branco <span class="distancia">3,8 km</span></li>
-            <li>Universidade de São Paulo (USP) <span class="distancia">8,5 km</span></li>
-          </ul>
-        </div>
-
-        <div class="proximidades-categoria">
-          <h4><span class="icone">🏥</span> Saúde</h4>
-          <ul>
-            <li>Hospital São Luiz – Brooklin <span class="distancia">900 m</span></li>
-            <li>Hospital Israelita Albert Einstein <span class="distancia">5,6 km</span></li>
-            <li>Hospital São Camilo – Ipiranga <span class="distancia">7,2 km</span></li>
-          </ul>
-        </div>
-
-        <div class="proximidades-categoria">
-          <h4><span class="icone">🍽️</span> Gastronomia</h4>
-          <ul>
-            <li>Restaurantes do Brooklin <span class="distancia">300 m</span></li>
-            <li>Vila Olímpia – polo gastronômico <span class="distancia">2,4 km</span></li>
-            <li>Itaim Bibi – bares e restaurantes <span class="distancia">3,8 km</span></li>
-          </ul>
-        </div>
-      </div>
+      <button type="button" class="btn-play-sec rodando" id="suites-btn-play">
+        <svg viewBox="0 0 24 24" class="suites-icone-play"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+      </button>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ INSTITUCIONAL ============ -->
-<section class="institucional" id="sobre">
-  <div class="institucional-container">
-    <div class="foto-rodrigo">
-      <img src="assets/img/img-rodrigo.png"
-           alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais"
-           loading="lazy" />
+  <!-- ============ LOCALIZAÇÃO ============ -->
+  <section class="localizacao" id="localizacao">
+    <div class="localizacao-header">
+      <span class="tag">Localização Privilegiada</span>
+      <h2>No coração do <em>Brooklin</em></h2>
+      <p>Tudo o que importa está a poucos minutos. Explore o mapa e descubra as proximidades do empreendimento.</p>
 
-      <div class="logo-badge">
-        <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" />
+      <div class="localizacao-endereco">
+        <span class="pin">📍</span>
+        Av. Portugal, 1587 — Brooklin, São Paulo/SP
       </div>
     </div>
 
-    <div class="institucional-texto">
-      <span class="tag">Quem irá te atender</span>
-      <h2>Rodrigo de Assis</h2>
-      <h3>Gestor de Ativos Patrimoniais · CRECI 049368-J</h3>
+    <div class="localizacao-mapa-full">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.531764962264!2d-46.68946372516335!3d-23.621119978758824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce50bef84fbeab%3A0x1aa7eb284cc25369!2sAv.%20Portugal%2C%201587%20-%20Brooklin%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004559-003!5e0!3m2!1spt-BR!2sbr!4v1791496160624!5m2!1spt-BR!2sbr"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        title="Localização do empreendimento — Av. Portugal, 1587, Brooklin, São Paulo">
+      </iframe>
 
-      <p>
-        Atuante no mercado imobiliário desde <strong>2017</strong>, com sólida experiência no Rio de Janeiro e em São Paulo.
-        Sócio da <strong>Assis Group</strong>, atuo nas regiões mais valorizadas da Zona Oeste e Zona Sul —
-        o coração de São Paulo: <strong>Brooklin, Moema, Faria Lima, Morumbi, Itaim Bibi, Jardins e Pinheiros</strong>,
-        entre outras.
-      </p>
-      <p>
-        Trabalho com imóveis residenciais, comerciais e na incorporação e construção de empreendimentos
-        no modelo <strong>SCP</strong> (Sociedade em Conta de Participação).
-      </p>
-
-      <p class="destaque">
-        “Atualmente sua necessidade é por investimento ou moradia? E qual o seu aporte disponível de capital?
-        Atendo a sua necessidade na casa de milhares aos bilhões.”
-      </p>
-
-      <p>
-        Para produzir nossa conversa, preencha o formulário abaixo — eu mesmo irei te atender no WhatsApp.
-      </p>
+      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Portugal%2C+1587+-+Brooklin%2C+S%C3%A3o+Paulo+-+SP"
+         target="_blank" rel="noopener" class="mapa-cta">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Traçar rota no Google Maps
+      </a>
     </div>
-  </div>
-</section>
 
-<!-- ============ FORMULÁRIO ============ -->
-<section class="form-section" id="formulario">
-  <div class="form-container">
-    <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="form-logo" />
+    <div class="localizacao-proximidades">
+      <div class="proximidades-container">
+        <div class="proximidades-titulo">
+          <h3>Tudo ao seu <em>alcance</em></h3>
+          <p>Principais pontos de referência nas proximidades do empreendimento.</p>
+        </div>
 
-    <h2>Fale com um especialista</h2>
-    <p class="form-sub">Preencha os dados e receba o atendimento pessoal do Rodrigo no WhatsApp.</p>
+        <div class="proximidades-grid">
+          <div class="proximidades-categoria">
+            <h4><span class="icone">🚇</span> Mobilidade</h4>
+            <ul>
+              <li>Estação Brooklin (Linha 5 – Lilás) <span class="distancia">1,2 km</span></li>
+              <li>Estação Campo Belo (Linha 5) <span class="distancia">1,8 km</span></li>
+              <li>Av. Santo Amaro <span class="distancia">600 m</span></li>
+              <li>Av. Faria Lima <span class="distancia">3,5 km</span></li>
+            </ul>
+          </div>
 
-    <form id="leadForm" novalidate>
-      <div class="form-group">
-        <label for="nome">Nome completo</label>
-        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
+          <div class="proximidades-categoria">
+            <h4><span class="icone">🛍️</span> Lazer e Compras</h4>
+            <ul>
+              <li>Shopping Iguatemi SP <span class="distancia">3,2 km</span></li>
+              <li>Shopping Morumbi <span class="distancia">4,1 km</span></li>
+              <li>Parque Ibirapuera <span class="distancia">5,4 km</span></li>
+              <li>Parque do Povo <span class="distancia">4,8 km</span></li>
+            </ul>
+          </div>
+
+          <div class="proximidades-categoria">
+            <h4><span class="icone">🎓</span> Educação</h4>
+            <ul>
+              <li>FGV – Fundação Getúlio Vargas <span class="distancia">2,9 km</span></li>
+              <li>Colégio Santa Cruz <span class="distancia">4,6 km</span></li>
+              <li>Colégio Rio Branco <span class="distancia">3,8 km</span></li>
+              <li>Universidade de São Paulo (USP) <span class="distancia">8,5 km</span></li>
+            </ul>
+          </div>
+
+          <div class="proximidades-categoria">
+            <h4><span class="icone">🏥</span> Saúde</h4>
+            <ul>
+              <li>Hospital São Luiz – Brooklin <span class="distancia">900 m</span></li>
+              <li>Hospital Israelita Albert Einstein <span class="distancia">5,6 km</span></li>
+              <li>Hospital São Camilo – Ipiranga <span class="distancia">7,2 km</span></li>
+            </ul>
+          </div>
+
+          <div class="proximidades-categoria">
+            <h4><span class="icone">🍽️</span> Gastronomia</h4>
+            <ul>
+              <li>Restaurantes do Brooklin <span class="distancia">300 m</span></li>
+              <li>Vila Olímpia – polo gastronômico <span class="distancia">2,4 km</span></li>
+              <li>Itaim Bibi – bares e restaurantes <span class="distancia">3,8 km</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTITUCIONAL ============ -->
+  <section class="institucional" id="sobre">
+    <div class="institucional-container">
+      <div class="foto-rodrigo">
+        <img src="assets/img/img-rodrigo.png"
+             alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais"
+             loading="lazy" />
+        <div class="logo-badge">
+          <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" />
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+      <div class="institucional-texto">
+        <span class="tag">Quem irá te atender</span>
+        <h2>Rodrigo de Assis</h2>
+        <h3>Gestor de Ativos Patrimoniais · CRECI 049368-J</h3>
+
+        <p>
+          Atuante no mercado imobiliário desde <strong>2017</strong>, com sólida experiência no Rio de Janeiro e em São Paulo.
+          Sócio da <strong>Assis Group</strong>, atuo nas regiões mais valorizadas da Zona Oeste e Zona Sul —
+          o coração de São Paulo: <strong>Brooklin, Moema, Faria Lima, Morumbi, Itaim Bibi, Jardins e Pinheiros</strong>,
+          entre outras.
+        </p>
+        <p>
+          Trabalho com imóveis residenciais, comerciais e na incorporação e construção de empreendimentos
+          no modelo <strong>SCP</strong> (Sociedade em Conta de Participação).
+        </p>
+
+        <p class="destaque">
+          “Atualmente sua necessidade é por investimento ou moradia? E qual o seu aporte disponível de capital?
+          Atendo a sua necessidade na casa de milhares aos bilhões.”
+        </p>
+
+        <p>
+          Para produzir nossa conversa, preencha o formulário abaixo — eu mesmo irei te atender no WhatsApp.
+        </p>
       </div>
+    </div>
+  </section>
 
-      <div class="form-group">
-        <label for="whatsapp">WhatsApp</label>
-        <input type="tel" id="whatsapp" name="whatsapp" placeholder="(21) 99065-0767" required />
+  <!-- ============ FORMULÁRIO ============ -->
+  <section class="form-section" id="formulario">
+    <div class="form-container">
+      <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="form-logo" />
+
+      <h2>Fale com um especialista</h2>
+      <p class="form-sub">Preencha os dados e receba o atendimento pessoal do Rodrigo no WhatsApp.</p>
+
+      <form id="leadForm" novalidate>
+        <div class="form-group">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(21) 99065-0767" required />
+        </div>
+
+        <div class="form-group">
+          <label for="objetivo">Sua necessidade atual é</label>
+          <select id="objetivo" name="objetivo" required>
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option value="Quero morar">Quero morar</option>
+            <option value="Quero investir">Quero investir</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="aporte">Aporte de capital disponível</label>
+          <select id="aporte" name="aporte" required>
+            <option value="" disabled selected>Selecione uma faixa</option>
+            <option value="Será moradia">Será moradia</option>
+            <option value="R$ 5.000,00 até R$ 20.000,00">R$ 5.000,00 até R$ 20.000,00</option>
+            <option value="R$ 21.000,00 até R$ 50.000,00">R$ 21.000,00 até R$ 50.000,00</option>
+            <option value="R$ 51.000,00 até R$ 100.000,00">R$ 51.000,00 até R$ 100.000,00</option>
+            <option value="R$ 101.000,00 até R$ 500.000,00">R$ 101.000,00 até R$ 500.000,00</option>
+            <option value="R$ 501.000,00 até R$ 1.000.000,00">R$ 501.000,00 até R$ 1.000.000,00</option>
+            <option value="R$ 1.001.000,00 até R$ 5.000.000,00">R$ 1.001.000,00 até R$ 5.000.000,00</option>
+            <option value="R$ 5.001.000,00 até R$ 10.000.000,00">R$ 5.001.000,00 até R$ 10.000.000,00</option>
+            <option value="Acima de R$ 10.001.000,00">Acima de R$ 10.001.000,00</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-cta">Quero falar no WhatsApp</button>
+
+        <p class="form-privacidade">
+          Seus dados estão seguros e serão utilizados exclusivamente para o atendimento imobiliário.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ RODAPÉ ============ -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="footer-logo" />
+        <p>Gestor de Ativos Patrimoniais desde 2017.</p>
+        <p><strong>Especialista em SP Zona Sul / Barueri e Alphaville</strong></p>
+        <p>CRECI 049368-J</p>
       </div>
-
-      <div class="form-group">
-        <label for="objetivo">Sua necessidade atual é</label>
-        <select id="objetivo" name="objetivo" required>
-          <option value="" disabled selected>Selecione uma opção</option>
-          <option value="Quero morar">Quero morar</option>
-          <option value="Quero investir">Quero investir</option>
-        </select>
+      <div class="footer-col">
+        <h4>Regiões de Atuação</h4>
+        <ul>
+          <li>Brooklin · Moema</li>
+          <li>Faria Lima · Itaim Bibi</li>
+          <li>Morumbi · Jardins</li>
+          <li>Pinheiros · Zona Oeste</li>
+          <li>Zona Sul de São Paulo</li>
+        </ul>
       </div>
-
-      <div class="form-group">
-        <label for="aporte">Aporte de capital disponível</label>
-        <select id="aporte" name="aporte" required>
-          <option value="" disabled selected>Selecione uma faixa</option>
-          <option value="Será moradia">Será moradia</option>
-          <option value="R$ 5.000,00 até R$ 20.000,00">R$ 5.000,00 até R$ 20.000,00</option>
-          <option value="R$ 21.000,00 até R$ 50.000,00">R$ 21.000,00 até R$ 50.000,00</option>
-          <option value="R$ 51.000,00 até R$ 100.000,00">R$ 51.000,00 até R$ 100.000,00</option>
-          <option value="R$ 101.000,00 até R$ 500.000,00">R$ 101.000,00 até R$ 500.000,00</option>
-          <option value="R$ 501.000,00 até R$ 1.000.000,00">R$ 501.000,00 até R$ 1.000.000,00</option>
-          <option value="R$ 1.001.000,00 até R$ 5.000.000,00">R$ 1.001.000,00 até R$ 5.000.000,00</option>
-          <option value="R$ 5.001.000,00 até R$ 10.000.000,00">R$ 5.001.000,00 até R$ 10.000.000,00</option>
-          <option value="Acima de R$ 10.001.000,00">Acima de R$ 10.001.000,00</option>
-        </select>
+      <div class="footer-col">
+        <h4>Especialidades</h4>
+        <ul>
+          <li>Imóveis Residenciais</li>
+          <li>Imóveis Comerciais</li>
+          <li>Incorporação e Construção</li>
+          <li>Modelo SCP</li>
+          <li>Investimento Patrimonial</li>
+        </ul>
       </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p>(21) 99065-0767</p>
+        <p>contato@assisgroup.com.br</p>
+        <p>Barueri / Alphaville — SP</p>
+        <p><a href="https://wa.me/5521990650767" target="_blank">→ Falar no WhatsApp</a></p>
+      </div>
+    </div>
 
-      <button type="submit" class="btn-cta">Quero falar no WhatsApp</button>
+    <div class="selos">
+      <div class="selo">
+        <span class="icone">✦</span>
+        <strong>CRECI Ativo</strong>
+        <span>049368-J</span>
+      </div>
+      <div class="selo">
+        <span class="icone">✦</span>
+        <strong>Assis Group</strong>
+        <span>SP · RJ</span>
+      </div>
+      <div class="selo">
+        <span class="icone">✦</span>
+        <strong>Desde 2017</strong>
+        <span>RJ e SP</span>
+      </div>
+      <div class="selo">
+        <span class="icone">✦</span>
+        <strong>Modelo SCP</strong>
+        <span>Incorporação</span>
+      </div>
+      <div class="selo">
+        <span class="icone">✦</span>
+        <strong>Dados Seguros</strong>
+        <span>LGPD</span>
+      </div>
+    </div>
 
-      <p class="form-privacidade">
-        Seus dados estão seguros e serão utilizados exclusivamente para o atendimento imobiliário.
-      </p>
-    </form>
-  </div>
-</section>
+    <div class="footer-bottom">
+      <p>© 2025 Rodrigo de Assis — Assis Group. Todos os direitos reservados. <span class="creci">CRECI 049368-J</span></p>
+      <p>Este site é de caráter informativo e não constitui oferta comercial. Imagens e medidas são ilustrativas e podem sofrer alterações sem aviso prévio, conforme memorial descritivo do empreendimento.</p>
+    </div>
+  </footer>
+
+</div><!-- /site-conteudo -->
 
 <!-- ============ BOTÃO FLUTUANTE WHATSAPP ============ -->
 <a href="https://wa.me/5521990650767?text=Ol%C3%A1%20Rodrigo%2C%20vi%20o%20empreendimento%20no%20Brooklin%20e%20quero%20saber%20mais."
    class="whats-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
-
-<!-- ============ RODAPÉ ============ -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <img src="assets/img/logo_branco_horizontal.png" alt="Assis Group" class="footer-logo" />
-      <p>Gestor de Ativos Patrimoniais desde 2017.</p>
-      <p><strong>Especialista em SP Zona Sul / Barueri e Alphaville</strong></p>
-      <p>CRECI 049368-J</p>
-    </div>
-    <div class="footer-col">
-      <h4>Regiões de Atuação</h4>
-      <ul>
-        <li>Brooklin · Moema</li>
-        <li>Faria Lima · Itaim Bibi</li>
-        <li>Morumbi · Jardins</li>
-        <li>Pinheiros · Zona Oeste</li>
-        <li>Zona Sul de São Paulo</li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Especialidades</h4>
-      <ul>
-        <li>Imóveis Residenciais</li>
-        <li>Imóveis Comerciais</li>
-        <li>Incorporação e Construção</li>
-        <li>Modelo SCP</li>
-        <li>Investimento Patrimonial</li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contato</h4>
-      <p>(21) 99065-0767</p>
-      <p>contato@assisgroup.com.br</p>
-      <p>Barueri / Alphaville — SP</p>
-      <p><a href="https://wa.me/5521990650767" target="_blank">→ Falar no WhatsApp</a></p>
-    </div>
-  </div>
-
-  <div class="selos">
-    <div class="selo">
-      <span class="icone">✦</span>
-      <strong>CRECI Ativo</strong>
-      <span>049368-J</span>
-    </div>
-    <div class="selo">
-      <span class="icone">✦</span>
-      <strong>Assis Group</strong>
-      <span>SP · RJ</span>
-    </div>
-    <div class="selo">
-      <span class="icone">✦</span>
-      <strong>Desde 2017</strong>
-      <span>RJ e SP</span>
-    </div>
-    <div class="selo">
-      <span class="icone">✦</span>
-      <strong>Modelo SCP</strong>
-      <span>Incorporação</span>
-    </div>
-    <div class="selo">
-      <span class="icone">✦</span>
-      <strong>Dados Seguros</strong>
-      <span>LGPD</span>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2025 Rodrigo de Assis — Assis Group. Todos os direitos reservados. <span class="creci">CRECI 049368-J</span></p>
-    <p>Este site é de caráter informativo e não constitui oferta comercial. Imagens e medidas são ilustrativas e podem sofrer alterações sem aviso prévio, conforme memorial descritivo do empreendimento.</p>
-  </div>
-</footer>
 
 <!-- ============ SCRIPT ============ -->
 <script>
@@ -1607,17 +1811,117 @@
     this.reset();
   });
 
-  /* ---------- AUTOPLAY DO HEADER ---------- */
-  const heroVideo = document.querySelector('.hero video');
-  if (heroVideo) {
-    heroVideo.addEventListener('loadeddata', () => {
-      const playPromise = heroVideo.play();
-      if (playPromise !== undefined) playPromise.catch(() => {});
+  /* =====================================================
+     CRONÔMETRO 30 DIAS
+     ===================================================== */
+  (function() {
+    const DURACAO_DIAS = 30;
+    const CHAVE_STORAGE = 'cronometro_boulevard_fim';
+
+    let fim = localStorage.getItem(CHAVE_STORAGE);
+    if (!fim) {
+      fim = Date.now() + DURACAO_DIAS * 24 * 60 * 60 * 1000;
+      localStorage.setItem(CHAVE_STORAGE, fim);
+    } else {
+      fim = parseInt(fim, 10);
+    }
+
+    const elDias = document.getElementById('dias');
+    const elHoras = document.getElementById('horas');
+    const elMin = document.getElementById('minutos');
+    const elSeg = document.getElementById('segundos');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function atualizar() {
+      const agora = Date.now();
+      let resta = fim - agora;
+
+      if (resta <= 0) {
+        resta = 0;
+        elDias.textContent = '00';
+        elHoras.textContent = '00';
+        elMin.textContent = '00';
+        elSeg.textContent = '00';
+        return;
+      }
+
+      const dias = Math.floor(resta / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((resta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((resta % (1000 * 60 * 60)) / (1000 * 60));
+      const segs = Math.floor((resta % (1000 * 60)) / 1000);
+
+      elDias.textContent = pad(dias);
+      elHoras.textContent = pad(horas);
+      elMin.textContent = pad(mins);
+      elSeg.textContent = pad(segs);
+    }
+
+    atualizar();
+    setInterval(atualizar, 1000);
+  })();
+
+  /* =====================================================
+     VSL — LIBERAÇÃO APÓS 90% ASSISTIDO
+     ===================================================== */
+  const vslVideo = document.getElementById('vsl-video');
+  const progressoPreenchido = document.getElementById('progresso-preenchido');
+  const progressoTexto = document.getElementById('progresso-texto');
+  const avisoBloqueio = document.getElementById('aviso-bloqueio');
+  const body = document.body;
+
+  let liberado = false;
+
+  if (vslVideo) {
+    // Força o play (mudo)
+    const tryPlay = vslVideo.play();
+    if (tryPlay !== undefined) tryPlay.catch(() => {});
+
+    vslVideo.addEventListener('timeupdate', () => {
+      if (liberado) return;
+
+      const duracao = vslVideo.duration;
+      if (!duracao || duracao === Infinity) return;
+
+      const pct = (vslVideo.currentTime / duracao) * 100;
+      const pctArredondado = Math.min(100, Math.round(pct));
+
+      progressoPreenchido.style.width = pctArredondado + '%';
+      progressoTexto.textContent = `Assista 90% para liberar → ${pctArredondado}%`;
+
+      if (pct >= 90) {
+        liberarSite();
+      }
     });
-    document.addEventListener('touchstart', () => heroVideo.play(), { once: true });
+
+    // Fallback: se o vídeo terminar antes (curto demais), libera também
+    vslVideo.addEventListener('ended', () => {
+      if (!liberado) liberarSite();
+    });
   }
 
-  /* ---------- ÍCONES SVG ---------- */
+  function liberarSite() {
+    if (liberado) return;
+    liberado = true;
+
+    body.classList.remove('bloqueado');
+    body.classList.add('liberado');
+
+    progressoTexto.textContent = '✓ Conteúdo liberado — explore o site completo';
+
+    setTimeout(() => {
+      avisoBloqueio.classList.add('oculto');
+    }, 800);
+
+    // Scroll suave até o conteúdo liberado
+    setTimeout(() => {
+      document.getElementById('studio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1200);
+  }
+
+  /* =====================================================
+     CONTROLES DE VÍDEO (genérico)
+     ===================================================== */
   const ICONE_VOLUME_ON = 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z';
   const ICONE_VOLUME_OFF = 'M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z';
   const ICONE_PLAY = 'M8 5v14l11-7z';
@@ -1625,19 +1929,20 @@
   const ICONE_FULLSCREEN_ENTRAR = 'M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z';
   const ICONE_FULLSCREEN_SAIR = 'M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z';
 
-  /* =====================================================
-     FUNÇÃO GENÉRICA — inicializa controles de um vídeo
-     ===================================================== */
-  function inicializarControlesVideo(config) {
-    const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, iconeFullscreen, textoSom } = config;
-
+  function inicializarControles(config) {
+    const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, iconeFullscreen, textoSom, controles } = config;
     if (!video) return;
 
-    // Tenta autoplay
     const tryPlay = video.play();
     if (tryPlay !== undefined) tryPlay.catch(() => {});
 
-    /* --- BOTÃO SOM --- */
+    // Mostrar controles
+    if (controles) controles.classList.add('visivel');
+    video.addEventListener('loadeddata', () => {
+      if (controles) controles.classList.add('visivel');
+    });
+
+    // SOM
     btnSom.addEventListener('click', (e) => {
       e.stopPropagation();
       video.muted = !video.muted;
@@ -1651,7 +1956,7 @@
       }
     });
 
-    /* --- BOTÃO TELA CHEIA --- */
+    // FULLSCREEN
     btnFullscreen.addEventListener('click', (e) => {
       e.stopPropagation();
       const doc = document;
@@ -1671,7 +1976,7 @@
       }
     });
 
-    /* --- BOTÃO PLAY/PAUSE --- */
+    // PLAY/PAUSE
     const mostrarPlay = () => btnPlay.classList.add('visivel');
 
     wrapper.addEventListener('mouseenter', mostrarPlay);
@@ -1683,27 +1988,36 @@
 
     btnPlay.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
+      if (video.paused) video.play();
+      else video.pause();
     });
 
     video.addEventListener('play', () => {
       iconePlay.querySelector('path').setAttribute('d', ICONE_PAUSE);
       btnPlay.classList.add('rodando');
-      btnPlay.setAttribute('aria-label', 'Pausar vídeo');
     });
     video.addEventListener('pause', () => {
       iconePlay.querySelector('path').setAttribute('d', ICONE_PLAY);
       btnPlay.classList.remove('rodando');
-      btnPlay.setAttribute('aria-label', 'Reproduzir vídeo');
     });
   }
 
-  /* ---------- ESTÚDIO ---------- */
-  inicializarControlesVideo({
+  // VSL (controles fixos no header)
+  inicializarControles({
+    video: document.getElementById('vsl-video'),
+    wrapper: document.querySelector('.hero'),
+    btnSom: document.getElementById('vsl-btn-som'),
+    btnPlay: document.getElementById('vsl-btn-play'),
+    btnFullscreen: document.getElementById('vsl-btn-fullscreen'),
+    iconeSom: document.querySelector('.vsl-icone-som'),
+    iconePlay: document.querySelector('.vsl-icone-play'),
+    iconeFullscreen: document.querySelector('.vsl-icone-fullscreen'),
+    textoSom: document.querySelector('.vsl-texto-som'),
+    controles: document.getElementById('vsl-controles')
+  });
+
+  // STUDIO
+  inicializarControles({
     video: document.getElementById('studio-video'),
     wrapper: document.getElementById('studio-wrapper'),
     btnSom: document.getElementById('studio-btn-som'),
@@ -1712,11 +2026,12 @@
     iconeSom: document.querySelector('.studio-icone-som'),
     iconePlay: document.querySelector('.studio-icone-play'),
     iconeFullscreen: document.querySelector('.studio-icone-fullscreen'),
-    textoSom: document.querySelector('.studio-texto-som')
+    textoSom: document.querySelector('.studio-texto-som'),
+    controles: document.getElementById('studio-controles')
   });
 
-  /* ---------- 1 DORMITÓRIO ---------- */
-  inicializarControlesVideo({
+  // 1 DORM
+  inicializarControles({
     video: document.getElementById('umdorm-video'),
     wrapper: document.getElementById('umdorm-wrapper'),
     btnSom: document.getElementById('umdorm-btn-som'),
@@ -1725,18 +2040,32 @@
     iconeSom: document.querySelector('.umdorm-icone-som'),
     iconePlay: document.querySelector('.umdorm-icone-play'),
     iconeFullscreen: document.querySelector('.umdorm-icone-fullscreen'),
-    textoSom: document.querySelector('.umdorm-texto-som')
+    textoSom: document.querySelector('.umdorm-texto-som'),
+    controles: document.getElementById('umdorm-controles')
   });
 
-  /* ---------- SINCRONIZA ÍCONE FULLSCREEN GLOBAL ---------- */
+  // 2 SUÍTES
+  inicializarControles({
+    video: document.getElementById('suites-video'),
+    wrapper: document.getElementById('suites-wrapper'),
+    btnSom: document.getElementById('suites-btn-som'),
+    btnPlay: document.getElementById('suites-btn-play'),
+    btnFullscreen: document.getElementById('suites-btn-fullscreen'),
+    iconeSom: document.querySelector('.suites-icone-som'),
+    iconePlay: document.querySelector('.suites-icone-play'),
+    iconeFullscreen: document.querySelector('.suites-icone-fullscreen'),
+    textoSom: document.querySelector('.suites-texto-som'),
+    controles: document.getElementById('suites-controles')
+  });
+
+  // Sincroniza ícone de fullscreen
   const atualizarIconesFullscreen = () => {
     const doc = document;
     const isFullscreen = doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement;
-    document.querySelectorAll('.studio-icone-fullscreen, .umdorm-icone-fullscreen').forEach(el => {
+    document.querySelectorAll('.vsl-icone-fullscreen, .studio-icone-fullscreen, .umdorm-icone-fullscreen, .suites-icone-fullscreen').forEach(el => {
       el.querySelector('path').setAttribute('d', isFullscreen ? ICONE_FULLSCREEN_SAIR : ICONE_FULLSCREEN_ENTRAR);
     });
   };
-
   document.addEventListener('fullscreenchange', atualizarIconesFullscreen);
   document.addEventListener('webkitfullscreenchange', atualizarIconesFullscreen);
   document.addEventListener('mozfullscreenchange', atualizarIconesFullscreen);

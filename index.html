@@ -22,7 +22,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    padding-top: 64px; /* compensa a barra fixa */
+    padding-top: 64px;
   }
   img, video { max-width: 100%; display: block; }
   a { text-decoration: none; color: inherit; }
@@ -203,30 +203,29 @@
     filter: drop-shadow(0 4px 20px rgba(0,0,0,0.8));
   }
 
-  /* ========== BOTÃO "ATIVAR SOM" EM DESTAQUE ========== */
+  /* ========== BOTÃO "ATIVAR SOM" — CANTO SUPERIOR DIREITO ========== */
   .btn-som-destaque {
     position: absolute;
-    bottom: 120px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 30px;
+    right: 30px;
     z-index: 6;
     display: inline-flex;
     align-items: center;
-    gap: 14px;
+    gap: 9px;
     background: linear-gradient(135deg, var(--ouro) 0%, var(--ouro-claro) 100%);
     color: #0a0a0a;
     font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    letter-spacing: 3.5px;
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 20px 40px;
+    padding: 12px 22px;
     border: 2px solid var(--ouro-claro);
     cursor: pointer;
     transition: all .3s ease;
     box-shadow:
       0 0 0 0 rgba(201,168,106,0.7),
-      0 14px 40px rgba(201,168,106,0.5);
+      0 10px 28px rgba(201,168,106,0.45);
     animation: pulsar-botao 2s infinite;
     white-space: nowrap;
   }
@@ -234,29 +233,29 @@
     0% {
       box-shadow:
         0 0 0 0 rgba(201,168,106,0.7),
-        0 14px 40px rgba(201,168,106,0.5);
+        0 10px 28px rgba(201,168,106,0.45);
     }
     70% {
       box-shadow:
-        0 0 0 20px rgba(201,168,106,0),
-        0 14px 40px rgba(201,168,106,0.5);
+        0 0 0 16px rgba(201,168,106,0),
+        0 10px 28px rgba(201,168,106,0.45);
     }
     100% {
       box-shadow:
         0 0 0 0 rgba(201,168,106,0),
-        0 14px 40px rgba(201,168,106,0.5);
+        0 10px 28px rgba(201,168,106,0.45);
     }
   }
   .btn-som-destaque:hover {
-    transform: translateX(-50%) translateY(-3px) scale(1.03);
+    transform: translateY(-2px) scale(1.03);
     background: linear-gradient(135deg, var(--ouro-claro) 0%, #f0d99a 100%);
     box-shadow:
       0 0 0 0 rgba(201,168,106,0),
-      0 20px 50px rgba(201,168,106,0.7);
+      0 14px 36px rgba(201,168,106,0.65);
   }
   .btn-som-destaque svg {
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     fill: currentColor;
     flex-shrink: 0;
   }
@@ -265,7 +264,7 @@
     border-color: var(--verde-whats);
     color: var(--verde-whats);
     animation: none;
-    box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+    box-shadow: 0 6px 20px rgba(37,211,102,0.3);
   }
   .btn-som-destaque.som-ativo:hover {
     background: var(--verde-whats);
@@ -388,7 +387,7 @@
     z-index: 6;
     color: var(--ouro);
     font-size: 0.7rem;
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     font-weight: 700;
     background: rgba(0,0,0,0.75);
@@ -396,42 +395,6 @@
     padding: 10px 20px;
     border: 1px solid rgba(201,168,106,0.35);
     white-space: nowrap;
-  }
-
-  /* ========== AVISO DE BLOQUEIO ========== */
-  .aviso-bloqueio {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 998;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--ouro);
-    color: #fff;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 500;
-    padding: 14px 26px;
-    max-width: 90vw;
-    text-align: center;
-    transition: all .5s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  }
-  .aviso-bloqueio.oculto {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateX(-50%) translateY(20px);
-  }
-  .aviso-bloqueio svg {
-    width: 16px;
-    height: 16px;
-    fill: var(--ouro);
-    flex-shrink: 0;
   }
 
   /* ========== BLOQUEIO DE CONTEÚDO ========== */
@@ -1176,19 +1139,20 @@
     .hero-parceiros img { width: 300px; }
 
     .btn-som-destaque {
-      bottom: 110px;
-      padding: 17px 32px;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      gap: 12px;
+      top: 24px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      gap: 8px;
     }
-    .btn-som-destaque svg { width: 20px; height: 20px; }
+    .btn-som-destaque svg { width: 14px; height: 14px; }
 
     .video-controles { bottom: 30px; right: 20px; gap: 10px; }
     .ctrl-btn { font-size: 0.62rem; padding: 10px 14px; letter-spacing: 2px; }
     .ctrl-btn.apenas-icone { width: 40px; height: 40px; padding: 10px; }
     .ctrl-btn svg { width: 15px; height: 15px; }
-    .progresso-vsl-texto { left: 20px; font-size: 0.62rem; padding: 8px 14px; }
+    .progresso-vsl-texto { left: 20px; font-size: 0.6rem; padding: 8px 14px; letter-spacing: 2px; }
 
     .institucional-container { grid-template-columns: 1fr; gap: 50px; }
     .foto-rodrigo { max-width: 380px; }
@@ -1226,17 +1190,19 @@
     .barra-bloco { min-width: 32px; gap: 3px; }
     .barra-sep { font-size: 1rem; }
 
-    .hero-parceiros { top: 20px; width: 220px; }
-    .hero-parceiros img { width: 220px; }
+    .hero-parceiros { top: 20px; width: 200px; }
+    .hero-parceiros img { width: 200px; }
 
     .btn-som-destaque {
-      bottom: 100px;
-      padding: 15px 24px;
-      font-size: 0.68rem;
-      letter-spacing: 2.5px;
-      gap: 10px;
+      top: 18px;
+      right: 14px;
+      padding: 8px 14px;
+      font-size: 0.55rem;
+      letter-spacing: 1.5px;
+      gap: 6px;
+      border-width: 1.5px;
     }
-    .btn-som-destaque svg { width: 18px; height: 18px; }
+    .btn-som-destaque svg { width: 12px; height: 12px; }
 
     .video-controles { bottom: 24px; right: 14px; gap: 8px; }
     .ctrl-btn { font-size: 0.58rem; padding: 8px 12px; letter-spacing: 1.5px; }
@@ -1244,9 +1210,9 @@
     .ctrl-btn svg { width: 14px; height: 14px; }
     .progresso-vsl-texto {
       left: 14px;
-      font-size: 0.55rem;
+      font-size: 0.52rem;
       padding: 6px 10px;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
     }
 
     .whats-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
@@ -1264,9 +1230,6 @@
     .btn-play-central svg { width: 22px; height: 22px; }
     .btn-play-sec { width: 56px; height: 56px; }
     .btn-play-sec svg { width: 20px; height: 20px; }
-
-    .aviso-bloqueio { font-size: 0.62rem; padding: 10px 16px; letter-spacing: 1.5px; bottom: 24px; }
-    .aviso-bloqueio svg { width: 14px; height: 14px; }
   }
 </style>
 </head>
@@ -1326,7 +1289,7 @@
     <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
   </div>
 
-  <!-- BOTÃO PRINCIPAL — ATIVAR SOM -->
+  <!-- BOTÃO PRINCIPAL — ATIVAR SOM (TOPO DIREITO) -->
   <button type="button" class="btn-som-destaque" id="vsl-btn-som" aria-label="Ativar som do vídeo">
     <svg viewBox="0 0 24 24" class="vsl-icone-som">
       <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
@@ -1354,14 +1317,8 @@
   <div class="progresso-vsl">
     <div class="progresso-vsl-preenchido" id="progresso-preenchido"></div>
   </div>
-  <div class="progresso-vsl-texto" id="progresso-texto">Assista 90% para liberar → 0%</div>
+  <div class="progresso-vsl-texto" id="progresso-texto">Assista ao vídeo para liberar todo o conteúdo abaixo</div>
 </section>
-
-<!-- ============ AVISO DE BLOQUEIO ============ -->
-<div class="aviso-bloqueio" id="aviso-bloqueio">
-  <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-  <span>Assista ao vídeo para liberar todo o conteúdo</span>
-</div>
 
 <!-- ============ CONTEÚDO DO SITE (BLOQUEADO) ============ -->
 <div class="site-conteudo" id="site-conteudo">
@@ -1782,7 +1739,7 @@
   });
 
   /* =====================================================
-     CRONÔMETRO 30 DIAS (persistente via localStorage)
+     CRONÔMETRO 30 DIAS
      ===================================================== */
   (function() {
     const DURACAO_DIAS = 30;
@@ -1837,7 +1794,6 @@
   const vslVideo = document.getElementById('vsl-video');
   const progressoPreenchido = document.getElementById('progresso-preenchido');
   const progressoTexto = document.getElementById('progresso-texto');
-  const avisoBloqueio = document.getElementById('aviso-bloqueio');
   const body = document.body;
 
   let liberado = false;
@@ -1855,7 +1811,6 @@
       const pctArredondado = Math.min(100, Math.round(pct));
 
       progressoPreenchido.style.width = pctArredondado + '%';
-      progressoTexto.textContent = `Assista 90% para liberar → ${pctArredondado}%`;
 
       if (pct >= 90) liberarSite();
     });
@@ -1873,7 +1828,6 @@
     body.classList.add('liberado');
     progressoTexto.textContent = '✓ Conteúdo liberado — explore o site completo';
 
-    setTimeout(() => avisoBloqueio.classList.add('oculto'), 800);
     setTimeout(() => {
       document.getElementById('studio').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 1200);
@@ -1909,15 +1863,11 @@
         video.volume = 1;
         iconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
         textoSom.textContent = 'Com som';
-        if (btnSomEstilo === 'destaque') {
-          btnSom.classList.add('som-ativo');
-        }
+        if (btnSomEstilo === 'destaque') btnSom.classList.add('som-ativo');
       } else {
         iconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
         textoSom.textContent = 'Ativar som';
-        if (btnSomEstilo === 'destaque') {
-          btnSom.classList.remove('som-ativo');
-        }
+        if (btnSomEstilo === 'destaque') btnSom.classList.remove('som-ativo');
       }
     });
 

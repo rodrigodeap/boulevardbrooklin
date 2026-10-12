@@ -165,18 +165,18 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.55) contrast(1.05);
+    filter: brightness(0.7) contrast(1.05);
   }
+  /* Overlay apenas no topo — SEM fade na base */
   .hero-overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
     background: linear-gradient(
       180deg,
-      rgba(0,0,0,0.7) 0%,
-      rgba(0,0,0,0.15) 30%,
-      rgba(0,0,0,0.15) 55%,
-      rgba(0,0,0,0.9) 100%
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0) 30%,
+      rgba(0,0,0,0) 100%
     );
     pointer-events: none;
   }
@@ -203,90 +203,83 @@
     filter: drop-shadow(0 4px 20px rgba(0,0,0,0.8));
   }
 
-  /* ========== BOTÃO "ATIVAR SOM" — CANTO SUPERIOR DIREITO ========== */
-  .btn-som-destaque {
+  /* ========== CONTROLES NO TOPO DIREITO DO VÍDEO ========== */
+  .hero-controles {
     position: absolute;
     top: 30px;
     right: 30px;
     z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Botão de SOM — apenas ícone */
+  .btn-som-icon {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
     background: linear-gradient(135deg, var(--ouro) 0%, var(--ouro-claro) 100%);
-    color: #0a0a0a;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    font-weight: 700;
-    padding: 12px 22px;
     border: 2px solid var(--ouro-claro);
+    color: #0a0a0a;
     cursor: pointer;
     transition: all .3s ease;
     box-shadow:
       0 0 0 0 rgba(201,168,106,0.7),
-      0 10px 28px rgba(201,168,106,0.45);
+      0 8px 24px rgba(201,168,106,0.45);
     animation: pulsar-botao 2s infinite;
-    white-space: nowrap;
+    flex-shrink: 0;
   }
   @keyframes pulsar-botao {
     0% {
       box-shadow:
         0 0 0 0 rgba(201,168,106,0.7),
-        0 10px 28px rgba(201,168,106,0.45);
+        0 8px 24px rgba(201,168,106,0.45);
     }
     70% {
       box-shadow:
-        0 0 0 16px rgba(201,168,106,0),
-        0 10px 28px rgba(201,168,106,0.45);
+        0 0 0 14px rgba(201,168,106,0),
+        0 8px 24px rgba(201,168,106,0.45);
     }
     100% {
       box-shadow:
         0 0 0 0 rgba(201,168,106,0),
-        0 10px 28px rgba(201,168,106,0.45);
+        0 8px 24px rgba(201,168,106,0.45);
     }
   }
-  .btn-som-destaque:hover {
-    transform: translateY(-2px) scale(1.03);
+  .btn-som-icon:hover {
+    transform: translateY(-2px) scale(1.05);
     background: linear-gradient(135deg, var(--ouro-claro) 0%, #f0d99a 100%);
     box-shadow:
       0 0 0 0 rgba(201,168,106,0),
-      0 14px 36px rgba(201,168,106,0.65);
+      0 12px 32px rgba(201,168,106,0.6);
   }
-  .btn-som-destaque svg {
-    width: 16px;
-    height: 16px;
+  .btn-som-icon svg {
+    width: 22px;
+    height: 22px;
     fill: currentColor;
-    flex-shrink: 0;
   }
-  .btn-som-destaque.som-ativo {
-    background: rgba(37,211,102,0.15);
-    border-color: var(--verde-whats);
-    color: var(--verde-whats);
+  .btn-som-icon.som-ativo {
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(10px);
+    border-color: var(--ouro);
+    color: var(--ouro);
     animation: none;
-    box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   }
-  .btn-som-destaque.som-ativo:hover {
-    background: var(--verde-whats);
+  .btn-som-icon.som-ativo:hover {
+    background: var(--ouro);
     color: #0a0a0a;
   }
 
-  /* ========== CONTROLES SECUNDÁRIOS DO VSL ========== */
-  .video-controles {
-    position: absolute;
-    bottom: 40px;
-    right: 30px;
-    z-index: 6;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-  .ctrl-btn {
+  /* Botão "Assista em tela cheia" */
+  .btn-fullscreen-texto {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: rgba(10,10,10,0.8);
+    gap: 9px;
+    background: rgba(10,10,10,0.85);
     backdrop-filter: blur(10px);
     border: 1px solid var(--ouro);
     color: var(--ouro);
@@ -294,31 +287,23 @@
     font-size: 0.68rem;
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    font-weight: 600;
-    padding: 12px 18px;
+    font-weight: 700;
+    padding: 12px 20px;
+    height: 46px;
     cursor: pointer;
     transition: all .3s ease;
     white-space: nowrap;
   }
-  .ctrl-btn:hover {
+  .btn-fullscreen-texto:hover {
     background: var(--ouro);
     color: #0a0a0a;
-    box-shadow: 0 10px 30px rgba(201,168,106,0.4);
+    box-shadow: 0 10px 30px rgba(201,168,106,0.5);
   }
-  .ctrl-btn svg {
+  .btn-fullscreen-texto svg {
     width: 16px;
     height: 16px;
     fill: currentColor;
     flex-shrink: 0;
-  }
-  .ctrl-btn.apenas-icone {
-    padding: 12px;
-    width: 44px;
-    height: 44px;
-  }
-  .ctrl-btn.apenas-icone svg {
-    width: 18px;
-    height: 18px;
   }
 
   /* Botão play/pause central */
@@ -380,22 +365,6 @@
     transition: width .3s linear;
     box-shadow: 0 0 12px rgba(201,168,106,0.6);
   }
-  .progresso-vsl-texto {
-    position: absolute;
-    bottom: 22px;
-    left: 30px;
-    z-index: 6;
-    color: var(--ouro);
-    font-size: 0.7rem;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    font-weight: 700;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(6px);
-    padding: 10px 20px;
-    border: 1px solid rgba(201,168,106,0.35);
-    white-space: nowrap;
-  }
 
   /* ========== BLOQUEIO DE CONTEÚDO ========== */
   body.bloqueado .site-conteudo {
@@ -419,6 +388,104 @@
     height: 1px;
     background: var(--ouro);
     margin: 0 auto 24px;
+  }
+
+  /* ========== BLOCO "LIBERAR CONTEÚDO" ========== */
+  .liberar-conteudo {
+    padding: 80px 24px 40px;
+    background: linear-gradient(180deg, #0a0a0a 0%, #131313 100%);
+    text-align: center;
+    border-top: 1px solid var(--linha);
+    position: relative;
+  }
+  .liberar-conteudo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(180deg, var(--ouro) 0%, transparent 100%);
+  }
+  .liberar-conteudo-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .liberar-conteudo .cadeado {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ouro);
+    border-radius: 50%;
+    color: var(--ouro);
+    background: rgba(201,168,106,0.08);
+    margin-bottom: 4px;
+  }
+  .liberar-conteudo .cadeado svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+  }
+  .liberar-conteudo h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+  }
+  .liberar-conteudo h3 em {
+    font-style: italic;
+    color: var(--ouro-claro);
+    font-weight: 500;
+  }
+  .liberar-conteudo p {
+    color: #d8d8d0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 560px;
+  }
+  .liberar-conteudo .btn-voltar-topo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--ouro);
+    color: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 20px 42px;
+    border: 2px solid var(--ouro);
+    cursor: pointer;
+    transition: all .3s ease;
+    box-shadow: 0 0 0 0 rgba(201,168,106,0.7), 0 12px 32px rgba(201,168,106,0.4);
+    animation: pulsar-botao 2s infinite;
+    margin-top: 8px;
+  }
+  .liberar-conteudo .btn-voltar-topo:hover {
+    background: var(--ouro-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 0 rgba(201,168,106,0), 0 18px 40px rgba(201,168,106,0.6);
+  }
+  .liberar-conteudo .btn-voltar-topo svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  body.liberado .liberar-conteudo .btn-voltar-topo {
+    animation: none;
+    box-shadow: none;
   }
 
   /* ========== SEÇÕES DE DECORADOS ========== */
@@ -1135,24 +1202,19 @@
     .barra-cta { padding: 8px 14px; font-size: 0.6rem; letter-spacing: 2px; }
     .barra-cta svg { width: 12px; height: 12px; }
 
-    .hero-parceiros { top: 24px; width: 300px; }
-    .hero-parceiros img { width: 300px; }
+    .hero-parceiros { top: 22px; width: 280px; }
+    .hero-parceiros img { width: 280px; }
 
-    .btn-som-destaque {
-      top: 24px;
-      right: 20px;
-      padding: 10px 18px;
-      font-size: 0.6rem;
-      letter-spacing: 2px;
-      gap: 8px;
-    }
-    .btn-som-destaque svg { width: 14px; height: 14px; }
+    .hero-controles { top: 22px; right: 20px; gap: 8px; }
+    .btn-som-icon { width: 42px; height: 42px; }
+    .btn-som-icon svg { width: 20px; height: 20px; }
+    .btn-fullscreen-texto { padding: 10px 16px; font-size: 0.62rem; letter-spacing: 2px; height: 42px; gap: 7px; }
+    .btn-fullscreen-texto svg { width: 14px; height: 14px; }
 
-    .video-controles { bottom: 30px; right: 20px; gap: 10px; }
-    .ctrl-btn { font-size: 0.62rem; padding: 10px 14px; letter-spacing: 2px; }
-    .ctrl-btn.apenas-icone { width: 40px; height: 40px; padding: 10px; }
-    .ctrl-btn svg { width: 15px; height: 15px; }
-    .progresso-vsl-texto { left: 20px; font-size: 0.6rem; padding: 8px 14px; letter-spacing: 2px; }
+    .liberar-conteudo { padding: 60px 20px 30px; }
+    .liberar-conteudo .cadeado { width: 54px; height: 54px; }
+    .liberar-conteudo .cadeado svg { width: 24px; height: 24px; }
+    .liberar-conteudo .btn-voltar-topo { padding: 17px 32px; font-size: 0.72rem; letter-spacing: 3px; }
 
     .institucional-container { grid-template-columns: 1fr; gap: 50px; }
     .foto-rodrigo { max-width: 380px; }
@@ -1190,30 +1252,30 @@
     .barra-bloco { min-width: 32px; gap: 3px; }
     .barra-sep { font-size: 1rem; }
 
-    .hero-parceiros { top: 20px; width: 200px; }
-    .hero-parceiros img { width: 200px; }
+    .hero-parceiros { top: 18px; width: 180px; }
+    .hero-parceiros img { width: 180px; }
 
-    .btn-som-destaque {
-      top: 18px;
-      right: 14px;
-      padding: 8px 14px;
-      font-size: 0.55rem;
-      letter-spacing: 1.5px;
-      gap: 6px;
-      border-width: 1.5px;
-    }
-    .btn-som-destaque svg { width: 12px; height: 12px; }
+    .hero-controles { top: 16px; right: 12px; gap: 6px; }
+    .btn-som-icon { width: 38px; height: 38px; }
+    .btn-som-icon svg { width: 18px; height: 18px; }
+    .btn-fullscreen-texto { padding: 8px 12px; font-size: 0.55rem; letter-spacing: 1.5px; height: 38px; gap: 6px; }
+    .btn-fullscreen-texto svg { width: 12px; height: 12px; }
 
-    .video-controles { bottom: 24px; right: 14px; gap: 8px; }
-    .ctrl-btn { font-size: 0.58rem; padding: 8px 12px; letter-spacing: 1.5px; }
-    .ctrl-btn.apenas-icone { width: 36px; height: 36px; padding: 8px; }
-    .ctrl-btn svg { width: 14px; height: 14px; }
-    .progresso-vsl-texto {
-      left: 14px;
-      font-size: 0.52rem;
-      padding: 6px 10px;
-      letter-spacing: 1.5px;
+    .liberar-conteudo { padding: 50px 16px 24px; }
+    .liberar-conteudo-inner { gap: 18px; }
+    .liberar-conteudo .cadeado { width: 46px; height: 46px; }
+    .liberar-conteudo .cadeado svg { width: 20px; height: 20px; }
+    .liberar-conteudo h3 { font-size: 1.35rem; }
+    .liberar-conteudo p { font-size: 0.9rem; }
+    .liberar-conteudo .btn-voltar-topo {
+      padding: 15px 26px;
+      font-size: 0.68rem;
+      letter-spacing: 2.5px;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
     }
+    .liberar-conteudo .btn-voltar-topo svg { width: 15px; height: 15px; }
 
     .whats-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
     .section-video .numero { font-size: 3rem; }
@@ -1273,10 +1335,10 @@
 
 <!-- ============ HEADER — VSL LIMPO ============ -->
 <section class="hero" id="topo">
+  <!-- VÍDEO INICIA COM SOM (sem muted) -->
   <video
     id="vsl-video"
     autoplay
-    muted
     playsinline
     preload="auto"
     poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920">
@@ -1289,13 +1351,23 @@
     <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
   </div>
 
-  <!-- BOTÃO PRINCIPAL — ATIVAR SOM (TOPO DIREITO) -->
-  <button type="button" class="btn-som-destaque" id="vsl-btn-som" aria-label="Ativar som do vídeo">
-    <svg viewBox="0 0 24 24" class="vsl-icone-som">
-      <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-    </svg>
-    <span class="vsl-texto-som">Ativar som</span>
-  </button>
+  <!-- CONTROLES NO TOPO DIREITO -->
+  <div class="hero-controles">
+    <!-- Botão de som — apenas ícone, começa com som ativo -->
+    <button type="button" class="btn-som-icon som-ativo" id="vsl-btn-som" aria-label="Desativar som do vídeo" title="Desativar som">
+      <svg viewBox="0 0 24 24" class="vsl-icone-som">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+    </button>
+
+    <!-- Botão "Assista em tela cheia" -->
+    <button type="button" class="btn-fullscreen-texto" id="vsl-btn-fullscreen" aria-label="Assistir em tela cheia">
+      <svg viewBox="0 0 24 24" class="vsl-icone-fullscreen">
+        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+      </svg>
+      Assista em tela cheia
+    </button>
+  </div>
 
   <!-- BOTÃO PLAY/PAUSE CENTRAL -->
   <button type="button" class="btn-play-central rodando" id="vsl-btn-play" aria-label="Pausar vídeo">
@@ -1304,24 +1376,32 @@
     </svg>
   </button>
 
-  <!-- CONTROLES SECUNDÁRIOS — TELA CHEIA -->
-  <div class="video-controles">
-    <button type="button" class="ctrl-btn apenas-icone" id="vsl-btn-fullscreen" aria-label="Tela cheia" title="Tela cheia">
-      <svg viewBox="0 0 24 24" class="vsl-icone-fullscreen">
-        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
-      </svg>
-    </button>
-  </div>
-
   <!-- BARRA DE PROGRESSO -->
   <div class="progresso-vsl">
     <div class="progresso-vsl-preenchido" id="progresso-preenchido"></div>
   </div>
-  <div class="progresso-vsl-texto" id="progresso-texto">Assista ao vídeo para liberar todo o conteúdo abaixo</div>
 </section>
 
 <!-- ============ CONTEÚDO DO SITE (BLOQUEADO) ============ -->
 <div class="site-conteudo" id="site-conteudo">
+
+  <!-- ============ BLOCO "LIBERAR CONTEÚDO" ============ -->
+  <section class="liberar-conteudo" id="liberar-conteudo">
+    <div class="liberar-conteudo-inner">
+      <div class="cadeado">
+        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+      </div>
+
+      <h3>Assista ao vídeo para liberar <em>todo o conteúdo abaixo</em></h3>
+
+      <p>Retorne ao vídeo no topo da página e assista até o final. Assim que atingir 90% da reprodução, todos os decorados, plantas e informações serão liberados automaticamente.</p>
+
+      <button type="button" class="btn-voltar-topo" id="btn-voltar-topo">
+        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(-90 12 12)"/></svg>
+        Voltar ao vídeo
+      </button>
+    </div>
+  </section>
 
   <!-- ============ DECORADO — STUDIO 20,85m² ============ -->
   <section class="section-video" id="studio">
@@ -1738,6 +1818,11 @@
     this.reset();
   });
 
+  /* ---------- BOTÃO VOLTAR AO VÍDEO ---------- */
+  document.getElementById('btn-voltar-topo').addEventListener('click', () => {
+    document.getElementById('topo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
   /* =====================================================
      CRONÔMETRO 30 DIAS
      ===================================================== */
@@ -1789,18 +1874,36 @@
   })();
 
   /* =====================================================
-     VSL — LIBERAÇÃO APÓS 90% ASSISTIDO
+     VSL — SOM ATIVO POR PADRÃO + LIBERAÇÃO APÓS 90%
      ===================================================== */
   const vslVideo = document.getElementById('vsl-video');
   const progressoPreenchido = document.getElementById('progresso-preenchido');
-  const progressoTexto = document.getElementById('progresso-texto');
   const body = document.body;
 
   let liberado = false;
 
   if (vslVideo) {
+    // Tenta tocar COM SOM. Se o navegador bloquear (política de autoplay),
+    // cai automaticamente para mudo e toca.
+    vslVideo.muted = false;
+    vslVideo.volume = 1;
+
     const tryPlay = vslVideo.play();
-    if (tryPlay !== undefined) tryPlay.catch(() => {});
+    if (tryPlay !== undefined) {
+      tryPlay.catch(() => {
+        // Fallback: navegador bloqueou autoplay com som → tenta mudo
+        vslVideo.muted = true;
+        vslVideo.play().catch(() => {});
+
+        // Atualiza o botão para refletir o estado real
+        const btnSom = document.getElementById('vsl-btn-som');
+        if (btnSom) {
+          btnSom.classList.remove('som-ativo');
+          btnSom.setAttribute('aria-label', 'Ativar som do vídeo');
+          btnSom.setAttribute('title', 'Ativar som');
+        }
+      });
+    }
 
     vslVideo.addEventListener('timeupdate', () => {
       if (liberado) return;
@@ -1826,11 +1929,10 @@
 
     body.classList.remove('bloqueado');
     body.classList.add('liberado');
-    progressoTexto.textContent = '✓ Conteúdo liberado — explore o site completo';
 
     setTimeout(() => {
       document.getElementById('studio').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 1200);
+    }, 800);
   }
 
   /* =====================================================
@@ -1843,8 +1945,90 @@
   const ICONE_FULLSCREEN_ENTRAR = 'M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z';
   const ICONE_FULLSCREEN_SAIR = 'M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z';
 
-  function inicializarControles(config) {
-    const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, iconeFullscreen, textoSom, controles, btnSomEstilo } = config;
+  /* =====================================================
+     VSL — BOTÃO DE SOM (apenas ícone)
+     ===================================================== */
+  const vslBtnSom = document.getElementById('vsl-btn-som');
+  const vslIconeSom = document.querySelector('.vsl-icone-som');
+
+  vslBtnSom.addEventListener('click', (e) => {
+    e.stopPropagation();
+    vslVideo.muted = !vslVideo.muted;
+    if (!vslVideo.muted) {
+      vslVideo.volume = 1;
+      vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
+      vslBtnSom.classList.add('som-ativo');
+      vslBtnSom.setAttribute('aria-label', 'Desativar som do vídeo');
+      vslBtnSom.setAttribute('title', 'Desativar som');
+    } else {
+      vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
+      vslBtnSom.classList.remove('som-ativo');
+      vslBtnSom.setAttribute('aria-label', 'Ativar som do vídeo');
+      vslBtnSom.setAttribute('title', 'Ativar som');
+    }
+  });
+
+  /* =====================================================
+     VSL — BOTÃO TELA CHEIA (com texto)
+     ===================================================== */
+  const vslBtnFullscreen = document.getElementById('vsl-btn-fullscreen');
+  const vslIconeFullscreen = document.querySelector('.vsl-icone-fullscreen');
+
+  vslBtnFullscreen.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const doc = document;
+    const isFullscreen = doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement;
+    const hero = document.querySelector('.hero');
+
+    if (!isFullscreen) {
+      if (hero.requestFullscreen) hero.requestFullscreen();
+      else if (hero.webkitRequestFullscreen) hero.webkitRequestFullscreen();
+      else if (hero.mozRequestFullScreen) hero.mozRequestFullScreen();
+      else if (hero.msRequestFullscreen) hero.msRequestFullscreen();
+      else if (vslVideo.webkitEnterFullscreen) vslVideo.webkitEnterFullscreen();
+    } else {
+      if (doc.exitFullscreen) doc.exitFullscreen();
+      else if (doc.webkitExitFullscreen) doc.webkitExitFullscreen();
+      else if (doc.mozCancelFullScreen) doc.mozCancelFullScreen();
+      else if (doc.msExitFullscreen) doc.msExitFullscreen();
+    }
+  });
+
+  /* =====================================================
+     VSL — BOTÃO PLAY/PAUSE CENTRAL
+     ===================================================== */
+  const vslBtnPlay = document.getElementById('vsl-btn-play');
+  const vslIconePlay = document.querySelector('.vsl-icone-play');
+  const hero = document.querySelector('.hero');
+
+  const mostrarPlayVsl = () => vslBtnPlay.classList.add('visivel');
+  hero.addEventListener('mouseenter', mostrarPlayVsl);
+  hero.addEventListener('mouseleave', () => vslBtnPlay.classList.remove('visivel'));
+  hero.addEventListener('touchstart', () => {
+    mostrarPlayVsl();
+    setTimeout(() => vslBtnPlay.classList.remove('visivel'), 2000);
+  }, { passive: true });
+
+  vslBtnPlay.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (vslVideo.paused) vslVideo.play();
+    else vslVideo.pause();
+  });
+
+  vslVideo.addEventListener('play', () => {
+    vslIconePlay.querySelector('path').setAttribute('d', ICONE_PAUSE);
+    vslBtnPlay.classList.add('rodando');
+  });
+  vslVideo.addEventListener('pause', () => {
+    vslIconePlay.querySelector('path').setAttribute('d', ICONE_PLAY);
+    vslBtnPlay.classList.remove('rodando');
+  });
+
+  /* =====================================================
+     CONTROLES DOS DECORADOS (Studio, 1 Dorm, 2 Suítes)
+     ===================================================== */
+  function inicializarControlesSec(config) {
+    const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, iconeFullscreen, textoSom, controles } = config;
     if (!video) return;
 
     const tryPlay = video.play();
@@ -1855,7 +2039,6 @@
       if (controles) controles.classList.add('visivel');
     });
 
-    // SOM
     btnSom.addEventListener('click', (e) => {
       e.stopPropagation();
       video.muted = !video.muted;
@@ -1863,15 +2046,12 @@
         video.volume = 1;
         iconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
         textoSom.textContent = 'Com som';
-        if (btnSomEstilo === 'destaque') btnSom.classList.add('som-ativo');
       } else {
         iconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
         textoSom.textContent = 'Ativar som';
-        if (btnSomEstilo === 'destaque') btnSom.classList.remove('som-ativo');
       }
     });
 
-    // FULLSCREEN
     btnFullscreen.addEventListener('click', (e) => {
       e.stopPropagation();
       const doc = document;
@@ -1891,7 +2071,6 @@
       }
     });
 
-    // PLAY/PAUSE
     const mostrarPlay = () => btnPlay.classList.add('visivel');
     wrapper.addEventListener('mouseenter', mostrarPlay);
     wrapper.addEventListener('mouseleave', () => btnPlay.classList.remove('visivel'));
@@ -1916,22 +2095,7 @@
     });
   }
 
-  // VSL (header)
-  inicializarControles({
-    video: document.getElementById('vsl-video'),
-    wrapper: document.querySelector('.hero'),
-    btnSom: document.getElementById('vsl-btn-som'),
-    btnPlay: document.getElementById('vsl-btn-play'),
-    btnFullscreen: document.getElementById('vsl-btn-fullscreen'),
-    iconeSom: document.querySelector('.vsl-icone-som'),
-    iconePlay: document.querySelector('.vsl-icone-play'),
-    iconeFullscreen: document.querySelector('.vsl-icone-fullscreen'),
-    textoSom: document.querySelector('.vsl-texto-som'),
-    btnSomEstilo: 'destaque'
-  });
-
-  // STUDIO
-  inicializarControles({
+  inicializarControlesSec({
     video: document.getElementById('studio-video'),
     wrapper: document.getElementById('studio-wrapper'),
     btnSom: document.getElementById('studio-btn-som'),
@@ -1944,8 +2108,7 @@
     controles: document.getElementById('studio-controles')
   });
 
-  // 1 DORM
-  inicializarControles({
+  inicializarControlesSec({
     video: document.getElementById('umdorm-video'),
     wrapper: document.getElementById('umdorm-wrapper'),
     btnSom: document.getElementById('umdorm-btn-som'),
@@ -1958,8 +2121,7 @@
     controles: document.getElementById('umdorm-controles')
   });
 
-  // 2 SUÍTES
-  inicializarControles({
+  inicializarControlesSec({
     video: document.getElementById('suites-video'),
     wrapper: document.getElementById('suites-wrapper'),
     btnSom: document.getElementById('suites-btn-som'),
@@ -1972,7 +2134,7 @@
     controles: document.getElementById('suites-controles')
   });
 
-  // Sincroniza ícone de fullscreen
+  /* ---------- Sincroniza ícone de fullscreen ---------- */
   const atualizarIconesFullscreen = () => {
     const doc = document;
     const isFullscreen = doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement;

@@ -153,6 +153,8 @@
     overflow: hidden;
     background: #000;
   }
+
+  /* Vídeo com comportamento natural em TODAS as telas — sem rotação */
   .hero video {
     position: absolute;
     inset: 0;
@@ -164,6 +166,7 @@
     filter: brightness(0.7) contrast(1.05);
     background: #000;
   }
+
   .hero-overlay {
     position: absolute;
     inset: 0;
@@ -231,7 +234,6 @@
     box-shadow: 0 10px 28px rgba(201,168,106,0.55);
   }
   .btn-som-icon svg { width: 22px; height: 22px; fill: currentColor; }
-  /* Estado "mudo" — pulsante para chamar atenção */
   .btn-som-icon.mudo {
     background: linear-gradient(135deg, var(--ouro) 0%, var(--ouro-claro) 100%);
     border-color: var(--ouro-claro);
@@ -331,7 +333,6 @@
 
   /* =====================================================
      BLOCO "LIBERAR CONTEÚDO" — FORA do .site-conteudo
-     Fica SEMPRE nítido, sem herdar blur
      ===================================================== */
   .liberar-conteudo {
     padding: 90px 24px 80px;
@@ -457,7 +458,7 @@
     animation: none;
   }
 
-  /* ========== BLOQUEIO DE CONTEÚDO (aplica só no .site-conteudo) ========== */
+  /* ========== BLOQUEIO DE CONTEÚDO ========== */
   body.bloqueado .site-conteudo {
     filter: blur(14px);
     pointer-events: none;
@@ -1252,55 +1253,38 @@
   }
 
   /* ============================================================
-     MOBILE — VÍDEO DO HEADER EM MODO HORIZONTAL (PROPORCIONAL)
+     MOBILE — AJUSTES DE CONTROLES (vídeo SEM rotação)
      ============================================================ */
-  @media (max-width: 860px) and (orientation: portrait) {
-    .hero video {
-      top: 50%;
-      left: 50%;
-      right: auto;
-      bottom: auto;
-      inset: auto;
-      width: 100vh;
-      height: 100vw;
-      transform: translate(-50%, -50%) rotate(90deg);
-      transform-origin: center center;
-      object-fit: cover;
-      object-position: center center;
-    }
+  @media (max-width: 860px) {
+    .hero-parceiros { top: 22px; width: 280px; }
+    .hero-parceiros img { width: 280px; }
 
-    .hero-parceiros { top: 18px; width: 190px; }
-    .hero-parceiros img { width: 190px; }
-
-    .hero-controles { top: 16px; right: 12px; gap: 6px; }
-    .btn-som-icon { width: 40px; height: 40px; }
+    .hero-controles { top: 22px; right: 20px; gap: 8px; }
+    .btn-som-icon { width: 42px; height: 42px; }
     .btn-som-icon svg { width: 20px; height: 20px; }
     .btn-fullscreen-texto {
-      padding: 9px 14px;
-      font-size: 0.58rem;
-      letter-spacing: 1.5px;
-      height: 40px;
-      gap: 5px;
+      padding: 10px 16px;
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      height: 42px;
+      gap: 7px;
     }
-    .btn-fullscreen-texto svg { width: 13px; height: 13px; }
-
-    .btn-play-central { width: 64px; height: 64px; }
-    .btn-play-central svg { width: 24px; height: 24px; }
+    .btn-fullscreen-texto svg { width: 14px; height: 14px; }
   }
 
-  @media (max-width: 500px) and (orientation: portrait) {
-    .hero-parceiros { top: 16px; width: 160px; }
-    .hero-parceiros img { width: 160px; }
+  @media (max-width: 500px) {
+    .hero-parceiros { top: 18px; width: 200px; }
+    .hero-parceiros img { width: 200px; }
 
-    .hero-controles { top: 14px; right: 10px; gap: 5px; }
-    .btn-som-icon { width: 36px; height: 36px; }
+    .hero-controles { top: 18px; right: 12px; gap: 6px; }
+    .btn-som-icon { width: 38px; height: 38px; }
     .btn-som-icon svg { width: 18px; height: 18px; }
     .btn-fullscreen-texto {
       padding: 8px 12px;
-      font-size: 0.52rem;
-      letter-spacing: 1.2px;
-      height: 36px;
-      gap: 4px;
+      font-size: 0.55rem;
+      letter-spacing: 1.5px;
+      height: 38px;
+      gap: 6px;
     }
     .btn-fullscreen-texto svg { width: 12px; height: 12px; }
   }
@@ -1344,7 +1328,7 @@
   </div>
 </div>
 
-<!-- ============ HEADER — VSL (SEM POSTER, COM SOM ATIVO) ============ -->
+<!-- ============ HEADER — VSL ============ -->
 <section class="hero" id="topo">
   <video
     id="vsl-video"
@@ -1360,7 +1344,6 @@
     <img src="assets/img/branco_horizontal.png" alt="Rodrigo de Assis — Gestor de Ativos Patrimoniais" />
   </div>
 
-  <!-- CONTROLES NO TOPO DIREITO -->
   <div class="hero-controles">
     <button type="button" class="btn-som-icon" id="vsl-btn-som" aria-label="Desativar som do vídeo" title="Desativar som">
       <svg viewBox="0 0 24 24" class="vsl-icone-som">
@@ -1387,7 +1370,7 @@
   </div>
 </section>
 
-<!-- ============ BLOCO "LIBERAR CONTEÚDO" — FORA do .site-conteudo (SEMPRE NÍTIDO) ============ -->
+<!-- ============ BLOCO "LIBERAR CONTEÚDO" ============ -->
 <section class="liberar-conteudo" id="liberar-conteudo">
   <div class="liberar-conteudo-inner">
     <div class="cadeado">
@@ -1889,7 +1872,6 @@
 
   let liberado = false;
 
-  // Ícones
   const ICONE_VOLUME_ON = 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z';
   const ICONE_VOLUME_OFF = 'M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z';
   const ICONE_PLAY = 'M8 5v14l11-7z';
@@ -1897,23 +1879,18 @@
   const ICONE_FULLSCREEN_ENTRAR = 'M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z';
   const ICONE_FULLSCREEN_SAIR = 'M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z';
 
-  /* ---------- INICIALIZAÇÃO DO VSL COM SOM ATIVO ---------- */
   if (vslVideo) {
-    // Começa com som ativo
     vslVideo.muted = false;
     vslVideo.volume = 1;
 
-    // Estado inicial do botão: som ativo
     vslBtnSom.classList.remove('mudo');
     vslBtnSom.setAttribute('aria-label', 'Desativar som do vídeo');
     vslBtnSom.setAttribute('title', 'Desativar som');
     vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
 
-    // Tenta autoplay com som
     const tryPlay = vslVideo.play();
     if (tryPlay !== undefined) {
       tryPlay.catch(() => {
-        // Navegador bloqueou autoplay com som → cai para mudo e marca o botão como "mudo"
         vslVideo.muted = true;
         vslVideo.play().catch(() => {});
 
@@ -1924,7 +1901,6 @@
       });
     }
 
-    // Atualiza barra de progresso + libera ao atingir 90%
     vslVideo.addEventListener('timeupdate', () => {
       if (liberado) return;
       const duracao = vslVideo.duration;
@@ -1955,7 +1931,6 @@
     }, 800);
   }
 
-  /* ---------- BOTÃO DE SOM DO VSL ---------- */
   vslBtnSom.addEventListener('click', (e) => {
     e.stopPropagation();
     vslVideo.muted = !vslVideo.muted;
@@ -1973,7 +1948,6 @@
     }
   });
 
-  /* ---------- BOTÃO TELA CHEIA DO VSL ---------- */
   const vslBtnFullscreen = document.getElementById('vsl-btn-fullscreen');
   const vslIconeFullscreen = document.querySelector('.vsl-icone-fullscreen');
 
@@ -1997,7 +1971,6 @@
     }
   });
 
-  /* ---------- BOTÃO PLAY/PAUSE DO VSL ---------- */
   const vslBtnPlay = document.getElementById('vsl-btn-play');
   const vslIconePlay = document.querySelector('.vsl-icone-play');
   const hero = document.querySelector('.hero');
@@ -2026,7 +1999,7 @@
   });
 
   /* =====================================================
-     CONTROLES DOS DECORADOS (Studio, 1 Dorm, 2 Suítes)
+     CONTROLES DOS DECORADOS
      ===================================================== */
   function inicializarControlesSec(config) {
     const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, textoSom, controles } = config;
@@ -2132,7 +2105,6 @@
     controles: document.getElementById('suites-controles')
   });
 
-  /* ---------- Sincroniza ícone de fullscreen ---------- */
   const atualizarIconesFullscreen = () => {
     const doc = document;
     const isFullscreen = doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement;

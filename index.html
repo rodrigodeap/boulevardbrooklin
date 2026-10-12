@@ -6,6 +6,24 @@
 <title>Últimas Unidades no Brooklin | Rodrigo de Assis — CRECI 049368-J</title>
 <meta name="description" content="Empreendimento exclusivo no Brooklin, coração de São Paulo. Studios, 1 dorm e 2 suítes. Atendimento pessoal com Rodrigo de Assis." />
 
+<!-- ========== META PIXEL (Facebook / Instagram Ads) ========== -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '866767676459082');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
+/></noscript>
+<!-- ========== FIM META PIXEL ========== -->
+
 <!-- ========== OPEN GRAPH / MINIATURA DE COMPARTILHAMENTO ========== -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Boulevard Brooklin | Últimas Unidades Exclusivas" />
@@ -2616,6 +2634,18 @@
       return;
     }
 
+    // ============================================
+    // META PIXEL — Dispara evento "Lead" ao enviar o formulário
+    // ============================================
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: 'Boulevard Brooklin',
+        content_category: 'Empreendimento Imobiliário',
+        value: 1.00,
+        currency: 'BRL'
+      });
+    }
+
     const msg = `Olá Rodrigo! Vi o empreendimento no Brooklin e quero saber mais.%0A%0A` +
                 `*Nome:* ${nome}%0A` +
                 `*E-mail:* ${email}%0A` +
@@ -2750,6 +2780,16 @@
 
     body.classList.remove('bloqueado');
     body.classList.add('liberado');
+
+    // ============================================
+    // META PIXEL — Dispara evento customizado "VSL_10%_Assistido"
+    // ============================================
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'VSL_10%_Assistido', {
+        content_name: 'Boulevard Brooklin',
+        content_category: 'VSL Assistido'
+      });
+    }
 
     mostrarToastLiberado();
   }

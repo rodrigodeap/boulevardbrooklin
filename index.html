@@ -44,9 +44,7 @@
   /* ========== BARRA FIXA DO CRONÔMETRO ========== */
   .barra-cronometro {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
     background: linear-gradient(180deg, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.92) 100%);
     backdrop-filter: blur(12px);
@@ -79,8 +77,7 @@
   }
   .barra-label .pulso {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 8px; height: 8px;
     border-radius: 50%;
     background: #ff4d4d;
     box-shadow: 0 0 10px #ff4d4d;
@@ -147,7 +144,7 @@
   }
   .barra-cta svg { width: 14px; height: 14px; fill: currentColor; }
 
-  /* ========== HEADER — VSL LIMPO ========== */
+  /* ========== HEADER — VSL ========== */
   .hero {
     position: relative;
     width: 100%;
@@ -179,7 +176,6 @@
     pointer-events: none;
   }
 
-  /* Logo no topo */
   .hero-parceiros {
     position: absolute;
     top: 30px;
@@ -218,35 +214,34 @@
     justify-content: center;
     width: 46px;
     height: 46px;
-    background: linear-gradient(135deg, var(--ouro) 0%, var(--ouro-claro) 100%);
-    border: 2px solid var(--ouro-claro);
-    color: #0a0a0a;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--ouro);
+    color: var(--ouro);
     cursor: pointer;
     transition: all .3s ease;
-    box-shadow: 0 0 0 0 rgba(201,168,106,0.7), 0 8px 24px rgba(201,168,106,0.45);
-    animation: pulsar-botao 2s infinite;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
     flex-shrink: 0;
+  }
+  .btn-som-icon:hover {
+    background: var(--ouro);
+    color: #0a0a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(201,168,106,0.55);
+  }
+  .btn-som-icon svg { width: 22px; height: 22px; fill: currentColor; }
+  /* Estado "mudo" — pulsante para chamar atenção */
+  .btn-som-icon.mudo {
+    background: linear-gradient(135deg, var(--ouro) 0%, var(--ouro-claro) 100%);
+    border-color: var(--ouro-claro);
+    color: #0a0a0a;
+    animation: pulsar-botao 2s infinite;
   }
   @keyframes pulsar-botao {
     0% { box-shadow: 0 0 0 0 rgba(201,168,106,0.7), 0 8px 24px rgba(201,168,106,0.45); }
     70% { box-shadow: 0 0 0 14px rgba(201,168,106,0), 0 8px 24px rgba(201,168,106,0.45); }
     100% { box-shadow: 0 0 0 0 rgba(201,168,106,0), 0 8px 24px rgba(201,168,106,0.45); }
   }
-  .btn-som-icon:hover {
-    transform: translateY(-2px) scale(1.05);
-    background: linear-gradient(135deg, var(--ouro-claro) 0%, #f0d99a 100%);
-    box-shadow: 0 0 0 0 rgba(201,168,106,0), 0 12px 32px rgba(201,168,106,0.6);
-  }
-  .btn-som-icon svg { width: 22px; height: 22px; fill: currentColor; }
-  .btn-som-icon.som-ativo {
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(10px);
-    border-color: var(--ouro);
-    color: var(--ouro);
-    animation: none;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  }
-  .btn-som-icon.som-ativo:hover { background: var(--ouro); color: #0a0a0a; }
 
   .btn-fullscreen-texto {
     display: inline-flex;
@@ -318,8 +313,7 @@
   /* ========== BARRA DE PROGRESSO ========== */
   .progresso-vsl {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 0; left: 0;
     width: 100%;
     height: 5px;
     background: rgba(255,255,255,0.08);
@@ -334,32 +328,9 @@
     box-shadow: 0 0 12px rgba(201,168,106,0.6);
   }
 
-  /* ========== BLOQUEIO DE CONTEÚDO ========== */
-  body.bloqueado .site-conteudo {
-    filter: blur(14px);
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.4;
-    transition: filter .5s ease, opacity .5s ease;
-  }
-  body.liberado .site-conteudo {
-    filter: blur(0);
-    pointer-events: auto;
-    user-select: auto;
-    opacity: 1;
-    transition: filter .8s ease, opacity .8s ease;
-  }
-
-  /* ========== DIVISOR ========== */
-  .divisor {
-    width: 60px;
-    height: 1px;
-    background: var(--ouro);
-    margin: 0 auto 24px;
-  }
-
   /* =====================================================
-     BLOCO "LIBERAR CONTEÚDO" — NÍTIDO NA SEGUNDA DOBRA
+     BLOCO "LIBERAR CONTEÚDO" — FORA do .site-conteudo
+     Fica SEMPRE nítido, sem herdar blur
      ===================================================== */
   .liberar-conteudo {
     padding: 90px 24px 80px;
@@ -370,7 +341,6 @@
     position: relative;
     overflow: hidden;
   }
-  /* Textura sutil dourada no fundo para reforçar destaque */
   .liberar-conteudo::before {
     content: '';
     position: absolute;
@@ -380,7 +350,6 @@
       radial-gradient(circle at 50% 100%, rgba(201,168,106,0.1) 0%, transparent 60%);
     pointer-events: none;
   }
-  /* Linha vertical decorativa no topo */
   .liberar-conteudo::after {
     content: '';
     position: absolute;
@@ -417,12 +386,8 @@
     animation: pulsar-cadeado 3s infinite;
   }
   @keyframes pulsar-cadeado {
-    0%, 100% {
-      box-shadow: 0 0 0 8px rgba(201,168,106,0.06), 0 12px 32px rgba(201,168,106,0.25);
-    }
-    50% {
-      box-shadow: 0 0 0 16px rgba(201,168,106,0.02), 0 12px 32px rgba(201,168,106,0.4);
-    }
+    0%, 100% { box-shadow: 0 0 0 8px rgba(201,168,106,0.06), 0 12px 32px rgba(201,168,106,0.25); }
+    50% { box-shadow: 0 0 0 16px rgba(201,168,106,0.02), 0 12px 32px rgba(201,168,106,0.4); }
   }
   .liberar-conteudo .cadeado svg {
     width: 32px;
@@ -489,6 +454,30 @@
   }
   body.liberado .liberar-conteudo .cadeado {
     animation: none;
+  }
+
+  /* ========== BLOQUEIO DE CONTEÚDO (aplica só no .site-conteudo) ========== */
+  body.bloqueado .site-conteudo {
+    filter: blur(14px);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.4;
+    transition: filter .5s ease, opacity .5s ease;
+  }
+  body.liberado .site-conteudo {
+    filter: blur(0);
+    pointer-events: auto;
+    user-select: auto;
+    opacity: 1;
+    transition: filter .8s ease, opacity .8s ease;
+  }
+
+  /* ========== DIVISOR ========== */
+  .divisor {
+    width: 60px;
+    height: 1px;
+    background: var(--ouro);
+    margin: 0 auto 24px;
   }
 
   /* ========== SEÇÕES DE DECORADOS ========== */
@@ -1354,7 +1343,7 @@
   </div>
 </div>
 
-<!-- ============ HEADER — VSL LIMPO ============ -->
+<!-- ============ HEADER — VSL ============ -->
 <section class="hero" id="topo">
   <video
     id="vsl-video"
@@ -1373,7 +1362,7 @@
 
   <!-- CONTROLES NO TOPO DIREITO -->
   <div class="hero-controles">
-    <button type="button" class="btn-som-icon som-ativo" id="vsl-btn-som" aria-label="Desativar som do vídeo" title="Desativar som">
+    <button type="button" class="btn-som-icon" id="vsl-btn-som" aria-label="Desativar som do vídeo" title="Desativar som">
       <svg viewBox="0 0 24 24" class="vsl-icone-som">
         <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
       </svg>
@@ -1398,26 +1387,26 @@
   </div>
 </section>
 
+<!-- ============ BLOCO "LIBERAR CONTEÚDO" — FORA do .site-conteudo (SEMPRE NÍTIDO) ============ -->
+<section class="liberar-conteudo" id="liberar-conteudo">
+  <div class="liberar-conteudo-inner">
+    <div class="cadeado">
+      <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+    </div>
+
+    <h3>Assista ao vídeo para liberar <em>todo o conteúdo abaixo</em></h3>
+
+    <p>Retorne ao vídeo no topo da página e assista até o final. Assim que atingir 90% da reprodução, todos os decorados, plantas e informações serão liberados automaticamente.</p>
+
+    <button type="button" class="btn-voltar-topo" id="btn-voltar-topo">
+      <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(-90 12 12)"/></svg>
+      Voltar ao vídeo
+    </button>
+  </div>
+</section>
+
 <!-- ============ CONTEÚDO DO SITE (BLOQUEADO) ============ -->
 <div class="site-conteudo" id="site-conteudo">
-
-  <!-- ============ BLOCO "LIBERAR CONTEÚDO" — NÍTIDO ============ -->
-  <section class="liberar-conteudo" id="liberar-conteudo">
-    <div class="liberar-conteudo-inner">
-      <div class="cadeado">
-        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-      </div>
-
-      <h3>Assista ao vídeo para liberar <em>todo o conteúdo abaixo</em></h3>
-
-      <p>Retorne ao vídeo no topo da página e assista até o final. Assim que atingir 90% da reprodução, todos os decorados, plantas e informações serão liberados automaticamente.</p>
-
-      <button type="button" class="btn-voltar-topo" id="btn-voltar-topo">
-        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(-90 12 12)"/></svg>
-        Voltar ao vídeo
-      </button>
-    </div>
-  </section>
 
   <!-- ============ DECORADO — STUDIO 20,85m² ============ -->
   <section class="section-video" id="studio">
@@ -1834,7 +1823,7 @@
     this.reset();
   });
 
-  /* ---------- BOTÃO "VOLTAR AO VÍDEO" (no bloco de liberação) ---------- */
+  /* ---------- BOTÃO "VOLTAR AO VÍDEO" ---------- */
   document.getElementById('btn-voltar-topo').addEventListener('click', () => {
     document.getElementById('topo').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
@@ -1890,33 +1879,52 @@
   })();
 
   /* =====================================================
-     VSL — SOM ATIVO POR PADRÃO + LIBERAÇÃO APÓS 90%
+     VSL — INICIA COM SOM ATIVO + LIBERAÇÃO APÓS 90%
      ===================================================== */
   const vslVideo = document.getElementById('vsl-video');
   const progressoPreenchido = document.getElementById('progresso-preenchido');
+  const vslBtnSom = document.getElementById('vsl-btn-som');
+  const vslIconeSom = document.querySelector('.vsl-icone-som');
   const body = document.body;
 
   let liberado = false;
 
+  // Ícones
+  const ICONE_VOLUME_ON = 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z';
+  const ICONE_VOLUME_OFF = 'M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z';
+  const ICONE_PLAY = 'M8 5v14l11-7z';
+  const ICONE_PAUSE = 'M6 4h4v16H6zM14 4h4v16h-4z';
+  const ICONE_FULLSCREEN_ENTRAR = 'M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z';
+  const ICONE_FULLSCREEN_SAIR = 'M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z';
+
+  /* ---------- INICIALIZAÇÃO DO VSL COM SOM ATIVO ---------- */
   if (vslVideo) {
+    // Começa com som ativo
     vslVideo.muted = false;
     vslVideo.volume = 1;
 
+    // Estado inicial do botão: som ativo
+    vslBtnSom.classList.remove('mudo');
+    vslBtnSom.setAttribute('aria-label', 'Desativar som do vídeo');
+    vslBtnSom.setAttribute('title', 'Desativar som');
+    vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
+
+    // Tenta autoplay com som
     const tryPlay = vslVideo.play();
     if (tryPlay !== undefined) {
       tryPlay.catch(() => {
+        // Navegador bloqueou autoplay com som → cai para mudo e marca o botão como "mudo"
         vslVideo.muted = true;
         vslVideo.play().catch(() => {});
 
-        const btnSom = document.getElementById('vsl-btn-som');
-        if (btnSom) {
-          btnSom.classList.remove('som-ativo');
-          btnSom.setAttribute('aria-label', 'Ativar som do vídeo');
-          btnSom.setAttribute('title', 'Ativar som');
-        }
+        vslBtnSom.classList.add('mudo');
+        vslBtnSom.setAttribute('aria-label', 'Ativar som do vídeo');
+        vslBtnSom.setAttribute('title', 'Ativar som');
+        vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
       });
     }
 
+    // Atualiza barra de progresso + libera ao atingir 90%
     vslVideo.addEventListener('timeupdate', () => {
       if (liberado) return;
       const duracao = vslVideo.duration;
@@ -1947,42 +1955,25 @@
     }, 800);
   }
 
-  /* =====================================================
-     ÍCONES SVG
-     ===================================================== */
-  const ICONE_VOLUME_ON = 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z';
-  const ICONE_VOLUME_OFF = 'M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z';
-  const ICONE_PLAY = 'M8 5v14l11-7z';
-  const ICONE_PAUSE = 'M6 4h4v16H6zM14 4h4v16h-4z';
-  const ICONE_FULLSCREEN_ENTRAR = 'M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z';
-  const ICONE_FULLSCREEN_SAIR = 'M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z';
-
-  /* =====================================================
-     VSL — BOTÃO DE SOM
-     ===================================================== */
-  const vslBtnSom = document.getElementById('vsl-btn-som');
-  const vslIconeSom = document.querySelector('.vsl-icone-som');
-
+  /* ---------- BOTÃO DE SOM DO VSL ---------- */
   vslBtnSom.addEventListener('click', (e) => {
     e.stopPropagation();
     vslVideo.muted = !vslVideo.muted;
     if (!vslVideo.muted) {
       vslVideo.volume = 1;
       vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
-      vslBtnSom.classList.add('som-ativo');
+      vslBtnSom.classList.remove('mudo');
       vslBtnSom.setAttribute('aria-label', 'Desativar som do vídeo');
       vslBtnSom.setAttribute('title', 'Desativar som');
     } else {
       vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
-      vslBtnSom.classList.remove('som-ativo');
+      vslBtnSom.classList.add('mudo');
       vslBtnSom.setAttribute('aria-label', 'Ativar som do vídeo');
       vslBtnSom.setAttribute('title', 'Ativar som');
     }
   });
 
-  /* =====================================================
-     VSL — BOTÃO TELA CHEIA
-     ===================================================== */
+  /* ---------- BOTÃO TELA CHEIA DO VSL ---------- */
   const vslBtnFullscreen = document.getElementById('vsl-btn-fullscreen');
   const vslIconeFullscreen = document.querySelector('.vsl-icone-fullscreen');
 
@@ -2006,9 +1997,7 @@
     }
   });
 
-  /* =====================================================
-     VSL — BOTÃO PLAY/PAUSE
-     ===================================================== */
+  /* ---------- BOTÃO PLAY/PAUSE DO VSL ---------- */
   const vslBtnPlay = document.getElementById('vsl-btn-play');
   const vslIconePlay = document.querySelector('.vsl-icone-play');
   const hero = document.querySelector('.hero');
@@ -2037,7 +2026,7 @@
   });
 
   /* =====================================================
-     CONTROLES DOS DECORADOS
+     CONTROLES DOS DECORADOS (Studio, 1 Dorm, 2 Suítes)
      ===================================================== */
   function inicializarControlesSec(config) {
     const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, textoSom, controles } = config;

@@ -506,7 +506,6 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
   .btn-play-sec svg { width: 30px; height: 30px; fill: currentColor; margin-left: 3px; }
   .btn-play-sec.rodando svg { margin-left: 0; }
 
-  /* Botão play sempre visível no mobile (studio) */
   .btn-play-sec.sempre-visivel {
     opacity: 1;
     pointer-events: auto;
@@ -1547,69 +1546,92 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     .lazer-item .check { width: 18px; height: 18px; font-size: 0.75rem; }
   }
 
+  /* ============================================================
+     MOBILE (portrait) — Hero com altura do vídeo (16:9)
+     e Studio logo abaixo na primeira tela
+     ============================================================ */
   @media (max-width: 860px) and (orientation: portrait) {
     .hero {
-      height: calc(100vh - var(--altura-barra));
-      min-height: 460px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      display: block;
+      background: #000;
     }
 
     .hero video {
-      position: relative;
-      inset: auto;
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center center;
       background: #000;
     }
 
-    .hero-controles { top: 12px; right: 10px; gap: 6px; }
+    .hero-controles { top: 10px; right: 10px; gap: 6px; }
     .btn-som-texto {
-      padding: 8px 12px;
-      font-size: 0.52rem;
+      padding: 7px 11px;
+      font-size: 0.5rem;
       letter-spacing: 1.2px;
-      height: 36px;
+      height: 32px;
       gap: 4px;
-    }
-    .btn-som-texto svg { width: 12px; height: 12px; }
-    .btn-fullscreen-texto {
-      padding: 8px 12px;
-      font-size: 0.52rem;
-      letter-spacing: 1.2px;
-      height: 36px;
-      gap: 4px;
-    }
-    .btn-fullscreen-texto svg { width: 12px; height: 12px; }
-
-    .hero-overlay {
-      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 100%);
-    }
-
-    .btn-play-central { width: 54px; height: 54px; }
-    .btn-play-central svg { width: 20px; height: 20px; }
-  }
-
-  @media (max-width: 500px) and (orientation: portrait) {
-    .hero-controles { top: 10px; right: 8px; gap: 4px; }
-    .btn-som-texto {
-      padding: 7px 10px;
-      font-size: 0.48rem;
-      letter-spacing: 1px;
-      height: 34px;
-      gap: 3px;
     }
     .btn-som-texto svg { width: 11px; height: 11px; }
     .btn-fullscreen-texto {
-      padding: 7px 10px;
-      font-size: 0.48rem;
-      letter-spacing: 1px;
-      height: 34px;
-      gap: 3px;
+      padding: 7px 11px;
+      font-size: 0.5rem;
+      letter-spacing: 1.2px;
+      height: 32px;
+      gap: 4px;
     }
     .btn-fullscreen-texto svg { width: 11px; height: 11px; }
+
+    .hero-overlay {
+      background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 100%);
+    }
+
+    .btn-play-central { width: 52px; height: 52px; }
+    .btn-play-central svg { width: 20px; height: 20px; }
+
+    .progresso-vsl { height: 4px; }
+
+    /* Reduz o topo do Studio para caber na primeira tela */
+    .section-video { padding: 42px 18px 60px; }
+    #studio .section-logo { height: 28px; margin-bottom: 18px; }
+    #studio .numero { font-size: 2.4rem; margin-bottom: -6px; }
+    #studio h2 { font-size: 1.55rem; margin-bottom: 8px; }
+    #studio .subtitulo { font-size: 0.85rem; margin-bottom: 20px; }
+    #studio .divisor { margin-bottom: 16px; }
+  }
+
+  @media (max-width: 500px) and (orientation: portrait) {
+    .hero-controles { top: 8px; right: 8px; gap: 4px; }
+    .btn-som-texto {
+      padding: 6px 9px;
+      font-size: 0.46rem;
+      letter-spacing: 1px;
+      height: 30px;
+      gap: 3px;
+    }
+    .btn-som-texto svg { width: 10px; height: 10px; }
+    .btn-fullscreen-texto {
+      padding: 6px 9px;
+      font-size: 0.46rem;
+      letter-spacing: 1px;
+      height: 30px;
+      gap: 3px;
+    }
+    .btn-fullscreen-texto svg { width: 10px; height: 10px; }
+
+    .btn-play-central { width: 46px; height: 46px; }
+    .btn-play-central svg { width: 18px; height: 18px; }
+
+    .section-video { padding: 32px 16px 50px; }
+    #studio .section-logo { height: 24px; margin-bottom: 14px; }
+    #studio .numero { font-size: 2rem; }
+    #studio h2 { font-size: 1.35rem; }
+    #studio .subtitulo { font-size: 0.8rem; margin-bottom: 16px; }
   }
 </style>
 </head>
@@ -1659,6 +1681,7 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     <video
       id="vsl-video"
       autoplay
+      muted
       playsinline
       preload="auto">
       <source src="https://boulevardbrooklin.s3.us-east-1.amazonaws.com/VSL_HEADER.mp4" type="video/mp4" />
@@ -2411,12 +2434,11 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
 
   /* =====================================================
      COMPORTAMENTO MOBILE x DESKTOP
-     - Mobile: VSL hero autoplay mudo, Studio SEM autoplay (play manual)
-     - Desktop: VSL hero autoplay, Studio autoplay mudo em loop
+     - Mobile: VSL hero autoplay mudo; Studio sem autoplay (play manual)
+     - Desktop: VSL hero autoplay; Studio autoplay mudo em loop
      ===================================================== */
   const studioVideo = document.getElementById('studio-video');
   const studioBtnPlay = document.getElementById('studio-btn-play');
-  const studioControles = document.getElementById('studio-controles');
   const mediaQueryMobile = window.matchMedia('(max-width: 860px)');
 
   function aplicarComportamentoMobile() {
@@ -2426,11 +2448,11 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
       // HERO / VSL: autoplay mudo
       if (vslVideo) {
         vslVideo.muted = true;
+        vslVideo.setAttribute('muted', '');
         vslVideo.autoplay = true;
         vslVideo.loop = false;
         vslVideo.play().catch(() => {});
 
-        // Atualiza UI de som para "ativar"
         vslBtnSom.classList.add('mudo');
         vslBtnSom.setAttribute('aria-label', 'Ativar som do vídeo');
         vslBtnSom.setAttribute('title', 'Ativar som');
@@ -2440,27 +2462,34 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
 
       // STUDIO: sem autoplay — espera o play do usuário
       if (studioVideo) {
-        studioVideo.autoplay = false;
-        studioVideo.removeAttribute('autoplay');
-        studioVideo.pause();
-        studioVideo.currentTime = 0;
+        // Só pausa se ainda não foi iniciado pelo usuário
+        if (!studioVideo.dataset.usuarioDeuPlay) {
+          studioVideo.autoplay = false;
+          studioVideo.removeAttribute('autoplay');
+          studioVideo.pause();
+          try { studioVideo.currentTime = 0; } catch(e) {}
+        }
       }
       if (studioBtnPlay) {
-        studioBtnPlay.classList.add('sempre-visivel');
-        // Ícone de play (não está rodando)
-        const icone = studioBtnPlay.querySelector('.studio-icone-play');
-        if (icone) icone.querySelector('path').setAttribute('d', ICONE_PLAY);
-        studioBtnPlay.classList.remove('rodando');
+        // Se o vídeo não está rodando, deixa o play sempre visível
+        if (studioVideo && studioVideo.paused) {
+          studioBtnPlay.classList.add('sempre-visivel');
+          const icone = studioBtnPlay.querySelector('.studio-icone-play');
+          if (icone) icone.querySelector('path').setAttribute('d', ICONE_PLAY);
+          studioBtnPlay.classList.remove('rodando');
+        }
       }
     } else {
       // DESKTOP: comportamento original
       if (vslVideo) {
         vslVideo.muted = false;
+        vslVideo.removeAttribute('muted');
         vslVideo.volume = 1;
         const tryPlay = vslVideo.play();
         if (tryPlay !== undefined) {
           tryPlay.catch(() => {
             vslVideo.muted = true;
+            vslVideo.setAttribute('muted', '');
             vslVideo.play().catch(() => {});
             vslBtnSom.classList.add('mudo');
             vslBtnSom.setAttribute('aria-label', 'Ativar som do vídeo');
@@ -2481,6 +2510,7 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
       if (studioVideo) {
         studioVideo.autoplay = true;
         studioVideo.muted = true;
+        studioVideo.setAttribute('muted', '');
         studioVideo.loop = true;
         studioVideo.play().catch(() => {});
       }
@@ -2517,6 +2547,7 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     e.stopPropagation();
     vslVideo.muted = !vslVideo.muted;
     if (!vslVideo.muted) {
+      vslVideo.removeAttribute('muted');
       vslVideo.volume = 1;
       vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
       vslTextoSom.textContent = 'Com som';
@@ -2524,6 +2555,7 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
       vslBtnSom.setAttribute('aria-label', 'Desativar som do vídeo');
       vslBtnSom.setAttribute('title', 'Desativar som');
     } else {
+      vslVideo.setAttribute('muted', '');
       vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
       vslTextoSom.textContent = 'Ativar som';
       vslBtnSom.classList.add('mudo');
@@ -2590,7 +2622,6 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, textoSom, controles, autoPlayDesktop } = config;
     if (!video) return;
 
-    // Só dá play automático se NÃO for o Studio (autoPlayDesktop = true) OU se estiver no desktop
     if (autoPlayDesktop && !mediaQueryMobile.matches) {
       const tryPlay = video.play();
       if (tryPlay !== undefined) tryPlay.catch(() => {});
@@ -2605,10 +2636,12 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
       e.stopPropagation();
       video.muted = !video.muted;
       if (!video.muted) {
+        video.removeAttribute('muted');
         video.volume = 1;
         iconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
         textoSom.textContent = 'Com som';
       } else {
+        video.setAttribute('muted', '');
         iconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
         textoSom.textContent = 'Ativar som';
       }
@@ -2644,11 +2677,11 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     btnPlay.addEventListener('click', (e) => {
       e.stopPropagation();
       if (video.paused) {
+        video.dataset.usuarioDeuPlay = '1';
         video.play();
         btnPlay.classList.remove('sempre-visivel');
       } else {
         video.pause();
-        // No mobile, mantém sempre visível após pausar
         if (mediaQueryMobile.matches) btnPlay.classList.add('sempre-visivel');
       }
     });
@@ -2665,7 +2698,7 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     });
   }
 
-  // Studio — sem autoplay no mobile (autoPlayDesktop: true)
+  // Studio — sem autoplay no mobile
   inicializarControlesSec({
     video: document.getElementById('studio-video'),
     wrapper: document.getElementById('studio-wrapper'),

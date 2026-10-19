@@ -506,6 +506,13 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
   .btn-play-sec svg { width: 30px; height: 30px; fill: currentColor; margin-left: 3px; }
   .btn-play-sec.rodando svg { margin-left: 0; }
 
+  /* Botão play sempre visível no mobile (studio) */
+  .btn-play-sec.sempre-visivel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
   .video-wrapper:fullscreen,
   .hero:fullscreen { max-width: 100%; aspect-ratio: auto; border: none; }
   .video-wrapper:fullscreen video,
@@ -2316,9 +2323,6 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
       return;
     }
 
-    // ============================================
-    // META PIXEL — Dispara evento "Lead" ao enviar o formulário
-    // ============================================
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', {
         content_name: 'Boulevard Brooklin',
@@ -2391,7 +2395,6 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
 
   /* =====================================================
      VSL — CONTROLES + BARRA DE PROGRESSO VISUAL
-     (sem bloqueio de conteúdo)
      ===================================================== */
   const vslVideo = document.getElementById('vsl-video');
   const progressoPreenchido = document.getElementById('progresso-preenchido');
@@ -2406,30 +2409,99 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
   const ICONE_FULLSCREEN_ENTRAR = 'M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z';
   const ICONE_FULLSCREEN_SAIR = 'M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z';
 
-  if (vslVideo) {
-    vslVideo.muted = false;
-    vslVideo.volume = 1;
+  /* =====================================================
+     COMPORTAMENTO MOBILE x DESKTOP
+     - Mobile: VSL hero autoplay mudo, Studio SEM autoplay (play manual)
+     - Desktop: VSL hero autoplay, Studio autoplay mudo em loop
+     ===================================================== */
+  const studioVideo = document.getElementById('studio-video');
+  const studioBtnPlay = document.getElementById('studio-btn-play');
+  const studioControles = document.getElementById('studio-controles');
+  const mediaQueryMobile = window.matchMedia('(max-width: 860px)');
 
-    vslBtnSom.classList.remove('mudo');
-    vslBtnSom.setAttribute('aria-label', 'Desativar som do vídeo');
-    vslBtnSom.setAttribute('title', 'Desativar som');
-    vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
-    vslTextoSom.textContent = 'Com som';
+  function aplicarComportamentoMobile() {
+    const isMobile = mediaQueryMobile.matches;
 
-    const tryPlay = vslVideo.play();
-    if (tryPlay !== undefined) {
-      tryPlay.catch(() => {
+    if (isMobile) {
+      // HERO / VSL: autoplay mudo
+      if (vslVideo) {
         vslVideo.muted = true;
+        vslVideo.autoplay = true;
+        vslVideo.loop = false;
         vslVideo.play().catch(() => {});
 
+        // Atualiza UI de som para "ativar"
         vslBtnSom.classList.add('mudo');
         vslBtnSom.setAttribute('aria-label', 'Ativar som do vídeo');
         vslBtnSom.setAttribute('title', 'Ativar som');
         vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
         vslTextoSom.textContent = 'Ativar som';
-      });
-    }
+      }
 
+      // STUDIO: sem autoplay — espera o play do usuário
+      if (studioVideo) {
+        studioVideo.autoplay = false;
+        studioVideo.removeAttribute('autoplay');
+        studioVideo.pause();
+        studioVideo.currentTime = 0;
+      }
+      if (studioBtnPlay) {
+        studioBtnPlay.classList.add('sempre-visivel');
+        // Ícone de play (não está rodando)
+        const icone = studioBtnPlay.querySelector('.studio-icone-play');
+        if (icone) icone.querySelector('path').setAttribute('d', ICONE_PLAY);
+        studioBtnPlay.classList.remove('rodando');
+      }
+    } else {
+      // DESKTOP: comportamento original
+      if (vslVideo) {
+        vslVideo.muted = false;
+        vslVideo.volume = 1;
+        const tryPlay = vslVideo.play();
+        if (tryPlay !== undefined) {
+          tryPlay.catch(() => {
+            vslVideo.muted = true;
+            vslVideo.play().catch(() => {});
+            vslBtnSom.classList.add('mudo');
+            vslBtnSom.setAttribute('aria-label', 'Ativar som do vídeo');
+            vslBtnSom.setAttribute('title', 'Ativar som');
+            vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_OFF);
+            vslTextoSom.textContent = 'Ativar som';
+          });
+        }
+        if (!vslVideo.muted) {
+          vslBtnSom.classList.remove('mudo');
+          vslBtnSom.setAttribute('aria-label', 'Desativar som do vídeo');
+          vslBtnSom.setAttribute('title', 'Desativar som');
+          vslIconeSom.querySelector('path').setAttribute('d', ICONE_VOLUME_ON);
+          vslTextoSom.textContent = 'Com som';
+        }
+      }
+
+      if (studioVideo) {
+        studioVideo.autoplay = true;
+        studioVideo.muted = true;
+        studioVideo.loop = true;
+        studioVideo.play().catch(() => {});
+      }
+      if (studioBtnPlay) {
+        studioBtnPlay.classList.remove('sempre-visivel');
+      }
+    }
+  }
+
+  // Aplica na carga
+  aplicarComportamentoMobile();
+
+  // Reaplica se a tela mudar de tamanho
+  if (mediaQueryMobile.addEventListener) {
+    mediaQueryMobile.addEventListener('change', aplicarComportamentoMobile);
+  } else if (mediaQueryMobile.addListener) {
+    mediaQueryMobile.addListener(aplicarComportamentoMobile);
+  }
+
+  /* ---------- BARRA DE PROGRESSO DO VSL ---------- */
+  if (vslVideo) {
     vslVideo.addEventListener('timeupdate', () => {
       const duracao = vslVideo.duration;
       if (!duracao || duracao === Infinity) return;
@@ -2515,11 +2587,14 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
      CONTROLES DOS DECORADOS
      ===================================================== */
   function inicializarControlesSec(config) {
-    const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, textoSom, controles } = config;
+    const { video, wrapper, btnSom, btnPlay, btnFullscreen, iconeSom, iconePlay, textoSom, controles, autoPlayDesktop } = config;
     if (!video) return;
 
-    const tryPlay = video.play();
-    if (tryPlay !== undefined) tryPlay.catch(() => {});
+    // Só dá play automático se NÃO for o Studio (autoPlayDesktop = true) OU se estiver no desktop
+    if (autoPlayDesktop && !mediaQueryMobile.matches) {
+      const tryPlay = video.play();
+      if (tryPlay !== undefined) tryPlay.catch(() => {});
+    }
 
     if (controles) controles.classList.add('visivel');
     video.addEventListener('loadeddata', () => {
@@ -2568,20 +2643,29 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
 
     btnPlay.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (video.paused) video.play();
-      else video.pause();
+      if (video.paused) {
+        video.play();
+        btnPlay.classList.remove('sempre-visivel');
+      } else {
+        video.pause();
+        // No mobile, mantém sempre visível após pausar
+        if (mediaQueryMobile.matches) btnPlay.classList.add('sempre-visivel');
+      }
     });
 
     video.addEventListener('play', () => {
       iconePlay.querySelector('path').setAttribute('d', ICONE_PAUSE);
       btnPlay.classList.add('rodando');
+      btnPlay.classList.remove('sempre-visivel');
     });
     video.addEventListener('pause', () => {
       iconePlay.querySelector('path').setAttribute('d', ICONE_PLAY);
       btnPlay.classList.remove('rodando');
+      if (mediaQueryMobile.matches) btnPlay.classList.add('sempre-visivel');
     });
   }
 
+  // Studio — sem autoplay no mobile (autoPlayDesktop: true)
   inicializarControlesSec({
     video: document.getElementById('studio-video'),
     wrapper: document.getElementById('studio-wrapper'),
@@ -2591,9 +2675,11 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     iconeSom: document.querySelector('.studio-icone-som'),
     iconePlay: document.querySelector('.studio-icone-play'),
     textoSom: document.querySelector('.studio-texto-som'),
-    controles: document.getElementById('studio-controles')
+    controles: document.getElementById('studio-controles'),
+    autoPlayDesktop: true
   });
 
+  // 1 Dorm — autoplay normal
   inicializarControlesSec({
     video: document.getElementById('umdorm-video'),
     wrapper: document.getElementById('umdorm-wrapper'),
@@ -2603,9 +2689,11 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     iconeSom: document.querySelector('.umdorm-icone-som'),
     iconePlay: document.querySelector('.umdorm-icone-play'),
     textoSom: document.querySelector('.umdorm-texto-som'),
-    controles: document.getElementById('umdorm-controles')
+    controles: document.getElementById('umdorm-controles'),
+    autoPlayDesktop: false
   });
 
+  // 2 Suítes — autoplay normal
   inicializarControlesSec({
     video: document.getElementById('suites-video'),
     wrapper: document.getElementById('suites-wrapper'),
@@ -2615,7 +2703,8 @@ src="https://www.facebook.com/tr?id=866767676459082&ev=PageView&noscript=1"
     iconeSom: document.querySelector('.suites-icone-som'),
     iconePlay: document.querySelector('.suites-icone-play'),
     textoSom: document.querySelector('.suites-texto-som'),
-    controles: document.getElementById('suites-controles')
+    controles: document.getElementById('suites-controles'),
+    autoPlayDesktop: false
   });
 
   const atualizarIconesFullscreen = () => {
